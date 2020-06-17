@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Smart-House"
+    }
+  },
+  "defaultProject": "Smart-House",
+  "cli": {
+    "analytics": "c612cd02-7984-42b8-b4a3-724d4294eb3e"
+  }
 }
