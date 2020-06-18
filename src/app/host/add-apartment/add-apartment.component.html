@@ -1,19 +1,24 @@
 <div class="container">
   <h1>Create an apartment</h1>
-  <div role="form">
+  <div role="form" [formGroup]="apartmentForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>Name</label>
-      <input type="text" class="form-control" placeholder="Enter ..." />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter ..."
+        formControlName="name"
+      />
     </div>
-    <div class="form-group">
-      <label>Category</label>
-      <select class="form-control">
-        <option>option 1</option>
-        <option>option 2</option>
-        <option>option 3</option>
-        <option>option 4</option>
-        <option>option 5</option>
-      </select>
+    <label>Categories:</label>
+    <div class="form-group" formArrayName="categories">
+      <ng-multiselect-dropdown
+        [placeholder]="'custom placeholder'"
+        [data]="data"
+        [settings]="tasksDropDownSettings"
+        formControlName="categories"
+      >
+      </ng-multiselect-dropdown>
     </div>
     <label>Room Type</label>
     <div class="form-group">

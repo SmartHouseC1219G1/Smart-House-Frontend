@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,6 +12,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 const firebaseConfig = {
   apiKey: "AIzaSyB3F4HWEz67XdAe7KnSrYq-0cNede-zm4g",
@@ -47,6 +49,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    NgMultiSelectDropDownModule,
+    FormsModule,
+    ReactiveFormsModule,
     NgxDropzoneModule,
     // 3. Initialize
     AngularFireModule.initializeApp(firebaseConfig),

@@ -1,3 +1,5 @@
+import { Category } from './../../model/category';
+import { Picture } from './../../model/picture';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
@@ -6,35 +8,84 @@ import {
 } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { finalize, tap } from 'rxjs/operators';
+import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 
-interface Image {
-  id?: number;
-  url: string;
-}
 @Component({
   selector: 'app-add-apartment',
   templateUrl: './add-apartment.component.html',
   styleUrls: ['./add-apartment.component.css'],
 })
 export class AddApartmentComponent implements OnInit {
+  tasksDropDownSettings = {
+    singleSelection: false,
+      idField: 'id',
+      textField: 'name',
+      enableCheckAll: true,
+      selectAllText: 'Chọn All',
+      unSelectAllText: 'Hủy chọn',
+      allowSearchFilter: true,
+      limitSelection: -1,
+      clearSearchFilter: true,
+      maxHeight: 197,
+      itemsShowLimit: 3,
+      searchPlaceholderText: 'Tìm kiếm',
+      noDataAvailablePlaceholderText: 'Không có dữ liệu',
+      closeDropDownOnSelection: false,
+      showSelectedItemsAtTop: false,
+      defaultOpen: false
+  }
+  data ;
+
   // For Upload
-  task: AngularFireUploadTask;
-
-  percentage: Observable<number>;
-  snapshot: Observable<any>;
-  downloadURL: string;
-
   listUrl: string[] = [];
+  apartmentForm: FormGroup;
 
+  
   constructor(
     private storage: AngularFireStorage,
-    private db: AngularFirestore
+    private db: AngularFirestore,
+    private fb: FormBuilder
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.data = [
+      {
+        id: 1,
+        name: 'a'
+      },
+      {
+        id: 2,
+        name: 'b'
+      },
+      {
+        id: 3,
+        name: 'c'
+      },
+    ];
+
+    this.apartmentForm = this.fb.group({
+      name: ['', Validators.required],
+      bathroom: ['', Validators.required],
+      bedroom: ['', Validators.required],
+      priceByDate: ['', Validators.required],
+      description: ['', Validators.required],
+      categories: this.fb.control(this.data[1],Validators.required),
+      address: this.fb.group({
+        name: ['', Validators.required],
+        province: this.fb.group({
+          id: ['', Validators.required],
+        }),
+      }),
+      // roomType
+    });
+
+    
+  }
 
   files: File[] = [];
-  imageList: Image[] = [];
+  pictureList: Picture[] = [];
+
+  onSubmit() {}
 
   onSelect(event) {
     console.log(event);
