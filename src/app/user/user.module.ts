@@ -29,7 +29,7 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, LayoutComponent, ResultSearchComponent, RoomDetailComponent],
+  declarations: [HeaderComponent, FooterComponent, HomePageComponent, LayoutComponent, ResultSearchComponent, RoomDetailComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes)

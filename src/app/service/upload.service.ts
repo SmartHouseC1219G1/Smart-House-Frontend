@@ -19,7 +19,7 @@ export class UploadService {
     // Reference to storage bucket
     const ref = this.storage.ref(path);
 
-    return this.storage.upload(path,file);
+    return this.storage.upload(path, file);
   }
 
   // getPictureFromUploader(file: File){
@@ -33,7 +33,7 @@ export class UploadService {
   //   .pipe(
   //     finalize(() => {
   //       ref.getDownloadURL().subscribe((url) => {
-  //         picture = 
+  //         picture =
   //       });
   //     })
   //   )

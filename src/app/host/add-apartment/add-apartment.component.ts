@@ -28,13 +28,13 @@ export class AddApartmentComponent implements OnInit {
   listUrl: string[] = [];
   apartmentForm: FormGroup;
 
-  
+
   constructor(
     private storage: AngularFireStorage,
     private db: AngularFirestore,
     private fb: FormBuilder
   ) {}
-
+  
   ngOnInit(): void {
     this.categories = [
       { id: 1, name: 'Loai 1' },
@@ -86,8 +86,6 @@ export class AddApartmentComponent implements OnInit {
       }),
       roomTypes: this.fb.control([])
     });
-
-    
   }
 
   files: File[] = [];
