@@ -1,6 +1,6 @@
 import { Address } from './address';
-export class Province {
-    id: number;
-    name: string;
-    addresses: Address[];
+export interface Province {
+    id?: number;
+    name?: string;
+    addresses?: Address[];
 }
