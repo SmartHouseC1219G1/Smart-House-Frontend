@@ -19,7 +19,7 @@ export class HomePageComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.listApartment().subscribe( item => (this.apartments = item), error => {alert('error');})
+    this.userService.listApartment().subscribe( item => (this.apartments = item), error => {alert('error'); });
   }
 
 }
