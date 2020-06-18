@@ -20,7 +20,7 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent],
+  declarations: [LayoutComponent, HeaderComponent, FooterComponent, HomePageComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes)
