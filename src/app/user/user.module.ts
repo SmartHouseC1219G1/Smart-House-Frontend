@@ -3,14 +3,10 @@ import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './layout/layout.component';
 import {RouterModule, Routes} from '@angular/router';
 import {HomePageComponent} from './home-page/home-page.component';
-<<<<<<< HEAD
 import { ResultSearchComponent } from './result-search/result-search.component';
 import { RoomDetailComponent } from './room-detail/room-detail.component';
-=======
-import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
->>>>>>> 7497ab40faf27328e19a1acfcb525c58d72de18a
-
+import { HeaderComponent } from './header/header.component';
 
 const routes: Routes = [
   {
@@ -33,11 +29,7 @@ const routes: Routes = [
   }
 ];
 @NgModule({
-<<<<<<< HEAD
   declarations: [HeaderComponent, FooterComponent, LayoutComponent, ResultSearchComponent, RoomDetailComponent],
-=======
-  declarations: [LayoutComponent, HeaderComponent, FooterComponent, HomePageComponent],
->>>>>>> 7497ab40faf27328e19a1acfcb525c58d72de18a
     imports: [
         CommonModule,
         RouterModule.forChild(routes)

@@ -20,12 +20,9 @@
     "@angular/platform-browser": "~9.1.9",
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
-<<<<<<< HEAD
     "bootstrap": "^4.5.0",
-=======
     "firebase": "^7.15.1",
     "ngx-dropzone": "^2.2.2",
->>>>>>> 7497ab40faf27328e19a1acfcb525c58d72de18a
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
