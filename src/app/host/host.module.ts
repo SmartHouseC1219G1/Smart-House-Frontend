@@ -49,7 +49,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    NgMultiSelectDropDownModule,
+    NgMultiSelectDropDownModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     NgxDropzoneModule,

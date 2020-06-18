@@ -1,14 +1,14 @@
 import { Category } from './../../model/category';
 import { Picture } from './../../model/picture';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import {
   AngularFireStorage,
   AngularFireUploadTask,
 } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { finalize, tap } from 'rxjs/operators';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-add-apartment',
@@ -16,25 +16,26 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
   styleUrls: ['./add-apartment.component.css'],
 })
 export class AddApartmentComponent implements OnInit {
-  tasksDropDownSettings = {
+  settings: IDropdownSettings = {
     singleSelection: false,
-      idField: 'id',
-      textField: 'name',
-      enableCheckAll: true,
-      selectAllText: 'Chọn All',
-      unSelectAllText: 'Hủy chọn',
-      allowSearchFilter: true,
-      limitSelection: -1,
-      clearSearchFilter: true,
-      maxHeight: 197,
-      itemsShowLimit: 3,
-      searchPlaceholderText: 'Tìm kiếm',
-      noDataAvailablePlaceholderText: 'Không có dữ liệu',
-      closeDropDownOnSelection: false,
-      showSelectedItemsAtTop: false,
-      defaultOpen: false
+    idField: 'id',
+    textField: 'name',
+    enableCheckAll: true,
+    selectAllText: 'Select all',
+    unSelectAllText: 'Unselect all',
+    allowSearchFilter: true,
+    limitSelection: -1,
+    clearSearchFilter: true,
+    maxHeight: 197,
+    itemsShowLimit: 10,
+    searchPlaceholderText: 'Search',
+    noDataAvailablePlaceholderText: 'No value',
+    closeDropDownOnSelection: false,
+    showSelectedItemsAtTop: false,
+    defaultOpen: false  
   }
-  data ;
+  categories = [] ;
+  roomTypes = [];
 
   // For Upload
   listUrl: string[] = [];
@@ -48,20 +49,21 @@ export class AddApartmentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.data = [
-      {
-        id: 1,
-        name: 'a'
-      },
-      {
-        id: 2,
-        name: 'b'
-      },
-      {
-        id: 3,
-        name: 'c'
-      },
+    this.categories = [
+      { id: 1, name: 'Loai 1' },
+      { id: 2, name: 'Loai 2' },
+      { id: 3, name: 'Loai 3' },
+      { id: 4, name: 'Loai 4' },
+      { id: 5, name: 'Loai 5' }
     ];
+
+    this.roomTypes = [
+      { id: 1, name: 'phong 1'},
+      { id: 2, name: 'phong 2'},
+      { id: 3, name: 'phong 3'},
+    ]
+    // setting and support i18n
+  
 
     this.apartmentForm = this.fb.group({
       name: ['', Validators.required],
@@ -69,14 +71,14 @@ export class AddApartmentComponent implements OnInit {
       bedroom: ['', Validators.required],
       priceByDate: ['', Validators.required],
       description: ['', Validators.required],
-      categories: this.fb.control(this.data[1],Validators.required),
+      categories: this.fb.control([]),
       address: this.fb.group({
         name: ['', Validators.required],
         province: this.fb.group({
           id: ['', Validators.required],
         }),
       }),
-      // roomType
+      roomTypes: this.fb.control([])
     });
 
     
@@ -85,7 +87,9 @@ export class AddApartmentComponent implements OnInit {
   files: File[] = [];
   pictureList: Picture[] = [];
 
-  onSubmit() {}
+  onSubmit() {
+    console.log(this.apartmentForm.value)
+  }
 
   onSelect(event) {
     console.log(event);
