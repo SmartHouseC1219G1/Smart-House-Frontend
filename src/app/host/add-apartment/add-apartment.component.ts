@@ -1,7 +1,6 @@
-import { Category } from './../../model/category';
-import { Picture } from './../../model/picture';
+
+import { Picture } from '../../model/picture';
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import {
   AngularFireStorage,
   AngularFireUploadTask,
@@ -16,6 +15,12 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
   styleUrls: ['./add-apartment.component.css'],
 })
 export class AddApartmentComponent implements OnInit {
+
+  constructor(
+    private storage: AngularFireStorage,
+    private db: AngularFirestore,
+    private fb: FormBuilder
+  ) {}
   tasksDropDownSettings = {
     singleSelection: false,
       idField: 'id',
@@ -40,12 +45,8 @@ export class AddApartmentComponent implements OnInit {
   listUrl: string[] = [];
   apartmentForm: FormGroup;
 
-  
-  constructor(
-    private storage: AngularFireStorage,
-    private db: AngularFirestore,
-    private fb: FormBuilder
-  ) {}
+  files: File[] = [];
+  pictureList: Picture[] = [];
 
   ngOnInit(): void {
     this.data = [
@@ -69,7 +70,7 @@ export class AddApartmentComponent implements OnInit {
       bedroom: ['', Validators.required],
       priceByDate: ['', Validators.required],
       description: ['', Validators.required],
-      categories: this.fb.control(this.data[1],Validators.required),
+      categories: this.fb.control(this.data[1], Validators.required),
       address: this.fb.group({
         name: ['', Validators.required],
         province: this.fb.group({
@@ -78,12 +79,7 @@ export class AddApartmentComponent implements OnInit {
       }),
       // roomType
     });
-
-    
   }
-
-  files: File[] = [];
-  pictureList: Picture[] = [];
 
   onSubmit() {}
 
