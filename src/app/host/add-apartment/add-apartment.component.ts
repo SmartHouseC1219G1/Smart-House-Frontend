@@ -18,9 +18,9 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
   styleUrls: ['./add-apartment.component.css'],
 })
 export class AddApartmentComponent implements OnInit {
-  settings: IDropdownSettings = {}
-  
-  categories = [] ;
+  settings: IDropdownSettings = {};
+
+  categories = [];
   roomTypes = [];
   apartment: Apartment;
   // For Upload
@@ -28,27 +28,29 @@ export class AddApartmentComponent implements OnInit {
   listUrl: string[] = [];
   apartmentForm: FormGroup;
 
+  files: File[] = [];
+  pictureList: Picture[] = [];
 
   constructor(
     private storage: AngularFireStorage,
     private db: AngularFirestore,
     private fb: FormBuilder
   ) {}
-  
+
   ngOnInit(): void {
     this.categories = [
       { id: 1, name: 'Loai 1' },
       { id: 2, name: 'Loai 2' },
       { id: 3, name: 'Loai 3' },
       { id: 4, name: 'Loai 4' },
-      { id: 5, name: 'Loai 5' }
+      { id: 5, name: 'Loai 5' },
     ];
 
     this.roomTypes = [
-      { id: 1, name: 'phong 1'},
-      { id: 2, name: 'phong 2'},
-      { id: 3, name: 'phong 3'},
-    ]
+      { id: 1, name: 'phong 1' },
+      { id: 2, name: 'phong 2' },
+      { id: 3, name: 'phong 3' },
+    ];
 
     this.settings = {
       singleSelection: false,
@@ -66,10 +68,9 @@ export class AddApartmentComponent implements OnInit {
       noDataAvailablePlaceholderText: 'No value',
       closeDropDownOnSelection: false,
       showSelectedItemsAtTop: false,
-      defaultOpen: false  
-    }
+      defaultOpen: false,
+    };
     // setting and support i18n
-  
 
     this.apartmentForm = this.fb.group({
       name: ['', Validators.required],
@@ -84,26 +85,22 @@ export class AddApartmentComponent implements OnInit {
           id: ['', Validators.required],
         }),
       }),
-      roomTypes: this.fb.control([])
+      roomTypes: this.fb.control([]),
     });
   }
-
-  files: File[] = [];
-  pictureList: Picture[] = [];
 
   onSubmit() {
     // if(!this.apartmentForm.invalid){
     //   return;
     // }
     this.files.forEach(async (file) => {
-       const promise = await this.startUpload(file)
-       .then(res => console.log(res))
-       .catch(err => console.log(err))
-       
-    })
+      const promise = await this.startUpload(file)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    });
     this.apartment = this.apartmentForm.value;
     this.apartment.pictures = this.pictures;
-    console.log(this.apartment)
+    console.log(this.apartment);
     // make apartment object empty
     this.apartment = {};
   }
@@ -111,14 +108,13 @@ export class AddApartmentComponent implements OnInit {
   onSelect(event) {
     console.log(event);
     this.files.push(...event.addedFiles);
-    console.log(this.files)
+    console.log(this.files);
   }
 
   onRemove(event) {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
-    console.log(this.files)
-
+    console.log(this.files);
   }
 
   async startUpload(file: File) {
@@ -136,11 +132,12 @@ export class AddApartmentComponent implements OnInit {
         finalize(() => {
           ref.getDownloadURL().subscribe((url) => {
             this.pictures.push({
-              imageUrl: url
+              imageUrl: url,
             });
             console.log(this.pictures);
           });
         })
-      ).subscribe();
+      )
+      .subscribe();
   }
 }
