@@ -1,6 +1,6 @@
 import { Apartment } from './apartment';
 export interface RoomType {
-    id?: string;
+    id?: number;
     name?: string;
     apartments?: Apartment[];
 }

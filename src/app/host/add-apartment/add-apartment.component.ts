@@ -1,3 +1,6 @@
+import { GetListService } from './../../service/get-list.service';
+import { Province } from './../../model/province';
+import { RoomType } from './../../model/roomtype';
 import { Apartment } from './../../model/apartment';
 import { async } from '@angular/core/testing';
 import { Category } from './../../model/category';
@@ -21,8 +24,9 @@ import { of } from 'rxjs';
 export class AddApartmentComponent implements OnInit {
   settings: IDropdownSettings = {};
 
-  categories = [];
-  roomTypes = [];
+  categories: Category[];
+  roomTypes: RoomType[];
+  provinces: Province[];
   apartment: Apartment;
   // For Upload
   pictures: Picture[] = [];
@@ -35,23 +39,27 @@ export class AddApartmentComponent implements OnInit {
   constructor(
     private storage: AngularFireStorage,
     private db: AngularFirestore,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private getListService: GetListService
   ) {}
 
   ngOnInit(): void {
-    this.categories = [
-      { id: 1, name: 'Loai 1' },
-      { id: 2, name: 'Loai 2' },
-      { id: 3, name: 'Loai 3' },
-      { id: 4, name: 'Loai 4' },
-      { id: 5, name: 'Loai 5' },
-    ];
+    this.getListService.getCategoryList().subscribe(data => {
+      this.categories = data.data;
+      console.log(data.data)
+    });
+    this.getListService.getRoomTypeList().subscribe(data => {
+      this.roomTypes = data.data;
+      console.log(data.data)
+    });
+    this.getListService.getProvinceList().subscribe(data => {
+      this.provinces = data.data;
+      console.log(data.data)
+    });
+    
 
-    this.roomTypes = [
-      { id: 1, name: 'phong 1' },
-      { id: 2, name: 'phong 2' },
-      { id: 3, name: 'phong 3' },
-    ];
+
+    console.log("in ra sau khi chay xog race")
 
     this.settings = {
       singleSelection: false,
@@ -87,6 +95,16 @@ export class AddApartmentComponent implements OnInit {
         }),
       }),
       roomTypes: this.fb.control([]),
+    });
+  }
+
+  getList() {
+    return Promise.race([
+      this.getListService.getCategoryList().toPromise(),
+      this.getListService.getRoomTypeList().toPromise(),
+      this.getListService.getProvinceList().toPromise(),
+    ]).then((res) => {
+      console.log(res);
     });
   }
 
