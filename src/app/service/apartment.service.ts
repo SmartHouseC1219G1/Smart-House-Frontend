@@ -11,11 +11,11 @@ export class ApartmentService {
   constructor(private httpClient: HttpClient) {}
 
   addNewApartment(apartment: Apartment){
-    return this.httpClient.post<Apartment>(this.url, apartment);
+    return this.httpClient.post(this.url, apartment);
   }
 
-  getApartmentById(id: number): Observable<Apartment>{
-    return this.httpClient.get<Apartment>(`${this.url}/${id}`);
+  getApartmentById(id: number) {
+    return this.httpClient.get(`${this.url}/${id}`);
   }
 
 }

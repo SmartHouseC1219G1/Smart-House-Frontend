@@ -11,6 +11,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { finalize, tap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-add-apartment',
@@ -89,15 +90,15 @@ export class AddApartmentComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  async onSubmit() {
     // if(!this.apartmentForm.invalid){
     //   return;
     // }
-    this.files.forEach(async (file) => {
-      const promise = await this.startUpload(file)
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
-    });
+    for (let index = 0; index < this.files.length; index++) {
+      const file = this.files[index];
+      const waitPlz = await this.startUpload(file).toPromise();
+      console.log('pass' + index);
+    }
     this.apartment = this.apartmentForm.value;
     this.apartment.pictures = this.pictures;
     console.log(this.apartment);
@@ -105,19 +106,19 @@ export class AddApartmentComponent implements OnInit {
     this.apartment = {};
   }
 
-  onSelect(event) {
+  onSelect(event: { addedFiles: any }) {
     console.log(event);
     this.files.push(...event.addedFiles);
     console.log(this.files);
   }
 
-  onRemove(event) {
+  onRemove(event: File) {
     console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
     console.log(this.files);
   }
 
-  async startUpload(file: File) {
+  startUpload(file: File) {
     // The storage path
     const path = `hotel/${Date.now()}_${file.name}`;
 
@@ -137,7 +138,6 @@ export class AddApartmentComponent implements OnInit {
             console.log(this.pictures);
           });
         })
-      )
-      .subscribe();
+      );
   }
 }

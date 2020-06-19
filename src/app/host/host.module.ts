@@ -1,5 +1,5 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './layout/layout.component';
@@ -42,7 +42,7 @@ const routes: Routes = [
         component: AddApartmentComponent
       },
       {
-        path: 'list-apartment',
+        path: 'apartment',
         component: ListApartmentComponent
       }
     ]
@@ -66,7 +66,7 @@ const routes: Routes = [
     AngularFireAuthModule, // auth
     AngularFireStorageModule, // storage
     MatListModule,
-    MatIconModule
+    MatIconModule,
   ]
 })
 export class HostModule { }
