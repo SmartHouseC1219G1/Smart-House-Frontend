@@ -22,7 +22,7 @@ const routes: Routes = [
         component: ResultSearchComponent
       },
       {
-        path: 'room-detail',
+        path: 'room-detail/:id',
         component: RoomDetailComponent
       }
     ]
