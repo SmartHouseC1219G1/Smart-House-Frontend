@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Create an apartment</h1>
-  <div role="form" [formGroup]="apartmentForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
+  <form [formGroup]="apartmentForm" (ngSubmit)="onSubmit()">
+    <div class="form-group" >
       <label>Name</label>
       <input
         type="text"
@@ -11,39 +11,38 @@
       />
     </div>
     <label>Categories:</label>
-    <div class="form-group" formArrayName="categories">
+    <div class="form-group">
       <ng-multiselect-dropdown
-        [placeholder]="'custom placeholder'"
-        [data]="data"
-        [settings]="tasksDropDownSettings"
+        [settings]="settings"
+        [data]="categories"
         formControlName="categories"
+        *ngIf="settings"
       >
       </ng-multiselect-dropdown>
     </div>
     <label>Room Type</label>
     <div class="form-group">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" />
-        <label class="form-check-label">Checkbox</label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" checked />
-        <label class="form-check-label">Checkbox checked</label>
-      </div>
+      <ng-multiselect-dropdown
+        [settings]="settings"
+        [data]="roomTypes"
+        formControlName="roomTypes"
+        *ngIf="settings"
+      >
+      </ng-multiselect-dropdown>
     </div>
-    <div class="row">
+    <div class="row" formGroupName="address">
       <div class="col-sm-6">
         <!-- text input -->
         <div class="form-group">
           <label>Address</label>
-          <input type="text" class="form-control" placeholder="Enter ..." />
+          <input type="text" class="form-control" placeholder="Enter ..." formControlName="name" />
         </div>
       </div>
       <div class="col-sm-6">
         <!-- text input -->
-        <div class="form-group">
+        <div class="form-group" formGroupName="province">
           <label>City</label>
-          <select class="form-control">
+          <select class="form-control" formControlName="id">
             <option>option 1</option>
             <option>option 2</option>
             <option>option 3</option>
@@ -58,20 +57,20 @@
         <!-- text input -->
         <div class="form-group">
           <label>Number of bedroom</label>
-          <input type="number" class="form-control" placeholder="Enter ..." />
+          <input type="number" class="form-control" placeholder="Enter ..." formControlName="bedroom" />
         </div>
       </div>
       <div class="col-sm-6">
         <!-- text input -->
         <div class="form-group">
           <label>Number of bathroom</label>
-          <input type="number" class="form-control" placeholder="Enter ..." />
+          <input type="number" class="form-control" placeholder="Enter ..." formControlName="bathroom"/>
         </div>
       </div>
     </div>
     <div class="form-group">
       <label>Price per night</label>
-      <input type="number" class="form-control" placeholder="Enter ..." />
+      <input type="number" class="form-control" placeholder="Enter ..." formControlName="priceByDate" />
     </div>
     <div class="form-group">
       <label>Upload picture of your apartment</label>
@@ -102,6 +101,7 @@
         class="form-control"
         rows="3"
         placeholder="Enter ..."
+        formControlName="description"
       ></textarea>
     </div>
     <div class="row justify-content-around">
@@ -110,5 +110,5 @@
         <button type="reset" class="bg-gradient-primary">Reset</button>
       </div>
     </div>
-  </div>
+  </form>
 </div>

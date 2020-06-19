@@ -8,6 +8,7 @@ import {Host} from '../../model/host';
 import {Address} from '../../model/address';
 import {RoomType} from '../../model/roomtype';
 import {Apartment} from '../../model/apartment';
+import {DatetimeService} from '../../service/datetime.service';
 
 @Component({
   selector: 'app-home-page',
@@ -16,10 +17,17 @@ import {Apartment} from '../../model/apartment';
 })
 export class HomePageComponent implements OnInit {
   apartments: Apartment[] = [];
-  constructor(private userService: UserService) { }
+  listApartment: Apartment[] = [];
+  constructor(private userService: UserService, private date: DatetimeService) { }
 
   ngOnInit(): void {
     this.userService.listApartment().subscribe( item => (this.apartments = item), error => {alert('error'); });
+  }
+  checkTime(value){
+    this.date.checkDateTime(value);
+  }
+  checkInOut(dayIn, dayOut){
+    this.date.checkInOut(dayIn, dayOut);
   }
 
 }

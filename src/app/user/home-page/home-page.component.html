@@ -41,7 +41,7 @@
                 <div class="input-wrap">
                   <div class="icon"><span class="ion-md-calendar"></span></div>
                   <p>Check In</p>
-                  <input type="date" class="form-control appointment_date-check-in" placeholder="Check-In">
+                  <input type="date" class="form-control appointment_date-check-in" placeholder="Check-In" (change)="checkTime($event.target.value)">
                 </div>
               </div>
             </div>
@@ -50,7 +50,7 @@
                 <div class="input-wrap">
                   <div class="icon"><span class="ion-md-calendar"></span></div>
                   <p>Check Out</p>
-                  <input type="date" class="form-control appointment_date-check-out" placeholder="Check-Out">
+                  <input type="date" class="form-control appointment_date-check-out" placeholder="Check-Out" (change)="checkTime($event.target.value)">
                 </div>
               </div>
             </div>
