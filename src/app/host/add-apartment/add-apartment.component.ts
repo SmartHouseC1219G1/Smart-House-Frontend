@@ -1,3 +1,4 @@
+import { ApartmentService } from './../../service/apartment.service';
 import { res } from './../../model/res';
 import { GetListService } from './../../service/get-list.service';
 import { Province } from './../../model/province';
@@ -58,19 +59,19 @@ export class AddApartmentComponent implements OnInit {
     private storage: AngularFireStorage,
     private db: AngularFirestore,
     private fb: FormBuilder,
-    private getListService: GetListService
+    private getListService: GetListService,
+    private apartmentService: ApartmentService
   ) {}
 
-  ngOnInit(){
+  ngOnInit() {
     const arrayResult = this.getList();
-    arrayResult.then(resList => {
-      this.categories = resList[0].data 
-      this.roomTypes = resList[1].data 
-      this.provinces = resList[2].data 
-    })
-    
-    console.log("in ra sau khi chay xog race")
+    arrayResult.then((resList) => {
+      this.categories = resList[0].data;
+      this.roomTypes = resList[1].data;
+      this.provinces = resList[2].data;
+    });
 
+    console.log('in ra sau khi chay xog race');
 
     this.apartmentForm = this.fb.group({
       name: ['', Validators.required],
@@ -93,14 +94,16 @@ export class AddApartmentComponent implements OnInit {
     return Promise.all([
       this.getListService.getCategoryList().toPromise(),
       this.getListService.getRoomTypeList().toPromise(),
-      this.getListService.getProvinceList().toPromise()
+      this.getListService.getProvinceList().toPromise(),
     ]);
   }
 
   async onSubmit() {
-    // if(!this.apartmentForm.invalid){
-    //   return;
-    // }
+    if (this.apartmentForm.invalid) {
+      alert('invalid input');
+      console.log(this.apartmentForm)
+      return;
+    }
     for (let index = 0; index < this.files.length; index++) {
       const file = this.files[index];
       const waitPlz = await this.startUpload(file).toPromise();
@@ -108,8 +111,16 @@ export class AddApartmentComponent implements OnInit {
     }
     this.apartment = this.apartmentForm.value;
     this.apartment.pictures = this.pictures;
-    console.log(this.apartment);
+    this.apartmentService.addNewApartment(this.apartment).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        alert("Add failed")
+      }
+    );
     // make apartment object empty
+
     this.apartment = {};
   }
 
@@ -147,5 +158,4 @@ export class AddApartmentComponent implements OnInit {
         })
       );
   }
-
 }

@@ -8,14 +8,18 @@ import { Injectable } from '@angular/core';
 })
 export class ApartmentService {
   url = 'http://localhost:8080/api/apartment';
-  constructor(private httpClient: HttpClient) {}
+  addUrl = 'http://localhost:8080/api/createApartment';
+  constructor(private http: HttpClient) {}
 
   addNewApartment(apartment: Apartment){
-    return this.httpClient.post(this.url, apartment);
+    // const headers = {
+    //   'Content-type': "application/x-www-form-urlencoded"
+    // }
+    return this.http.post(this.addUrl, apartment);
   }
 
   getApartmentById(id: number) {
-    return this.httpClient.get(`${this.url}/${id}`);
+    return this.http.get(`${this.url}/${id}`);
   }
 
 }
