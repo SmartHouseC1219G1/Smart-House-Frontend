@@ -1,3 +1,4 @@
+import { Res } from './../../model/res';
 import { Host } from './../../model/host';
 import { ApartmentService } from './../../service/apartment.service';
 import { Apartment } from './../../model/apartment';
@@ -18,7 +19,7 @@ export class ListApartmentComponent implements OnInit {
     this.host = {
       id: 1
     }
-    this.apartmentService.getApartmentByHostId(1).subscribe(data => {
+    this.apartmentService.getApartmentByHostId(1).subscribe((data: Res) => {
       this.apartmentList = data.data;
     })
   }
