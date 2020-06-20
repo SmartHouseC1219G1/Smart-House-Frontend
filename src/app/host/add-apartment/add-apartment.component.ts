@@ -1,3 +1,4 @@
+import { res } from './../../model/res';
 import { GetListService } from './../../service/get-list.service';
 import { Province } from './../../model/province';
 import { RoomType } from './../../model/roomtype';
@@ -22,11 +23,28 @@ import { of } from 'rxjs';
   styleUrls: ['./add-apartment.component.css'],
 })
 export class AddApartmentComponent implements OnInit {
-  settings: IDropdownSettings = {};
+  settings: IDropdownSettings = {
+    singleSelection: false,
+    idField: 'id',
+    textField: 'name',
+    enableCheckAll: true,
+    selectAllText: 'Select all',
+    unSelectAllText: 'Unselect all',
+    allowSearchFilter: true,
+    limitSelection: -1,
+    clearSearchFilter: true,
+    maxHeight: 197,
+    itemsShowLimit: 10,
+    searchPlaceholderText: 'Search',
+    noDataAvailablePlaceholderText: 'No value',
+    closeDropDownOnSelection: false,
+    showSelectedItemsAtTop: false,
+    defaultOpen: false,
+  };
 
-  categories: Category[];
-  roomTypes: RoomType[];
-  provinces: Province[];
+  categories: Category[] = [];
+  roomTypes: RoomType[] = [];
+  provinces: Province[] = [];
   apartment: Apartment;
   // For Upload
   pictures: Picture[] = [];
@@ -43,43 +61,16 @@ export class AddApartmentComponent implements OnInit {
     private getListService: GetListService
   ) {}
 
-  ngOnInit(): void {
-    this.getListService.getCategoryList().subscribe(data => {
-      this.categories = data.data;
-      console.log(data.data)
-    });
-    this.getListService.getRoomTypeList().subscribe(data => {
-      this.roomTypes = data.data;
-      console.log(data.data)
-    });
-    this.getListService.getProvinceList().subscribe(data => {
-      this.provinces = data.data;
-      console.log(data.data)
-    });
+  ngOnInit(){
+    const arrayResult = this.getList();
+    arrayResult.then(resList => {
+      this.categories = resList[0].data 
+      this.roomTypes = resList[1].data 
+      this.provinces = resList[2].data 
+    })
     
-
-
     console.log("in ra sau khi chay xog race")
 
-    this.settings = {
-      singleSelection: false,
-      idField: 'id',
-      textField: 'name',
-      enableCheckAll: true,
-      selectAllText: 'Select all',
-      unSelectAllText: 'Unselect all',
-      allowSearchFilter: true,
-      limitSelection: -1,
-      clearSearchFilter: true,
-      maxHeight: 197,
-      itemsShowLimit: 10,
-      searchPlaceholderText: 'Search',
-      noDataAvailablePlaceholderText: 'No value',
-      closeDropDownOnSelection: false,
-      showSelectedItemsAtTop: false,
-      defaultOpen: false,
-    };
-    // setting and support i18n
 
     this.apartmentForm = this.fb.group({
       name: ['', Validators.required],
@@ -98,14 +89,12 @@ export class AddApartmentComponent implements OnInit {
     });
   }
 
-  getList() {
-    return Promise.race([
+  async getList() {
+    return Promise.all([
       this.getListService.getCategoryList().toPromise(),
       this.getListService.getRoomTypeList().toPromise(),
-      this.getListService.getProvinceList().toPromise(),
-    ]).then((res) => {
-      console.log(res);
-    });
+      this.getListService.getProvinceList().toPromise()
+    ]);
   }
 
   async onSubmit() {
@@ -158,4 +147,5 @@ export class AddApartmentComponent implements OnInit {
         })
       );
   }
+
 }
