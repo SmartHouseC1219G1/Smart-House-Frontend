@@ -1,3 +1,4 @@
+import { Host } from './../model/host';
 import { Apartment } from './../model/apartment';
 import { Observable, ObservableLike } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -20,6 +21,10 @@ export class ApartmentService {
 
   getApartmentById(id: number) {
     return this.http.get(`${this.url}/${id}`);
+  }
+
+  getApartmentByHost(host: Host){
+    return this.http.get('http://localhost:8080/api/host/apartment');
   }
 
 }
