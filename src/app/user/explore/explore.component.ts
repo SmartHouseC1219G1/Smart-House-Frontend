@@ -17,9 +17,28 @@ export class ExploreComponent implements OnInit {
       (data: Res) => {
         this.apartmentList = data.data;
         console.log(this.apartmentList);
-      }, err => {
-        console.log(err)
+      },
+      (err) => {
+        console.log(err);
       }
-    )
+    );
+  }
+
+  check(num: number) {
+    if (num % 2 == 0) {
+      let nextNum = num / 2;
+      if (nextNum % 2 == 0) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      let nextNum = (num - 1) / 2;
+      if (nextNum % 2 == 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 }

@@ -24,18 +24,18 @@
 <div></div>
 <section
   class="ftco-section bg-light ftco-no-pt ftco-no-pb"
-  *ngIf="apartmentList != null"
+  *ngIf="apartmentList"
 >
   <div class="container-fluid px-md-0">
     <div class="row no-gutters">
-      <div class="col-lg-6" *ngFor="let apartment of apartmentList; index as i">
+      <div class="col-lg-6" *ngFor="let apartment of apartmentList; index as index">
         <div class="room-wrap d-md-flex">
           <a
             href="#"
             class="img"
             style="background-image: url({{apartment.pictures[0].imageUrl}});"
           ></a>
-          <div class="half left-arrow d-flex align-items-center">
+          <div class="half left-arrow d-flex align-items-center" *ngIf="check(index);else rightTemplate">
             <div class="text p-4 p-xl-5 text-center">
               <p class="star mb-0">
                 <span class="fa fa-star"></span><span class="fa fa-star"></span
@@ -66,6 +66,40 @@
               </p>
             </div>
           </div>
+          <ng-template #rightTemplate>
+            <div class="half right-arrow d-flex align-items-center" >
+              <div class="text p-4 p-xl-5 text-center">
+                <p class="star mb-0">
+                  <span class="fa fa-star"></span><span class="fa fa-star"></span
+                  ><span class="fa fa-star"></span><span class="fa fa-star"></span
+                  ><span class="fa fa-star"></span>
+                </p>
+                <p class="mb-0">
+                  <span class="price mr-1">{{ apartment.priceByDate }}</span>
+                  <span class="per">per night</span>
+                </p>
+                <h3 class="mb-3">
+                  <a routerLink="/apartment/{{apartment.id}}" >{{ apartment.name }}</a>
+                </h3>
+                <ul class="list-accomodation">
+                  <li><span>Category:</span>
+                      <span *ngFor="let category of apartment.categories"> {{category.name}}</span>
+                  </li>
+                  <li><span>Room type:</span>
+                      <span *ngFor="let roomType of apartment.roomTypes"> {{roomType.name}}</span>
+                  </li>
+                  <li><span>Bathroom:</span>{{apartment.bathroom}}</li>
+                  <li><span>Bedroom:</span>{{apartment.bedroom}}</li>
+                </ul>
+                <p class="pt-1">
+                  <a href="room-single.html" class="btn-custom px-3 py-2"
+                    >View Room Details <span class="icon-long-arrow-right"></span
+                  ></a>
+                </p>
+              </div>
+            </div>
+          </ng-template>
+          
         </div>
       </div>
 
