@@ -4,7 +4,7 @@ import { Host } from './host';
 import { Order } from './order';
 import { Category } from './category';
 import { Picture } from './picture';
-export interface Apartment {
+export class Apartment {
     id?: number;
     name?: string;
     bathroom?: number;

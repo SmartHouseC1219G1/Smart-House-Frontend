@@ -1,6 +1,5 @@
 import { Apartment } from './apartment';
-export interface Picture {
+export class Picture {
     id?: number;
     imageUrl?: string;
-    apartment?: Apartment;
 }

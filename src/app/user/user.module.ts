@@ -8,6 +8,7 @@ import { RoomDetailComponent } from './room-detail/room-detail.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 const routes: Routes = [
   {
@@ -35,9 +36,10 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, HomePageComponent, LayoutComponent, ResultSearchComponent, RoomDetailComponent, ContactUsComponent],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes)
-    ]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    NgxPaginationModule
+  ]
 })
 export class UserModule { }

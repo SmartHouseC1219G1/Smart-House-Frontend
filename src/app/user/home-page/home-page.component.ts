@@ -8,6 +8,8 @@ import {Address} from '../../model/address';
 import {RoomType} from '../../model/roomtype';
 import {Apartment} from '../../model/apartment';
 import {DatetimeService} from '../../service/datetime.service';
+import {error} from '@angular/compiler/src/util';
+import {Data} from '../../model/data';
 
 @Component({
   selector: 'app-home-page',
@@ -15,14 +17,19 @@ import {DatetimeService} from '../../service/datetime.service';
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  apartments: Apartment[] = [];
+  apartments: Data;
+  p = 1;
+  collection: Data;
   listApartment: Apartment[] = [];
   constructor(private userService: UserService, private date: DatetimeService) { }
 
   ngOnInit(): void {
-    // this.userService.listPrice().subscribe(item => (this.listApartment = item), error => {console
-    //   .log('error listPrice'); } );
-    this.userService.listApartment().subscribe( item => (this.apartments = item), error => {console.log('error list'); });
+    this.userService.listApartment1().subscribe(data => {
+      this.apartments = data;
+      this.collection = this.apartments;
+    }, error1 => {
+      console.log('co loi khi lay aparments');
+    });
   }
   checkTime(value){
     this.date.checkDateTime(value);
