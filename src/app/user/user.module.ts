@@ -7,6 +7,7 @@ import { ResultSearchComponent } from './result-search/result-search.component';
 import { RoomDetailComponent } from './room-detail/room-detail.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const routes: Routes = [
   {
@@ -22,14 +23,18 @@ const routes: Routes = [
         component: ResultSearchComponent
       },
       {
-        path: 'room-detail/:id',
+        path: 'room-detail',
         component: RoomDetailComponent
+      },
+      {
+        path: 'contact-us',
+        component: ContactUsComponent
       }
     ]
   }
 ];
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, HomePageComponent, LayoutComponent, ResultSearchComponent, RoomDetailComponent],
+  declarations: [HeaderComponent, FooterComponent, HomePageComponent, LayoutComponent, ResultSearchComponent, RoomDetailComponent, ContactUsComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes)

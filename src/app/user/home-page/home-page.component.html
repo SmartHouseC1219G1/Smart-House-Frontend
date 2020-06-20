@@ -1,4 +1,6 @@
-<div class="hero-wrap js-fullheight" style="background-image: url('https://nhadepsang.com.vn/images/2017/08/20-hinh-anh-noi-bat-cho-mau-nha-dep-1-tang-o-nong-thon-6.jpg');" data-stellar-background-ratio="0.5">
+<div class="hero-wrap js-fullheight"
+     style="background-image: url('https://nhadepsang.com.vn/images/2017/08/20-hinh-anh-noi-bat-cho-mau-nha-dep-1-tang-o-nong-thon-6.jpg');"
+     data-stellar-background-ratio="0.5" xmlns:width="http://www.w3.org/1999/xhtml">
   <div class="overlay"></div>
   <div class="container">
     <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true" style="height: 845px">
@@ -142,84 +144,24 @@
 <section class="ftco-section bg-light">
   <div class="container-fluid px-md-0">
     <div class="row no-gutters justify-content-center pb-5 mb-3">
-      <div class="col-md-7 heading-section text-center ftco-animate">
+      <div class="col-md-7 heading-section text-center ftco-animate fadeInUp ftco-animated">
         <h2>Apartment Room</h2>
       </div>
     </div>
-    <div class="row no-gutters">
+    <div class="row no-gutters" *ngFor="let ap of apartments">
       <div class="col-lg-6">
         <div class="room-wrap d-md-flex">
-          <a href="#" class="img" style="background-image: url(assets/user/images/room-1.jpg);"></a>
+          <img class="img" src="{{ap.pictures}}" alt="" width="400px" height="400px">
           <div class="half left-arrow d-flex align-items-center">
             <div class="text p-4 p-xl-5 text-center">
               <p class="star mb-0"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></p>
-               <p class="mb-0"><span class="price mr-1">$120.00</span> <span class="per">per night</span></p>
-              <h3 class="mb-3"><a href="rooms.html">Suite Room</a></h3>
+               <p class="mb-0"><span class="price mr-1">{{ap.priceByDate}}</span> <span class="per">per night</span></p>
+              <h3 class="mb-3"><a>{{ap.roomTypes}}</a></h3>
               <ul class="list-accomodation">
-                <li><span>Max:</span> 3 Persons</li>
-                <li><span>Size:</span> 45 m2</li>
-                <li><span>Bathroom:</span> 3</li>
-                <li><span>Bed:</span> 1</li>
+                <li><span>Bathroom:</span> {{ap.bathroom}}</li>
+                <li><span>Bedroom:</span> {{ap.bedroom}}</li>
               </ul>
-              <p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2">View Room Details <span class="icon-long-arrow-right"></span></a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="room-wrap d-md-flex">
-          <a href="#" class="img" style="background-image: url(assets/user/images/room-2.jpg);"></a>
-          <div class="half left-arrow d-flex align-items-center">
-            <div class="text p-4 p-xl-5 text-center">
-              <p class="star mb-0"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></p>
-               <p class="mb-0"><span class="price mr-1">$120.00</span> <span class="per">per night</span></p>
-              <h3 class="mb-3"><a href="rooms.html">Standard Room</a></h3>
-              <ul class="list-accomodation">
-                <li><span>Max:</span> 3 Persons</li>
-                <li><span>Size:</span> 45 m2</li>
-                <li><span>View:</span> Sea View</li>
-                <li><span>Bed:</span> 1</li>
-              </ul>
-              <p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2">View Room Details <span class="icon-long-arrow-right"></span></a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-6">
-        <div class="room-wrap d-md-flex">
-          <a href="#" class="img order-md-last" style="background-image: url(assets/user/images/room-3.jpg);"></a>
-          <div class="half right-arrow d-flex align-items-center">
-            <div class="text p-4 p-xl-5 text-center">
-              <p class="star mb-0"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></p>
-               <p class="mb-0"><span class="price mr-1">$120.00</span> <span class="per">per night</span></p>
-              <h3 class="mb-3"><a href="rooms.html">Family Room</a></h3>
-              <ul class="list-accomodation">
-                <li><span>Max:</span> 3 Persons</li>
-                <li><span>Size:</span> 45 m2</li>
-                <li><span>View:</span> Sea View</li>
-                <li><span>Bed:</span> 1</li>
-              </ul>
-              <p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2">View Room Details <span class="icon-long-arrow-right"></span></a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="room-wrap d-md-flex">
-          <a href="#" class="img order-md-last" style="background-image: url(assets/user/images/room-4.jpg);"></a>
-          <div class="half right-arrow d-flex align-items-center">
-            <div class="text p-4 p-xl-5 text-center">
-              <p class="star mb-0"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></p>
-               <p class="mb-0"><span class="price mr-1">$120.00</span> <span class="per">per night</span></p>
-              <h3 class="mb-3"><a href="rooms.html">Deluxe Room</a></h3>
-              <ul class="list-accomodation">
-                <li><span>Max:</span> 3 Persons</li>
-                <li><span>Size:</span> 45 m2</li>
-                <li><span>View:</span> Sea View</li>
-                <li><span>Bed:</span> 1</li>
-              </ul>
-              <p class="pt-1"><a href="room-single.html" class="btn-custom px-3 py-2">View Room Details <span class="icon-long-arrow-right"></span></a></p>
+              <p class="pt-1"><a class="btn-custom px-3 py-2" [routerLink]="['/room-detail', ap.id]">View Room Details <span class="icon-long-arrow-right"></span></a></p>
             </div>
           </div>
         </div>

@@ -3,7 +3,6 @@ import { Address } from './address';
 import { Host } from './host';
 import { Order } from './order';
 import { Category } from './category';
-import { Status } from './status';
 import { Picture } from './picture';
 export interface Apartment {
     id?: number;
@@ -13,7 +12,6 @@ export interface Apartment {
     priceByDate?: number;
     description?: string;
     pictures?: Picture[];
-    statuses?: Status[];
     categories?: Category[];
     orders?: Order[];
     host?: Host;

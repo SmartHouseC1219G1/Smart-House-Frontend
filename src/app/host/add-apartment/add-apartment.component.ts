@@ -19,7 +19,7 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class AddApartmentComponent implements OnInit {
   settings: IDropdownSettings = {}
-  
+
   categories = [] ;
   roomTypes = [];
   apartment: Apartment;
@@ -34,7 +34,7 @@ export class AddApartmentComponent implements OnInit {
     private db: AngularFirestore,
     private fb: FormBuilder
   ) {}
-  
+
   ngOnInit(): void {
     this.categories = [
       { id: 1, name: 'Loai 1' },
@@ -66,10 +66,10 @@ export class AddApartmentComponent implements OnInit {
       noDataAvailablePlaceholderText: 'No value',
       closeDropDownOnSelection: false,
       showSelectedItemsAtTop: false,
-      defaultOpen: false  
+      defaultOpen: false
     }
     // setting and support i18n
-  
+
 
     this.apartmentForm = this.fb.group({
       name: ['', Validators.required],
@@ -98,8 +98,7 @@ export class AddApartmentComponent implements OnInit {
     this.files.forEach(async (file) => {
        const promise = await this.startUpload(file)
        .then(res => console.log(res))
-       .catch(err => console.log(err))
-       
+       .catch(err => console.log(err));
     })
     this.apartment = this.apartmentForm.value;
     this.apartment.pictures = this.pictures;
