@@ -1,5 +1,4 @@
 import { ApartmentService } from './../../service/apartment.service';
-import { res } from './../../model/res';
 import { GetListService } from './../../service/get-list.service';
 import { Province } from './../../model/province';
 import { RoomType } from './../../model/roomtype';
