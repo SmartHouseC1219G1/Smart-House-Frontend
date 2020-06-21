@@ -133,5 +133,6 @@ export class ApartmentDetailComponent implements OnInit {
     console.log(this.start);
     console.log(this.end);
     
+    
   }
 }
