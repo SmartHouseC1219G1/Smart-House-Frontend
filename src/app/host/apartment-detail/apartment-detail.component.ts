@@ -1,3 +1,5 @@
+import { OrderService } from './../../service/order.service';
+import { Order } from './../../model/order';
 import { async } from '@angular/core/testing';
 import { finalize } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -23,7 +25,8 @@ export class ApartmentDetailComponent implements OnInit {
     private router: Router,
     private storage: AngularFireStorage,
     private apartmentService: ApartmentService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private orderService: OrderService
   ) {}
 
   ngOnInit(): void {
@@ -121,7 +124,7 @@ export class ApartmentDetailComponent implements OnInit {
           .subscribe(
             (data) => {
               console.log(data);
-              alert("success")
+              alert('success');
             },
             (err) => console.log(err)
           );
@@ -129,10 +132,26 @@ export class ApartmentDetailComponent implements OnInit {
       .catch((err) => alert(err));
   }
 
-  blockOrder(){
+  blockOrder() {
     console.log(this.start);
     console.log(this.end);
-    
-    
+    const order: Order = {
+      startTime: this.start,
+      endTime: this.end,
+      apartment: {
+        id: this.apartment.id,
+      },
+    };
+    this.orderService.blockOrder(order).subscribe(
+      (res: Res) => {
+        console.log(res);
+        if (res.status == 'SUCCESS') alert('block success');
+        else alert('could not block with this date');
+      },
+      (err) => {
+        console.log(err);
+        alert('request failed');
+      }
+    );
   }
 }

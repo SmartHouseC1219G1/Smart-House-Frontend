@@ -12,6 +12,6 @@ export class OrderService {
   
   blockOrder(order: Order){
     order.statusOrders = StatusOrders.BLOCK;
-    this.http.post('http://localhost:8080/api/block-order',order)
+    return this.http.post('http://localhost:8080/api/block-order',order);
   }
 }
