@@ -71,22 +71,29 @@
     <div class="ri-text">
       <div class="section-title">
         <div class="section-title">
-          <h2>Deluxe Suite</h2>
+          <h2>{{ apartment.name }}</h2>
         </div>
         <ul class="list-accomodation">
-          <li><span>Price:</span>{{apartment.priceByDate}}</li>
-          <li><span>Max:</span> 3 Persons</li>
-          <li><span>Size:</span> 45 m2</li>
-          <li><span>Bathroom:</span> 3</li>
-          <li><span>Bed:</span> 1</li>
+          <li><span>Price:</span> {{ apartment.priceByDate }}</li>
+          <li><span>Address:</span> {{ apartment.address.name }}</li>
+          <li><span>Province:</span> {{ apartment.address.provinces.name }}</li>
+          <li>
+            <span>Category:</span>
+            <span *ngFor="let category of apartment.categories">
+              {{ category.name }}.</span
+            >
+          </li>
+          <li>
+            <span>Room type:</span>
+            <span *ngFor="let roomType of apartment.roomTypes">
+              {{ roomType.name }}.</span
+            >
+          </li>
+          <li><span>Bathroom:</span>{{ apartment.bathroom }}</li>
+          <li><span>Bedroom:</span>{{ apartment.bedroom }}</li>
         </ul>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum
-          suspendisse ultrices gravida. Risus commodo viverra maecenas. Donec in
-          sodales dui, a blandit nunc. Pellentesque id eros venenatis,
-          sollicitudin neque sodales, vehicula nibh. Nam massa odio, porttitor
-          vitae efficitur non, ultricies volutpat tellus.
+          {{apartment.description}}
         </p>
         <div class="ri-features">
           <div class="ri-info">
