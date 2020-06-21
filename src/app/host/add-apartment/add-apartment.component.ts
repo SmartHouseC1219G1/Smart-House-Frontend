@@ -119,7 +119,7 @@ export class AddApartmentComponent implements OnInit {
       }
     );
     // make apartment object empty
-
+    this.pictures = [];
     this.apartment = {};
   }
 
