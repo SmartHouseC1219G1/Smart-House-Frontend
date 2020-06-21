@@ -1,3 +1,4 @@
+import { Picture } from './../model/picture';
 import { Host } from './../model/host';
 import { Apartment } from './../model/apartment';
 import { Observable, ObservableLike } from 'rxjs';
@@ -32,7 +33,11 @@ export class ApartmentService {
   }
 
   getDetailApartmentById(id: number){
-    return this.http.get(`http://localhost:8080/api/listApartment/${id}`)
+    return this.http.get(`http://localhost:8080/api/listApartment/${id}`);
+  }
+
+  updateApartmentPictures(id: number, picture: Picture[]){
+    return this.http.put(`http://localhost:8080/api/update-apartment-pictures/${id}`,picture);
   }
 
 }
