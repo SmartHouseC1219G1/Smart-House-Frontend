@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Apartment} from '../model/apartment';
-import {map} from 'rxjs/operators';
 import {Data} from '../model/data';
+import {ViewDetail} from '../model/view-detail';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +20,9 @@ export class UserService {
     return this.httpClient.get<Apartment[]>('http://localhost:8080/api/listApartment');
   }
   listApartment1(): Observable<Data> {
-    return this.httpClient.get<Data>('http://localhost:8080/api/listApartment');
+    return this.httpClient.get<Data>(this.urlList);
   }
-  getApartmentById(id: number): Observable<Apartment> {
-    return this.httpClient.get<Apartment>(`${this.urlListById}/${id}`);
+  getApartmentById(id: number): Observable<ViewDetail> {
+    return this.httpClient.get<ViewDetail>(`${this.urlListById}/${id}`);
   }
 }

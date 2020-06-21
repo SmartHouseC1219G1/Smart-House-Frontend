@@ -24,7 +24,7 @@ const routes: Routes = [
         component: ResultSearchComponent
       },
       {
-        path: 'room-detail',
+        path: 'room-detail/:id',
         component: RoomDetailComponent
       },
       {
@@ -35,6 +35,7 @@ const routes: Routes = [
   }
 ];
 @NgModule({
+  // tslint:disable-next-line:max-line-length
   declarations: [HeaderComponent, FooterComponent, HomePageComponent, LayoutComponent, ResultSearchComponent, RoomDetailComponent, ContactUsComponent],
   imports: [
     CommonModule,

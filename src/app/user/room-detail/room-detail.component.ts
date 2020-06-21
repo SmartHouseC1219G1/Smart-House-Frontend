@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Apartment} from '../../model/apartment';
 import {UserService} from '../../service/user.service';
 import {ActivatedRoute} from '@angular/router';
+import {ViewDetail} from '../../model/view-detail';
 
 @Component({
   selector: 'app-room-detail',
@@ -9,13 +9,17 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./room-detail.component.css']
 })
 export class RoomDetailComponent implements OnInit {
-   apartment: Apartment;
+   apartment: ViewDetail;
   constructor(private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     const id = +this.route.snapshot.paramMap.get('id');
+    console.log(id);
     this.userService.getApartmentById(id).subscribe(
-      next => (this.apartment = next),
+      next => {
+        this.apartment = next;
+        console.log(this.apartment.data);
+      },
       error => {
         console.log(error);
         this.apartment = null;
