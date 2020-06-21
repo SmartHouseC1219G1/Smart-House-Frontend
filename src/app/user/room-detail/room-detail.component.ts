@@ -23,6 +23,7 @@ export class RoomDetailComponent implements OnInit {
     this.apartmentService.getDetailApartmentById(id).subscribe(
       (data: Res) => {
         this.apartment = data.data;
+        console.log(this.apartment)
       },
       (error) => {
         console.log(error);
