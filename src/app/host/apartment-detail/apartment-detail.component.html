@@ -96,48 +96,127 @@
             <p>Pool</p>
           </div>
         </div>
-        <a  class="btn btn-primary py-3 px-4" type="button" data-toggle="modal" data-target="#exampleModal">Edit picture list</a>
+        <a
+            class="btn btn-primary py-3 px-4"
+            type="button"
+            data-toggle="modal"
+            data-target="#editPictureModal"
+            >Edit picture list</a
+          >
+          <br>
+          <br>
+          <a
+            class="btn btn-primary py-3 px-4"
+            type="button"
+            data-toggle="modal"
+            data-target="#blockModal"
+            >Block order this apartment</a
+          >
       </div>
     </div>
   </div>
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="editPictureModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <label>Upload picture of your apartment</label>
-      <div
-        class="custom-dropzone"
-        ngx-dropzone
-        [accept]="'image/*'"
-        (change)="onSelect($event)"
-      >
-        <ngx-dropzone-label>
-          <div>
-            <h2>My custom dropzone</h2>
-          </div>
-        </ngx-dropzone-label>
-        <ngx-dropzone-image-preview
-          ngProjectAs="ngx-dropzone-preview"
-          *ngFor="let f of files"
-          [file]="f"
-          [removable]="true"
-          (removed)="onRemove(f)"
+        <div
+          class="custom-dropzone"
+          ngx-dropzone
+          [accept]="'image/*'"
+          (change)="onSelect($event)"
         >
-        </ngx-dropzone-image-preview>
-      </div>
+          <ngx-dropzone-label>
+            <div>
+              <h2>My custom dropzone</h2>
+            </div>
+          </ngx-dropzone-label>
+          <ngx-dropzone-image-preview
+            ngProjectAs="ngx-dropzone-preview"
+            *ngFor="let f of files"
+            [file]="f"
+            [removable]="true"
+            (removed)="onRemove(f)"
+          >
+          </ngx-dropzone-image-preview>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="onSave()">Save changes</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="onSave()">
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="blockModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <div class="input-wrap">
+            <div class="icon"><span class="ion-md-calendar"></span></div>
+            <p>Start</p>
+            <input type="date" class="form-control appointment_date-check-in" placeholder="start" [(ngModel)]="start">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-wrap">
+            <div class="icon"><span class="ion-md-calendar"></span></div>
+            <p>End</p>
+            <input type="date" class="form-control appointment_date-check-out" placeholder="end" [(ngModel)]="end">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" (click)="blockOrder()">Save changes</button>
       </div>
     </div>
   </div>

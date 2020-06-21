@@ -17,6 +17,8 @@ export class ApartmentDetailComponent implements OnInit {
   files: File[] = [];
   pictures: Picture[] = [];
   apartment: Apartment;
+  start: Date;
+  end: Date;
   constructor(
     private router: Router,
     private storage: AngularFireStorage,
@@ -125,5 +127,11 @@ export class ApartmentDetailComponent implements OnInit {
           );
       })
       .catch((err) => alert(err));
+  }
+
+  blockOrder(){
+    console.log(this.start);
+    console.log(this.end);
+    
   }
 }
