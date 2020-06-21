@@ -16,6 +16,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ListApartmentComponent } from './list-apartment/list-apartment.component';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
+import { ApartmentDetailComponent } from './apartment-detail/apartment-detail.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB3F4HWEz67XdAe7KnSrYq-0cNede-zm4g',
@@ -44,6 +45,10 @@ const routes: Routes = [
       {
         path: 'apartment',
         component: ListApartmentComponent
+      },
+      {
+        path: 'apartment-detail/:id',
+        component: ApartmentDetailComponent
       }
     ]
   }
@@ -52,7 +57,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [LayoutComponent, HomePageComponent, FooterComponent, HeaderComponent, AddApartmentComponent, ListApartmentComponent],
+  declarations: [LayoutComponent, HomePageComponent, FooterComponent, HeaderComponent, AddApartmentComponent, ListApartmentComponent, ApartmentDetailComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
