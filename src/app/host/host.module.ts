@@ -47,7 +47,7 @@ const routes: Routes = [
         component: ListApartmentComponent
       },
       {
-        path: 'apartment-detail/:id',
+        path: 'apartment/:id',
         component: ApartmentDetailComponent
       }
     ]
