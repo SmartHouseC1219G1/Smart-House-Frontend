@@ -1,3 +1,4 @@
+import { Host } from './../../model/host';
 import { ApartmentService } from './../../service/apartment.service';
 import { GetListService } from './../../service/get-list.service';
 import { Province } from './../../model/province';
@@ -53,6 +54,10 @@ export class AddApartmentComponent implements OnInit {
 
   files: File[] = [];
   pictureList: Picture[] = [];
+  // Hard fix
+  hardFixHost: Host = {
+    id: 1
+  };
 
   constructor(
     private storage: AngularFireStorage,
@@ -81,7 +86,7 @@ export class AddApartmentComponent implements OnInit {
       categories: this.fb.control([]),
       address: this.fb.group({
         name: ['', Validators.required],
-        province: this.fb.group({
+        provinces: this.fb.group({
           id: ['', Validators.required],
         }),
       }),
@@ -110,6 +115,8 @@ export class AddApartmentComponent implements OnInit {
     }
     this.apartment = this.apartmentForm.value;
     this.apartment.pictures = this.pictures;
+    // Fix cung host id = 1
+    this.apartment.host = this.hardFixHost;
     this.apartmentService.addNewApartment(this.apartment).subscribe(
       (res) => {
         console.log(res);
