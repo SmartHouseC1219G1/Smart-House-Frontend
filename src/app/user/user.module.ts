@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './layout/layout.component';
-import {RouterModule, Routes} from '@angular/router';
-import {HomePageComponent} from './home-page/home-page.component';
+import { RouterModule, Routes } from '@angular/router';
+import { HomePageComponent } from './home-page/home-page.component';
 import { ResultSearchComponent } from './result-search/result-search.component';
 import { RoomDetailComponent } from './room-detail/room-detail.component';
 import { FooterComponent } from './footer/footer.component';
@@ -17,32 +17,38 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: HomePageComponent
+        component: HomePageComponent,
       },
       {
         path: 'search-room',
-        component: ResultSearchComponent
+        component: ResultSearchComponent,
       },
       {
-        path: 'room-detail',
-        component: RoomDetailComponent
+        path: 'apartment/:id',
+        component: RoomDetailComponent,
       },
       {
         path: 'contact-us',
-        component: ContactUsComponent
+        component: ContactUsComponent,
       },
       {
         path: 'explore',
-        component: ExploreComponent
-      }
-    ]
-  }
+        component: ExploreComponent,
+      },
+    ],
+  },
 ];
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, HomePageComponent, LayoutComponent, ResultSearchComponent, RoomDetailComponent, ContactUsComponent, ExploreComponent],
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes)
-    ]
+  declarations: [
+    HeaderComponent,
+    FooterComponent,
+    HomePageComponent,
+    LayoutComponent,
+    ResultSearchComponent,
+    RoomDetailComponent,
+    ContactUsComponent,
+    ExploreComponent,
+  ],
+  imports: [CommonModule, RouterModule.forChild(routes)],
 })
-export class UserModule { }
+export class UserModule {}

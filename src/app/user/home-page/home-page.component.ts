@@ -22,7 +22,7 @@ export class HomePageComponent implements OnInit {
   ngOnInit(): void {
     // this.userService.listPrice().subscribe(item => (this.listApartment = item), error => {console
     //   .log('error listPrice'); } );
-    this.userService.listApartment().subscribe( item => (this.apartments = item), error => {console.log('error list'); });
+    // this.userService.listApartment().subscribe( item => (this.apartments = item), error => {console.log('error list'); });
   }
   checkTime(value){
     this.date.checkDateTime(value);
