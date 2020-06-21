@@ -18,8 +18,9 @@ export class RoomDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    
     const id = +this.route.snapshot.paramMap.get('id');
-    this.apartmentService.getApartmentById(id).subscribe(
+    this.apartmentService.getDetailApartmentById(id).subscribe(
       (data: Res) => {
         this.apartment = data.data;
       },
