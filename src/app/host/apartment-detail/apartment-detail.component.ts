@@ -119,12 +119,10 @@ export class ApartmentDetailComponent implements OnInit {
           .subscribe(
             (data) => {
               console.log(data);
+              alert("success")
             },
             (err) => console.log(err)
           );
-      })
-      .then(() => {
-        this.router.navigate(['/host'])
       })
       .catch((err) => alert(err));
   }
