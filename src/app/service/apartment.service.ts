@@ -36,8 +36,8 @@ export class ApartmentService {
     return this.http.get(`http://localhost:8080/api/listApartment/${id}`);
   }
 
-  updateApartmentPictures(id: number, picture: Picture[]){
-    return this.http.put(`http://localhost:8080/api/update-apartment-pictures/${id}`,picture);
+  updateApartmentPictures(id: number, pictures: Picture[]){
+    return this.http.put(`http://localhost:8080/api/update-apartment-pictures/${id}`,pictures);
   }
 
 }
