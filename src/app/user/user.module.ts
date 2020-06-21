@@ -8,6 +8,7 @@ import { RoomDetailComponent } from './room-detail/room-detail.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ExploreComponent } from './explore/explore.component';
 
 const routes: Routes = [
   {
@@ -29,12 +30,16 @@ const routes: Routes = [
       {
         path: 'contact-us',
         component: ContactUsComponent
+      },
+      {
+        path: 'explore',
+        component: ExploreComponent
       }
     ]
   }
 ];
 @NgModule({
-  declarations: [HeaderComponent, FooterComponent, HomePageComponent, LayoutComponent, ResultSearchComponent, RoomDetailComponent, ContactUsComponent],
+  declarations: [HeaderComponent, FooterComponent, HomePageComponent, LayoutComponent, ResultSearchComponent, RoomDetailComponent, ContactUsComponent, ExploreComponent],
     imports: [
         CommonModule,
         RouterModule.forChild(routes)
