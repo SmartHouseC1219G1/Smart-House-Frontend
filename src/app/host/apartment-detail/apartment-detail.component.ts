@@ -4,7 +4,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Picture } from './../../model/picture';
 import { Res } from './../../model/res';
 import { ApartmentService } from './../../service/apartment.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink, Router } from '@angular/router';
 import { Apartment } from './../../model/apartment';
 import { Component, OnInit } from '@angular/core';
 
@@ -18,6 +18,7 @@ export class ApartmentDetailComponent implements OnInit {
   pictures: Picture[] = [];
   apartment: Apartment;
   constructor(
+    private router: Router,
     private storage: AngularFireStorage,
     private apartmentService: ApartmentService,
     private route: ActivatedRoute
@@ -122,6 +123,9 @@ export class ApartmentDetailComponent implements OnInit {
             (err) => console.log(err)
           );
       })
-      .catch((err) => console.log(err));
+      .then(() => {
+        this.router.navigate(['/host'])
+      })
+      .catch((err) => alert(err));
   }
 }
