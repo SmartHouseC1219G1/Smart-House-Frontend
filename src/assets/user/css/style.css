@@ -9494,3 +9494,9 @@ footer {
   margin-bottom: 0;
   letter-spacing: 0.4px;
 }
+.a{
+  display: block;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  padding-left: 30%;
+}
