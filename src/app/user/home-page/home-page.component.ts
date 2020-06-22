@@ -19,9 +19,7 @@ import { DatetimeService } from '../../service/datetime.service';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
-  apartments: Data;
-  p = 1;
-  collection: Data;
+
   listApartment: Apartment[] = [];
 
   // param for search

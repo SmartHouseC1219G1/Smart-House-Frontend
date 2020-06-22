@@ -170,16 +170,6 @@
       </div>
     </div>
     <div class="row no-gutters">
-<<<<<<< HEAD
-      <div class="col-lg-6" *ngFor="let ap of apartments.data | paginate: { itemsPerPage: 4, currentPage: p }" style="float: left">
-        <div class="room-wrap d-md-flex">
-          <img src="{{ap.pictures[0].imageUrl}}" alt="" width="400px" height="400px">
-          <div class="half left-arrow d-flex align-items-center">
-            <div class="text p-4 p-xl-5 text-center">
-              <p class="star mb-0"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></p>
-               <p class="mb-0"><span class="price mr-1">{{ap.priceByDate}}$-</span> <span class="per">per night</span></p>
-              <h3 class="mb-3"><a>{{ap.roomTypes[0].name}}</a></h3>
-=======
       <div
         class="col-lg-6"
         *ngFor="let apartment of listApartment; index as index"
@@ -209,7 +199,6 @@
                   apartment.name
                 }}</a>
               </h3>
->>>>>>> dev.dung
               <ul class="list-accomodation">
                 <li>
                   <span>Category:</span>
@@ -226,15 +215,11 @@
                 <li><span>Bathroom:</span>{{ apartment.bathroom }}</li>
                 <li><span>Bedroom:</span>{{ apartment.bedroom }}</li>
               </ul>
-<<<<<<< HEAD
-              <p class="pt-1"><a class="btn-custom px-3 py-2" [routerLink]="['/room-detail',ap.id]">View Room Details <span class="icon-long-arrow-right"></span></a></p>
-=======
               <p class="pt-1">
                 <a href="room-single.html" class="btn-custom px-3 py-2"
                   >View Room Details <span class="icon-long-arrow-right"></span
                 ></a>
               </p>
->>>>>>> dev.dung
             </div>
           </div>
           <ng-template #rightTemplate>
@@ -283,7 +268,6 @@
           </ng-template>
         </div>
       </div>
-      <div class="a"><pagination-controls (pageChange)="p = $event"></pagination-controls></div>
     </div>
   </div>
 </section>
