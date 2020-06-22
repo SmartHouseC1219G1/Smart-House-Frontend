@@ -1,5 +1,7 @@
+import { StatusOrders } from './status-order';
 import { Customer } from './customer';
-import { Apartment } from './apartment';
+import {Apartment} from './apartment';
+
 export interface Order {
     id?: number;
     startTime?: Date;
@@ -7,4 +9,5 @@ export interface Order {
     totalMoney?: number;
     apartment?: Apartment;
     customer?: Customer;
+    statusOrders?: StatusOrders;
 }

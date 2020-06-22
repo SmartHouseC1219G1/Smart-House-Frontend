@@ -7,7 +7,10 @@
       <div class="col-md-7 ftco-animate fadeInUp ftco-animated">
         <h2 class="subheading">Welcome to Vacation Rental</h2>
         <h1 class="mb-4">Rent an appartment for your vacation</h1>
-        <p><a href="#" class="btn btn-primary">Learn more</a><a href="#" class="btn btn-white">Contact us</a></p>
+        <p>
+          <a href="#" class="btn btn-primary">Learn more</a
+          ><a href="#" class="btn btn-white">Contact us</a>
+        </p>
       </div>
     </div>
   </div>
@@ -18,21 +21,26 @@
     <div class="row justify-content-end">
       <div class="col-lg-5">
         <form action="#" class="appointment-form">
-          <h3 class="mb-3">Book your apartment</h3>
+          <h3 class="mb-3">Search apartment</h3>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
                 <div class="form-field">
                   <div class="select-wrap">
-                    <span>Place</span>
-                    <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                    <select name="" id="" class="form-control">
-                      <option value="">Address</option>
-                      <option value="">1</option>
-                      <option value="">2</option>
-                      <option value="">3</option>
-                      <option value="">4</option>
-                      <option value="">5</option>
+                    <span>Province</span>
+                    <div class="icon">
+                      <span class="fa fa-chevron-down"></span>
+                    </div>
+                    <select
+                      class="form-control"
+                      aria-placeholder="Province"
+                      [(ngModel)]="province_id"
+                      name="province_id">
+                      <option
+                        *ngFor="let province of provinces"
+                        [value]="province.id"
+                        >{{ province.name }}</option
+                      >
                     </select>
                   </div>
                 </div>
@@ -43,7 +51,14 @@
                 <div class="input-wrap">
                   <div class="icon"><span class="ion-md-calendar"></span></div>
                   <p>Check In</p>
-                  <input type="date" class="form-control appointment_date-check-in" placeholder="Check-In" (change)="checkTime($event.target.value)">
+                  <input
+                    type="date"
+                    class="form-control appointment_date-check-in"
+                    placeholder="Check-In"
+                    (change)="checkTime($event.target.value)"
+                    [(ngModel)]="startTime"
+                    name="startTime"
+                  />
                 </div>
               </div>
             </div>
@@ -52,7 +67,14 @@
                 <div class="input-wrap">
                   <div class="icon"><span class="ion-md-calendar"></span></div>
                   <p>Check Out</p>
-                  <input type="date" class="form-control appointment_date-check-out" placeholder="Check-Out" (change)="checkTime($event.target.value)">
+                  <input
+                    type="date"
+                    class="form-control appointment_date-check-out"
+                    placeholder="Check-Out"
+                    (change)="checkTime($event.target.value)"
+                    [(ngModel)]="endTime"
+                    name="endTime"
+                  />
                 </div>
               </div>
             </div>
@@ -60,16 +82,7 @@
               <div class="form-group">
                 <div class="form-field">
                   <div class="select-wrap">
-                    <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                    <p>Bed room</p>
-                    <select name="" id="" class="form-control">
-                      <option value="">Bed room</option>
-                      <option value="">1</option>
-                      <option value="">2</option>
-                      <option value="">3</option>
-                      <option value="">4</option>
-                      <option value="">5</option>
-                    </select>
+                    <input  type="number" [(ngModel)]="bedroom" name="bedroom" />
                   </div>
                 </div>
               </div>
@@ -78,23 +91,51 @@
               <div class="form-group">
                 <div class="form-field">
                   <div class="select-wrap">
-                    <div class="icon"><span class="fa fa-chevron-down"></span></div>
-                    <p>Bath room</p>
-                    <select name="" id="" class="form-control">
-                      <option value="">Bath room</option>
-                      <option value="">1</option>
-                      <option value="">2</option>
-                      <option value="">3</option>
-                      <option value="">4</option>
-                      <option value="">5</option>
-                    </select>
+                    <input
+                      type="number"
+                      [(ngModel)]="bathroom"
+                      name="bathroom"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="form-field">
+                  <div class="select-wrap">
+                    <p>From price</p>
+                    <input
+                      type="number"
+                      [(ngModel)]="startPrice"
+                      name="startPrice"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="form-field">
+                  <div class="select-wrap">
+                    <p>To price</p>
+                    <input
+                      type="number"
+                      [(ngModel)]="endPrice"
+                      name="endPrice"
+                    />
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-md-12">
               <div class="form-group">
-                <input type="submit" value="Book Apartment Now" class="btn btn-primary py-3 px-4">
+                <input
+                  type="submit"
+                  value="Search"
+                  class="btn btn-primary py-3 px-4"
+                  (click)="onSearch()"
+                />
               </div>
             </div>
           </div>
@@ -103,138 +144,116 @@
     </div>
   </div>
 </section>
-
-<section class="ftco-section ftco-services">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate fadeInUp ftco-animated">
-        <div class="d-block services-wrap text-center">
-          <div class="img" style="background-image: url(http://thuthuatphanmem.vn/uploads/2018/10/09/tong-hop-nhung-hinh-anh-nha-dep-nhat_041032014.jpg);"></div>
-          <div class="media-body py-4 px-3">
-            <h3 class="heading">Map Direction</h3>
-            <p></p>
-            <p><a href="#" class="btn btn-primary">Read more</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate fadeInUp ftco-animated">
-        <div class="d-block services-wrap text-center">
-          <div class="img" style="background-image: url(assets/user/images/services-2.jpg);"></div>
-          <div class="media-body py-4 px-3">
-            <h3 class="heading">Accomodation Services</h3>
-            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-            <p><a href="#" class="btn btn-primary">Read more</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 d-flex services align-self-stretch px-4 ftco-animate fadeInUp ftco-animated">
-        <div class="d-block services-wrap text-center">
-          <div class="img" style="background-image: url(assets/user/images/services-3.jpg);"></div>
-          <div class="media-body py-4 px-3">
-            <h3 class="heading">Great Experience</h3>
-            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.</p>
-            <p><a href="#" class="btn btn-primary">Read more</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ftco-section bg-light">
+<section
+  class="ftco-section bg-light ftco-no-pt ftco-no-pb"
+  *ngIf="listApartment != null"
+>
   <div class="container-fluid px-md-0">
-    <div class="row no-gutters justify-content-center pb-5 mb-3">
-      <div class="col-md-7 heading-section text-center ftco-animate fadeInUp ftco-animated">
-        <h2>Apartment Room</h2>
+    <div class="row justify-content-center pb-5 mb-3">
+      <div
+        class="col-md-7 heading-section text-center ftco-animate fadeInUp ftco-animated"
+      >
+        <h2>Search result</h2>
+        <span class="subheading">D &amp; D</span>
       </div>
     </div>
     <div class="row no-gutters">
-      <div class="col-lg-6" *ngFor="let ap of apartments.data | paginate: { itemsPerPage: 4, currentPage: p }" style="float: left">
+      <div
+        class="col-lg-6"
+        *ngFor="let apartment of listApartment; index as index"
+      >
         <div class="room-wrap d-md-flex">
-          <img src="{{ap.pictures[0].imageUrl}}" alt="" width="400px" height="400px">
-          <div class="half left-arrow d-flex align-items-center">
+          <a
+            href="#"
+            class="img"
+            style="background-image: url({{apartment.pictures[0].imageUrl}});"
+          ></a>
+          <div
+            class="half left-arrow d-flex align-items-center"
+            *ngIf="check(index); else rightTemplate"
+          >
             <div class="text p-4 p-xl-5 text-center">
-              <p class="star mb-0"><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span></p>
-               <p class="mb-0"><span class="price mr-1">{{ap.priceByDate}}$-</span> <span class="per">per night</span></p>
-              <h3 class="mb-3"><a>{{ap.roomTypes[0].name}}</a></h3>
+              <p class="star mb-0">
+                <span class="fa fa-star"></span><span class="fa fa-star"></span
+                ><span class="fa fa-star"></span><span class="fa fa-star"></span
+                ><span class="fa fa-star"></span>
+              </p>
+              <p class="mb-0">
+                <span class="price mr-1">{{ apartment.priceByDate }}</span>
+                <span class="per">per night</span>
+              </p>
+              <h3 class="mb-3">
+                <a routerLink="/apartment/{{ apartment.id }}">{{
+                  apartment.name
+                }}</a>
+              </h3>
               <ul class="list-accomodation">
-                <li><span>Bathroom:</span> {{ap.bathroom}}</li>
-                <li><span>Bedroom:</span> {{ap.bedroom}}</li>
+                <li>
+                  <span>Category:</span>
+                  <span *ngFor="let category of apartment.categories">
+                    {{ category.name }}</span
+                  >
+                </li>
+                <li>
+                  <span>Room type:</span>
+                  <span *ngFor="let roomType of apartment.roomTypes">
+                    {{ roomType.name }}</span
+                  >
+                </li>
+                <li><span>Bathroom:</span>{{ apartment.bathroom }}</li>
+                <li><span>Bedroom:</span>{{ apartment.bedroom }}</li>
               </ul>
-              <p class="pt-1"><a class="btn-custom px-3 py-2" [routerLink]="['/room-detail',ap.id]">View Room Details <span class="icon-long-arrow-right"></span></a></p>
+              <p class="pt-1">
+                <a href="room-single.html" class="btn-custom px-3 py-2"
+                  >View Room Details <span class="icon-long-arrow-right"></span
+                ></a>
+              </p>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="a"><pagination-controls (pageChange)="p = $event"></pagination-controls></div>
-    </div>
-  </div>
-</section>
-<section class="ftco-intro" style="background-image: url(assets/user/images/bg_1.jpg);" data-stellar-background-ratio="0.5">
-  <div class="overlay"></div>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-9 text-center">
-        <h2>Ready to get started</h2>
-        <p class="mb-4">It’s safe to book online with us! Get your dream stay in clicks or drop us a line with your questions.</p>
-        <p class="mb-0"><a href="#" class="btn btn-primary px-4 py-3">Book now</a> <a href="#" class="btn btn-white px-4 py-3">Contact us</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="ftco-section bg-light">
-  <div class="container">
-    <div class="row justify-content-center pb-5 mb-3">
-      <div class="col-md-7 heading-section text-center ftco-animate fadeInUp ftco-animated">
-        <h2>Latest news from our blog</h2>
-        <span class="subheading">News &amp; Blog</span>
-      </div>
-    </div>
-    <div class="row d-flex">
-      <div class="col-md-4 d-flex ftco-animate fadeInUp ftco-animated">
-        <div class="blog-entry align-self-stretch">
-          <a href="blog-single.html" class="block-20 rounded" style="background-image: url('assets/user/images/image_1.jpg');">
-          </a>
-          <div class="text p-4 text-center">
-            <h3 class="heading"><a href="#">Work Hard, Party Hard in a Luxury Chalet in the Alps</a></h3>
-            <div class="meta mb-2">
-              <div><a href="#">January 30, 2020</a></div>
-              <div><a href="#">Admin</a></div>
-              <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+          <ng-template #rightTemplate>
+            <div class="half right-arrow d-flex align-items-center">
+              <div class="text p-4 p-xl-5 text-center">
+                <p class="star mb-0">
+                  <span class="fa fa-star"></span
+                  ><span class="fa fa-star"></span
+                  ><span class="fa fa-star"></span
+                  ><span class="fa fa-star"></span
+                  ><span class="fa fa-star"></span>
+                </p>
+                <p class="mb-0">
+                  <span class="price mr-1">{{ apartment.priceByDate }}</span>
+                  <span class="per">per night</span>
+                </p>
+                <h3 class="mb-3">
+                  <a routerLink="/apartment/{{ apartment.id }}">{{
+                    apartment.name
+                  }}</a>
+                </h3>
+                <ul class="list-accomodation">
+                  <li>
+                    <span>Category:</span>
+                    <span *ngFor="let category of apartment.categories">
+                      {{ category.name }}</span
+                    >
+                  </li>
+                  <li>
+                    <span>Room type:</span>
+                    <span *ngFor="let roomType of apartment.roomTypes">
+                      {{ roomType.name }}</span
+                    >
+                  </li>
+                  <li><span>Bathroom:</span>{{ apartment.bathroom }}</li>
+                  <li><span>Bedroom:</span>{{ apartment.bedroom }}</li>
+                </ul>
+                <p class="pt-1">
+                  <a href="room-single.html" class="btn-custom px-3 py-2"
+                    >View Room Details
+                    <span class="icon-long-arrow-right"></span
+                  ></a>
+                </p>
+              </div>
             </div>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 d-flex ftco-animate fadeInUp ftco-animated">
-        <div class="blog-entry align-self-stretch">
-          <a href="blog-single.html" class="block-20 rounded" style="background-image: url('assets/user/images/image_2.jpg');">
-          </a>
-          <div class="text p-4 text-center">
-            <h3 class="heading"><a href="#">Work Hard, Party Hard in a Luxury Chalet in the Alps</a></h3>
-            <div class="meta mb-2">
-              <div><a href="#">January 30, 2020</a></div>
-              <div><a href="#">Admin</a></div>
-              <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-            </div>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4 d-flex ftco-animate fadeInUp ftco-animated">
-        <div class="blog-entry align-self-stretch">
-          <a href="blog-single.html" class="block-20 rounded" style="background-image: url('assets/user/images/image_3.jpg');">
-          </a>
-          <div class="text p-4 text-center">
-            <h3 class="heading"><a href="#">Work Hard, Party Hard in a Luxury Chalet in the Alps</a></h3>
-            <div class="meta mb-2">
-              <div><a href="#">January 30, 2020</a></div>
-              <div><a href="#">Admin</a></div>
-              <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-            </div>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-          </div>
+          </ng-template>
         </div>
       </div>
     </div>
