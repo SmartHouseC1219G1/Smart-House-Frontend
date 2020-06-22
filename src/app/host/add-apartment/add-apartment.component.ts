@@ -120,6 +120,7 @@ export class AddApartmentComponent implements OnInit {
     this.apartmentService.addNewApartment(this.apartment).subscribe(
       (res) => {
         console.log(res);
+        alert("Add success")
       },
       (err) => {
         alert("Add failed")
