@@ -11,7 +11,7 @@ export class UploadService {
     private storage: AngularFireStorage,
     private db: AngularFirestore
   ) {}
-
+    // Khong su dung
   startUpload(file: File) {
     // The storage path
     const path = `hotel/${Date.now()}_${file.name}`;

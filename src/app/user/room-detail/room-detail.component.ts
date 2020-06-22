@@ -1,30 +1,34 @@
+import { ApartmentService } from './../../service/apartment.service';
+import { Res } from './../../model/res';
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../service/user.service';
-import {ActivatedRoute} from '@angular/router';
-import {ViewDetail} from '../../model/view-detail';
+import { Apartment } from '../../model/apartment';
+import { UserService } from '../../service/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-room-detail',
   templateUrl: './room-detail.component.html',
-  styleUrls: ['./room-detail.component.css']
+  styleUrls: ['./room-detail.component.css'],
 })
 export class RoomDetailComponent implements OnInit {
-   apartment: ViewDetail;
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  apartment: Apartment;
+  constructor(
+    private apartmentService: ApartmentService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    
     const id = +this.route.snapshot.paramMap.get('id');
-    console.log(id);
-    this.userService.getApartmentById(id).subscribe(
-      next => {
-        this.apartment = next;
-        console.log(this.apartment.data);
+    this.apartmentService.getDetailApartmentById(id).subscribe(
+      (data: Res) => {
+        this.apartment = data.data;
+        console.log(this.apartment)
       },
-      error => {
+      (error) => {
         console.log(error);
         this.apartment = null;
       }
     );
   }
-
 }

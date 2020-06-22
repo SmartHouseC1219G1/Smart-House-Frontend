@@ -1,5 +1,5 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './layout/layout.component';
@@ -13,6 +13,10 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { ListApartmentComponent } from './list-apartment/list-apartment.component';
+import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
+import { ApartmentDetailComponent } from './apartment-detail/apartment-detail.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB3F4HWEz67XdAe7KnSrYq-0cNede-zm4g',
@@ -37,6 +41,14 @@ const routes: Routes = [
       {
         path: 'add-apartment',
         component: AddApartmentComponent
+      },
+      {
+        path: 'apartment',
+        component: ListApartmentComponent
+      },
+      {
+        path: 'apartment/:id',
+        component: ApartmentDetailComponent
       }
     ]
   }
@@ -45,7 +57,7 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [LayoutComponent, HomePageComponent, FooterComponent, HeaderComponent, AddApartmentComponent],
+  declarations: [LayoutComponent, HomePageComponent, FooterComponent, HeaderComponent, AddApartmentComponent, ListApartmentComponent, ApartmentDetailComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -57,7 +69,9 @@ const routes: Routes = [
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
-    AngularFireStorageModule // storage
+    AngularFireStorageModule, // storage
+    MatListModule,
+    MatIconModule,
   ]
 })
 export class HostModule { }

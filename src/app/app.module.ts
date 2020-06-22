@@ -6,8 +6,7 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {HttpClientModule} from '@angular/common/http';
-import { TestComponent } from './test/test.component';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -21,7 +20,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     FormsModule,
     ReactiveFormsModule,
     NgMultiSelectDropDownModule,
-    NgxPaginationModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
