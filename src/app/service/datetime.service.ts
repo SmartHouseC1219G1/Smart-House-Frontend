@@ -48,7 +48,7 @@ export class DatetimeService {
       return false;
     }
     const days = differenceInDays(dayOut, dayIn);
-     if (days > 0){
+    if (days > 0){
        alert(' ngay tra phong cua ban co loi');
        return false;
      }

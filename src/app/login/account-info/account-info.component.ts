@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {AccountService} from '../../service/account.service';
+import {Account} from '../../model/account';
 
 function comparePassword(c: AbstractControl) {
   const v = c.value;
@@ -15,9 +18,20 @@ function comparePassword(c: AbstractControl) {
 })
 export class AccountInfoComponent implements OnInit {
 
-  constructor() {
-  }
+  account: Account;
+  constructor(
+    private route: ActivatedRoute,
+    private accountService: AccountService
+  ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    this.accountService.getAccountById(id).subscribe(
+      next => (this.account = next),
+      error => {
+        console.log(error);
+        this.account = null;
+      }
+    );
   }
 }

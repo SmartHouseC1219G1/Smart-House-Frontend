@@ -9,9 +9,8 @@ import { StatusOrders } from '../model/status-order';
 export class OrderService {
 
   constructor(private http: HttpClient) { }
-  
   blockOrder(order: Order){
     order.statusOrders = StatusOrders.BLOCK;
-    return this.http.post('http://localhost:8080/api/block-order',order);
+    return this.http.post('http://localhost:8080/api/block-order', order);
   }
 }

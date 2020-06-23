@@ -47,6 +47,7 @@ export class ApartmentService {
   searchApartment(
     bedroom: string,
     bathroom: string,
+    // tslint:disable-next-line:variable-name
     province_id: string,
     startPrice: string,
     endPrice: string,

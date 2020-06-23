@@ -24,9 +24,8 @@ export class UploadService {
   }
 
   convertToResizeUrl(url: string){
-    const regex = ".jpg";
-    let array = url.split(regex);
-    return array.join("_1080x1080.jpg")
+    const regex = '.jpg';
+    const array = url.split(regex);
+    return array.join('_1080x1080.jpg');
   }
-  
 }

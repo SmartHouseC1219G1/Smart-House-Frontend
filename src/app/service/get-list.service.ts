@@ -6,9 +6,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class GetListService {
-  categoryUrl = "http://localhost:8080/api/category";
-  roomTypeUrl = "http://localhost:8080/api/room-type";
-  provinceUrl = "http://localhost:8080/api/province";
+  categoryUrl = 'http://localhost:8080/api/category';
+  roomTypeUrl = 'http://localhost:8080/api/room-type';
+  provinceUrl = 'http://localhost:8080/api/province';
 
   constructor(private http: HttpClient) { }
 

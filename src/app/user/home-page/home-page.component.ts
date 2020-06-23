@@ -3,7 +3,6 @@ import { GetListService } from './../../service/get-list.service';
 import { Province } from './../../model/province';
 import { ApartmentService } from './../../service/apartment.service';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../service/user.service';
 import { Picture } from '../../model/picture';
 import { Category } from '../../model/category';
 import { Order } from '../../model/order';
@@ -12,6 +11,7 @@ import { Address } from '../../model/address';
 import { RoomType } from '../../model/roomtype';
 import { Apartment } from '../../model/apartment';
 import { DatetimeService } from '../../service/datetime.service';
+import {UserService} from '../../service/user.service';
 
 @Component({
   selector: 'app-home-page',

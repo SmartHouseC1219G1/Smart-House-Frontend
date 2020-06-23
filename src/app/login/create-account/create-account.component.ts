@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AccountService} from '../../service/account.service';
 import Swal from 'sweetalert2';
+import {Account} from '../../model/account';
 
 const Toast = Swal.mixin({
   toast: true,

@@ -3,6 +3,7 @@ import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/form
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from '../../service/account.service';
 import Swal from 'sweetalert2';
+import {Account} from '../../model/account';
 
 const Toast = Swal.mixin({
   toast: true,
