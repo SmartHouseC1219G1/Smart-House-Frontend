@@ -1,7 +1,7 @@
-import { Res } from './../../model/res';
-import { Host } from './../../model/host';
-import { ApartmentService } from './../../service/apartment.service';
-import { Apartment } from './../../model/apartment';
+import { Res } from '../../model/res';
+import { Host } from '../../model/host';
+import { ApartmentService } from '../../service/apartment.service';
+import { Apartment } from '../../model/apartment';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

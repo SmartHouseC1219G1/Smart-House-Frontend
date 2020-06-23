@@ -6,18 +6,13 @@
       data-ride="carousel"
     >
       <ol class="carousel-indicators">
-        <li
-          data-target="#carouselExampleIndicators"
-          data-slide-to="0"
-          class="active"
-        ></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
       </ol>
       <div class="carousel-inner">
         <ng-container
-          *ngFor="let picture of apartment.pictures; index as index"
-        >
+          *ngFor="let picture of apartment.pictures; index as index">
           <div class="carousel-item active" *ngIf="index == 0">
             <img [src]="picture.imageUrl" class="d-block w-100" alt="picture" />
           </div>
@@ -26,12 +21,7 @@
           </div>
         </ng-container>
       </div>
-      <a
-        class="carousel-control-prev"
-        href="#carouselExampleIndicators"
-        role="button"
-        data-slide="prev"
-      >
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
       </a>
@@ -59,8 +49,7 @@
           <li>
             <span>Category:</span>
             <span *ngFor="let category of apartment.categories">
-              {{ category.name }}.</span
-            >
+              {{ category.name }}.</span>
           </li>
           <li>
             <span>Room type:</span>
@@ -109,9 +98,7 @@
             class="btn btn-primary py-3 px-4"
             type="button"
             data-toggle="modal"
-            data-target="#blockModal"
-            >Block order this apartment</a
-          >
+            data-target="#blockModal">Block order this apartment</a>
       </div>
     </div>
   </div>
@@ -201,14 +188,18 @@
           <div class="input-wrap">
             <div class="icon"><span class="ion-md-calendar"></span></div>
             <p>Start</p>
-            <input type="date" class="form-control appointment_date-check-in" placeholder="start" [(ngModel)]="start">
+            <label>
+              <input type="date" class="form-control appointment_date-check-in" placeholder="start" [(ngModel)]="start">
+            </label>
           </div>
         </div>
         <div class="form-group">
           <div class="input-wrap">
             <div class="icon"><span class="ion-md-calendar"></span></div>
             <p>End</p>
-            <input type="date" class="form-control appointment_date-check-out" placeholder="end" [(ngModel)]="end">
+            <label>
+              <input type="date" class="form-control appointment_date-check-out" placeholder="end" [(ngModel)]="end">
+            </label>
           </div>
         </div>
       </div>

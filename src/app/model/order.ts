@@ -1,6 +1,7 @@
 import { StatusOrders } from './status-order';
 import { Customer } from './customer';
-import { Apartment } from './apartment';
+import {Apartment} from './apartment';
+
 export interface Order {
     id?: number;
     startTime?: Date;

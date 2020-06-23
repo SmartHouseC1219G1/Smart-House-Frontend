@@ -37,7 +37,7 @@
                 <li><span>Bedroom:</span>{{apartment.bedroom}}</li>
               </ul>
               <p class="pt-1">
-                <a href="room-single.html" class="btn-custom px-3 py-2"
+                <a routerLink="/apartment/{{apartment.id}}" class="btn-custom px-3 py-2"
                   >View Room Details <span class="icon-long-arrow-right"></span
                 ></a>
               </p>
@@ -69,14 +69,13 @@
                   <li><span>Bedroom:</span>{{apartment.bedroom}}</li>
                 </ul>
                 <p class="pt-1">
-                  <a href="room-single.html" class="btn-custom px-3 py-2"
-                    >View Room Details <span class="icon-long-arrow-right"></span
+                  <a routerLink="/apartment/{{apartment.id}}" class="btn-custom px-3 py-2">View Room Details <span class="icon-long-arrow-right"></span
                   ></a>
                 </p>
               </div>
             </div>
           </ng-template>
-          
+
         </div>
       </div>
 

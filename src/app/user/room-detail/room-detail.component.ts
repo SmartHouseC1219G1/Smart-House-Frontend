@@ -1,5 +1,6 @@
-import { ApartmentService } from './../../service/apartment.service';
-import { Res } from './../../model/res';
+// tslint:disable-next-line:import-spacing
+import { ApartmentService } from  '../../service/apartment.service';
+import { Res } from '../../model/res';
 import { Component, OnInit } from '@angular/core';
 import { Apartment } from '../../model/apartment';
 import { ActivatedRoute } from '@angular/router';
@@ -30,4 +31,5 @@ export class RoomDetailComponent implements OnInit {
       }
     );
   }
+
 }

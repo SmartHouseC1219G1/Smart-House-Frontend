@@ -15,7 +15,9 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ListApartmentComponent } from './list-apartment/list-apartment.component';
+// @ts-ignore
 import {MatListModule} from '@angular/material/list';
+// @ts-ignore
 import {MatIconModule} from '@angular/material/icon';
 import { ApartmentDetailComponent } from './apartment-detail/apartment-detail.component';
 
@@ -47,6 +49,7 @@ const routes: Routes = [
 
 
 @NgModule({
+  // tslint:disable-next-line:max-line-length
   declarations: [LayoutComponent, HomePageComponent, FooterComponent, HeaderComponent, AddApartmentComponent, ListApartmentComponent, ApartmentDetailComponent],
   imports: [
     CommonModule,

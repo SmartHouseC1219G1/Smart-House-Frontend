@@ -1,6 +1,6 @@
-import { Res } from './../../model/res';
-import { Apartment } from './../../model/apartment';
-import { ApartmentService } from './../../service/apartment.service';
+import { Res } from '../../model/res';
+import { Apartment } from '../../model/apartment';
+import { ApartmentService } from '../../service/apartment.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -25,15 +25,18 @@ export class ExploreComponent implements OnInit {
   }
 
   check(num: number) {
+    // tslint:disable-next-line:triple-equals
     if (num % 2 == 0) {
-      let nextNum = num / 2;
+      const nextNum = num / 2;
+      // tslint:disable-next-line:triple-equals
       if (nextNum % 2 == 0) {
         return true;
       } else {
         return false;
       }
     } else {
-      let nextNum = (num - 1) / 2;
+      const nextNum = (num - 1) / 2;
+      // tslint:disable-next-line:triple-equals
       if (nextNum % 2 == 0) {
         return true;
       } else {

@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+// @ts-ignore
 import Swal from 'sweetalert2';
 
 const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
   showConfirmButton: false,
-  timer: 3000,
+  timer: 2000,
   timerProgressBar: true,
   onOpen: (toast) => {
     toast.addEventListener('mouseleave', Swal.resumeTimer);
