@@ -1,4 +1,4 @@
-import { Order } from './../model/order';
+import { Order } from '../model/order';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { StatusOrders } from '../model/status-order';
