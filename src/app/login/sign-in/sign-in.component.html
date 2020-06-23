@@ -7,25 +7,35 @@
         <div class="card-body">
           <h5 class="card-title text-center">Sign In</h5>
           <form class="form-signin" [formGroup]="loginForm">
-            <div class="form-label-group">
-              <input type="text" id="userName" class="form-control" placeholder="username" required formControlName="username">
-              <label for="userName">User Name</label>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                </div>
+                <input type="text" id="userName" class="form-control" placeholder="username" required formControlName="username">
+
+              </div>
+              <div class="alert alert-danger" role="alert"
+                   *ngIf="loginForm.get('username').invalid
+                       && loginForm.get('username').touched">
+                Invalid Email !
+              </div>
             </div>
-            <div class="alert alert-danger" role="alert"
-                 *ngIf="loginForm.get('username').invalid
-       && loginForm.get('username').touched">
-              Invalid Email !
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input type="password" id="inputPassword" class="form-control" placeholder="******" required formControlName="password">
+
+              </div>
+              <div class="alert alert-danger" role="alert"
+                   *ngIf="loginForm.get('password').invalid
+                     && loginForm.get('password').touched">
+                Invalid Password !
+              </div>
             </div>
 
-            <div class="form-label-group">
-              <input type="password" id="inputPassword" class="form-control" placeholder="Password" required formControlName="password">
-              <label for="inputPassword">Password</label>
-            </div>
-            <div class="alert alert-danger" role="alert"
-                 *ngIf="loginForm.get('password').invalid
-       && loginForm.get('password').touched">
-              Invalid Password !
-            </div>
 
             <div class="custom-control custom-checkbox mb-3">
               <input type="checkbox" class="custom-control-input" id="customCheck1">
