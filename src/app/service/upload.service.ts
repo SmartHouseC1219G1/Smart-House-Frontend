@@ -11,7 +11,7 @@ export class UploadService {
     private storage: AngularFireStorage,
     private db: AngularFirestore
   ) {}
-    // Khong su dung
+
   startUpload(file: File) {
     // The storage path
     const path = `hotel/${Date.now()}_${file.name}`;
@@ -19,26 +19,14 @@ export class UploadService {
     // Reference to storage bucket
     const ref = this.storage.ref(path);
 
-    return this.storage.upload(path, file);
+    // The main task
+    return this.storage.upload(path, file).snapshotChanges().toPromise();
   }
 
-  // getPictureFromUploader(file: File){
-  //   const picture: any;
-  //   const path = `hotel/${Date.now()}_${file.name}`;
-
-  //   // Reference to storage bucket
-  //   const ref = this.storage.ref(path);
-
-  //   return this.storage.upload(path,file).snapshotChanges()
-  //   .pipe(
-  //     finalize(() => {
-  //       ref.getDownloadURL().subscribe((url) => {
-  //         picture =
-  //       });
-  //     })
-  //   )
-  //   .subscribe();
-  // }
-
-
+  convertToResizeUrl(url: string){
+    const regex = ".jpg";
+    let array = url.split(regex);
+    return array.join("_1080x1080.jpg")
+  }
+  
 }

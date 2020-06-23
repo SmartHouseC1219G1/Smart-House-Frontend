@@ -1,3 +1,4 @@
+import { UploadService } from './../../service/upload.service';
 import { OrderService } from './../../service/order.service';
 import { Order } from './../../model/order';
 import { async } from '@angular/core/testing';
@@ -23,10 +24,10 @@ export class ApartmentDetailComponent implements OnInit {
   end: Date;
   constructor(
     private router: Router,
-    private storage: AngularFireStorage,
     private apartmentService: ApartmentService,
     private route: ActivatedRoute,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private uploadService: UploadService
   ) {}
 
   ngOnInit(): void {
@@ -85,23 +86,13 @@ export class ApartmentDetailComponent implements OnInit {
       });
   }
 
-  startUpload(file: File) {
-    // The storage path
-    const path = `hotel/${Date.now()}_${file.name}`;
-
-    // Reference to storage bucket
-    const ref = this.storage.ref(path);
-
-    // The main task
-    return this.storage.upload(path, file).snapshotChanges().toPromise();
-  }
 
   async onSave() {
     console.log('saving');
 
     const uploadArray = [];
     this.files.forEach((file) => {
-      uploadArray.push(this.startUpload(file));
+      uploadArray.push(this.uploadService.startUpload(file));
     });
     console.log('before upload');
 
@@ -112,7 +103,7 @@ export class ApartmentDetailComponent implements OnInit {
           const element = result[i];
           const imageUrl = await element.ref.getDownloadURL();
           this.pictures.push({
-            imageUrl: imageUrl,
+            imageUrl: this.uploadService.convertToResizeUrl(imageUrl),
           });
           console.log('pass' + i);
         }
