@@ -1,0 +1,25 @@
+
+html,body{
+  background-image: url('https://images.kienthuc.net.vn/zoom/800/Uploaded/nguyenvan/2018_07_24/1/k-1_EGMY.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  font-family: 'Numans', sans-serif;
+}
+
+.container{
+  height: 100%;
+  align-content: center;
+}
+
+
+.login_btn{
+  color: black;
+  background-color: #FFC312;
+  width: 100px;
+}
+
+.login_btn:hover{
+  color: black;
+  background-color: white;
+}

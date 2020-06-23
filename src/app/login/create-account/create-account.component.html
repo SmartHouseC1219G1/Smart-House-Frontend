@@ -1,1 +1,73 @@
-<p>create-account works!</p>
+
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card card-signin my-5">
+        <div class="card-body">
+          <h5 class="card-title text-center">Sign Up</h5>
+          <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-label-group">
+              <input type="text" id="userName" class="form-control" placeholder="username" required formControlName="username">
+              <!--                     [ngClass]="registerForm.get('username').invalid ? 'is-invalid' : 'is-valid'">-->
+              <label for="userName">User Name</label>
+            </div>
+            <div class="alert alert-danger" role="alert"
+                 *ngIf="registerForm.get('username').invalid
+       && registerForm.get('username').touched">
+              Invalid Username !
+            </div>
+
+
+            <div class="form-label-group" formGroupName="pwGroup">
+              <input type="password" id="pass" class="form-control" placeholder="Password" required formControlName="password">
+              <label for="pass">Password</label>
+            </div>
+
+            <div class="form-label-group" formGroupName="pwGroup">
+              <input type="password" id="pass1" class="form-control" placeholder="ConfirmPassword" required formControlName="confirmPassword">
+              <label for="pass1">Confirm Password</label>
+            </div>
+
+            <div class="alert alert-danger" role="alert"
+                 *ngIf="registerForm.hasError('passwordNotMatch', ['pwGroup'])
+       && registerForm.get('pwGroup').touched">
+              Password does not match !
+            </div>
+
+            <div class="form-label-group">
+              <input type="text" id="email" class="form-control" placeholder="Email" required formControlName="email">
+              <label for="email">Email</label>
+            </div>
+
+            <div class="alert alert-danger" role="alert"
+                 *ngIf="registerForm.get('email').invalid
+       && registerForm.get('email').touched">
+              Invalid Email !
+            </div>
+
+            <div class="form-label-group">
+              <input type="text" id="phone" class="form-control" placeholder="Email" required formControlName="phone">
+              <label for="phone">Phone</label>
+            </div>
+
+            <div class="alert alert-danger" role="alert"
+                 *ngIf="registerForm.get('phone').invalid
+       && registerForm.get('phone').touched">
+              Invalid Phone !
+            </div>
+
+
+            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" [disabled]="registerForm.invalid">Sign in</button>
+            <hr class="my-4">
+
+            <button type="button" class="btn btn-block btn-outline-info"> <i class="fa fa-google"></i>Login via Google</button>
+            <button type="button" class="btn btn-block btn-outline-info"> <i class="fa fa-facebook"></i>Login via Facebook</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
