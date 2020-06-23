@@ -1,3 +1,7 @@
+import { Res } from './../../model/res';
+import { GetListService } from './../../service/get-list.service';
+import { Province } from './../../model/province';
+import { ApartmentService } from './../../service/apartment.service';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../service/user.service';
 import { Picture } from '../../model/picture';
@@ -8,10 +12,6 @@ import { Address } from '../../model/address';
 import { RoomType } from '../../model/roomtype';
 import { Apartment } from '../../model/apartment';
 import { DatetimeService } from '../../service/datetime.service';
-import {Province} from '../../model/province';
-import {ApartmentService} from '../../service/apartment.service';
-import {GetListService} from '../../service/get-list.service';
-import {Res} from '../../model/res';
 
 @Component({
   selector: 'app-home-page',
@@ -19,12 +19,12 @@ import {Res} from '../../model/res';
   styleUrls: ['./home-page.component.css'],
 })
 export class HomePageComponent implements OnInit {
+
   listApartment: Apartment[] = [];
 
   // param for search
   bedroom: string;
   bathroom: string;
-  // tslint:disable-next-line:variable-name
   province_id: string;
   startPrice: string;
   endPrice: string;
@@ -32,7 +32,6 @@ export class HomePageComponent implements OnInit {
   endTime: string;
   // get list
   provinces: Province[] = [];
-  // @ts-ignore
   constructor(
     private userService: UserService,
     private date: DatetimeService,
@@ -68,18 +67,15 @@ export class HomePageComponent implements OnInit {
       });
   }
   check(num: number) {
-    // tslint:disable-next-line:triple-equals
     if (num % 2 == 0) {
-      const nextNum = num / 2;
-      // tslint:disable-next-line:triple-equals
+      let nextNum = num / 2;
       if (nextNum % 2 == 0) {
         return true;
       } else {
         return false;
       }
     } else {
-      const nextNum = (num - 1) / 2;
-      // tslint:disable-next-line:triple-equals
+      let nextNum = (num - 1) / 2;
       if (nextNum % 2 == 0) {
         return true;
       } else {

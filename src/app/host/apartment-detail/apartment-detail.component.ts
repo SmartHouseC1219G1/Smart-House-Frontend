@@ -1,13 +1,14 @@
-import { OrderService } from '../../service/order.service';
-import { Order } from '../../model/order';
+import { UploadService } from './../../service/upload.service';
+import { OrderService } from './../../service/order.service';
+import { Order } from './../../model/order';
 import { async } from '@angular/core/testing';
 import { finalize } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Picture } from '../../model/picture';
-import { Res } from '../../model/res';
-import { ApartmentService } from '../../service/apartment.service';
+import { Picture } from './../../model/picture';
+import { Res } from './../../model/res';
+import { ApartmentService } from './../../service/apartment.service';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
-import { Apartment } from '../../model/apartment';
+import { Apartment } from './../../model/apartment';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -23,10 +24,10 @@ export class ApartmentDetailComponent implements OnInit {
   end: Date;
   constructor(
     private router: Router,
-    private storage: AngularFireStorage,
     private apartmentService: ApartmentService,
     private route: ActivatedRoute,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private uploadService: UploadService
   ) {}
 
   ngOnInit(): void {
@@ -35,8 +36,8 @@ export class ApartmentDetailComponent implements OnInit {
     this.apartmentService.getDetailApartmentById(id).subscribe(
       (data: Res) => {
         this.apartment = data.data;
-        // get imageurl to files
-        const fetches = [];
+        //get imageurl to files
+        let fetches = [];
         for (let i = 0; i < this.apartment.pictures.length; i++) {
           const url = this.apartment.pictures[i].imageUrl;
           fetches.push(this.fetchImage(url));
@@ -71,8 +72,7 @@ export class ApartmentDetailComponent implements OnInit {
   }
 
   fetchImage(url: string) {
-    // tslint:disable-next-line:prefer-const
-    let proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     return fetch(proxyUrl + url)
       .then((res) => res.blob()) // Gets the response and returns it as a blob
       .then((blob) => {
@@ -80,29 +80,19 @@ export class ApartmentDetailComponent implements OnInit {
         const file = new File([blob], `image${Date.now()}.jpg`, {
           type: blob.type,
         });
-        // push file to files
+        //push file to files
         this.files.push(file);
         console.log(this.files);
       });
   }
 
-  startUpload(file: File) {
-    // The storage path
-    const path = `hotel/${Date.now()}_${file.name}`;
-
-    // Reference to storage bucket
-    const ref = this.storage.ref(path);
-
-    // The main task
-    return this.storage.upload(path, file).snapshotChanges().toPromise();
-  }
 
   async onSave() {
     console.log('saving');
 
     const uploadArray = [];
     this.files.forEach((file) => {
-      uploadArray.push(this.startUpload(file));
+      uploadArray.push(this.uploadService.startUpload(file));
     });
     console.log('before upload');
 
@@ -113,7 +103,7 @@ export class ApartmentDetailComponent implements OnInit {
           const element = result[i];
           const imageUrl = await element.ref.getDownloadURL();
           this.pictures.push({
-            imageUrl,
+            imageUrl: this.uploadService.convertToResizeUrl(imageUrl),
           });
           console.log('pass' + i);
         }
@@ -146,9 +136,8 @@ export class ApartmentDetailComponent implements OnInit {
     this.orderService.blockOrder(order).subscribe(
       (res: Res) => {
         console.log(res);
-        // tslint:disable-next-line:triple-equals
-        if (res.status == 'SUCCESS') { alert('block success'); }
-        else { alert('could not block with this date'); }
+        if (res.status == 'SUCCESS') alert('block success');
+        else alert('could not block with this date');
       },
       (err) => {
         console.log(err);
