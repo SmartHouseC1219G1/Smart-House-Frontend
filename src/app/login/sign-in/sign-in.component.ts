@@ -9,6 +9,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class SignInComponent implements OnInit {
 
   loginForm: FormGroup;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -17,5 +18,9 @@ export class SignInComponent implements OnInit {
         [Validators.required, Validators.minLength(6)]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
+  }
+
+  onSubmit() {
+
   }
 }
