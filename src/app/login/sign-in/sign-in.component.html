@@ -5,7 +5,7 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Sign In</h5>
-            <form class="form-signin" [formGroup]="loginForm">
+            <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
               <div class="form-group">
                 <div class="input-group">
                   <div class="input-group-prepend">
