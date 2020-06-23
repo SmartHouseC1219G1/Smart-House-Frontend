@@ -22,6 +22,11 @@ export class UploadService {
     // The main task
     return this.storage.upload(path, file).snapshotChanges().toPromise();
   }
-  
 
+  convertToResizeUrl(url: string){
+    const regex = ".jpg";
+    let array = url.split(regex);
+    return array.join("_1080x1080.jpg")
+  }
+  
 }

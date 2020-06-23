@@ -103,7 +103,7 @@ export class ApartmentDetailComponent implements OnInit {
           const element = result[i];
           const imageUrl = await element.ref.getDownloadURL();
           this.pictures.push({
-            imageUrl: imageUrl,
+            imageUrl: this.uploadService.convertToResizeUrl(imageUrl),
           });
           console.log('pass' + i);
         }

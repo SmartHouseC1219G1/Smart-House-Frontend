@@ -62,6 +62,8 @@ export class AddApartmentComponent implements OnInit {
   };
 
   constructor(
+    private storage: AngularFireStorage,
+    private db: AngularFirestore,
     private fb: FormBuilder,
     private getListService: GetListService,
     private apartmentService: ApartmentService,
@@ -76,7 +78,7 @@ export class AddApartmentComponent implements OnInit {
       this.provinces = resList[2].data;
     });
 
-    console.log('in ra sau khi chay xog race');
+    console.log('pull all category,roomtype,province');
 
     this.apartmentForm = this.fb.group({
       name: ['', Validators.required],
@@ -124,7 +126,7 @@ export class AddApartmentComponent implements OnInit {
           const element = result[i];
           const imageUrl = await element.ref.getDownloadURL();
           this.pictures.push({
-            imageUrl: imageUrl,
+            imageUrl: this.uploadService.convertToResizeUrl(imageUrl),
           });
           console.log('pass' + i);
         }
@@ -135,7 +137,7 @@ export class AddApartmentComponent implements OnInit {
           .addNewApartment(this.apartment)
           .subscribe((res: Res) => {
             console.log(res);
-            if (res.status == 'SUCCESS') alert('success');
+            if (res.status === 'SUCCESS') alert('success');
             else alert('failed to add new apartment');
           });
       })
