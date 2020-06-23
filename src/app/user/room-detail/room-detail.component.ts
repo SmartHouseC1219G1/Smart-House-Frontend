@@ -1,5 +1,6 @@
-import { ApartmentService } from './../../service/apartment.service';
-import { Res } from './../../model/res';
+// tslint:disable-next-line:import-spacing
+import { ApartmentService } from  '../../service/apartment.service';
+import { Res } from '../../model/res';
 import { Component, OnInit } from '@angular/core';
 import { Apartment } from '../../model/apartment';
 import { UserService } from '../../service/user.service';
@@ -23,7 +24,7 @@ export class RoomDetailComponent implements OnInit {
     this.apartmentService.getDetailApartmentById(id).subscribe(
       (data: Res) => {
         this.apartment = data.data;
-        console.log(this.apartment)
+        console.log(this.apartment);
       },
       (error) => {
         console.log(error);
