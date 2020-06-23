@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AccountService} from '../../service/account.service';
+import Swal from 'sweetalert2';
 
 function comparePassword(c: AbstractControl) {
   const v = c.value;
@@ -8,6 +9,16 @@ function comparePassword(c: AbstractControl) {
     passwordNotMatch: true
   };
 }
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+    toast.addEventListener('mouseleave', Swal.resumeTimer);
+  }
+});
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
@@ -46,6 +57,10 @@ export class CreateAccountComponent implements OnInit {
             password: '',
             email: '',
             phone: '',
+          });
+          Toast.fire({
+            icon: 'success',
+            title: 'Signed in successfully'
           });
         }, error => {
           confirm('Add account fail !');

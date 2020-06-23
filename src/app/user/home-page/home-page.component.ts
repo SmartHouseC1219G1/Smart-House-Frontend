@@ -1,7 +1,7 @@
-import { Res } from './../../model/res';
-import { GetListService } from './../../service/get-list.service';
-import { Province } from './../../model/province';
-import { ApartmentService } from './../../service/apartment.service';
+import { Res } from '../../model/res';
+import { GetListService } from '../../service/get-list.service';
+import { Province } from '../../model/province';
+import { ApartmentService } from '../../service/apartment.service';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../service/user.service';
 import { Picture } from '../../model/picture';
@@ -62,7 +62,7 @@ export class HomePageComponent implements OnInit {
         this.endTime
       )
       .subscribe((data: Res) => {
-        console.log(data.data)
+        console.log(data.data);
         this.listApartment = data.data;
       });
   }
