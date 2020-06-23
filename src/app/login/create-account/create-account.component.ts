@@ -1,6 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AccountService} from '../../service/account.service';
+import Swal from 'sweetalert2';
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+    toast.addEventListener('mouseleave', Swal.resumeTimer);
+  }
+});
 
 function comparePassword(c: AbstractControl) {
   const v = c.value;
@@ -36,21 +48,27 @@ export class CreateAccountComponent implements OnInit {
   }
   onSubmit() {
     if (this.registerForm.valid) {
-      const {value} = this.registerForm;
-      this.accountService.createAccount(value)
-        .subscribe(result => {
-          this.accountList.push(result);
-          confirm('Add account successfully !');
-          this.registerForm.reset({
-            username: '',
-            password: '',
-            email: '',
-            phone: '',
-          });
-        }, error => {
-          confirm('Add account fail !');
-        });
+      console.log(this.registerForm.value);
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Create Account successfully'
+      });
+      // const {value} = this.registerForm;
+      // this.accountService.createAccount(value)
+      //   .subscribe(result => {
+      //     this.accountList.push(result);
+      //     confirm('Add account successfully !');
+      //     this.registerForm.reset({
+      //       username: '',
+      //       password: '',
+      //       email: '',
+      //       phone: '',
+      //     });
+      //   }, error => {
+      //     confirm('Add account fail !');
+      //   });
     }
   }
-
 }
+

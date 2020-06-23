@@ -33,7 +33,7 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.loginForm);
+    console.log(this.loginForm.value);
     Toast.fire({
       icon: 'success',
       title: 'Signed in successfully'

@@ -2,6 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from '../../service/account.service';
+import Swal from 'sweetalert2';
+
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+    toast.addEventListener('mouseleave', Swal.resumeTimer);
+  }
+});
 
 function comparePassword(c: AbstractControl) {
   const v = c.value;
@@ -51,17 +63,22 @@ export class EditAccountComponent implements OnInit {
 
   onSubmit() {
     if (this.registerForm.valid) {
-      const {value} = this.registerForm;
-      const data = {
-        ...this.account,
-        ...value
-      };
-      this.accountService.editAccount(data)
-        .subscribe(result => {
-          this.routes.navigate(['']);
-        }, error => {
-          console.log(error);
-        });
+      console.log(this.registerForm.value);
+      Toast.fire({
+        icon: 'success',
+        title: 'Edit Account successfully'
+      });
+      // const {value} = this.registerForm;
+      // const data = {
+      //   ...this.account,
+      //   ...value
+      // };
+      // this.accountService.editAccount(data)
+      //   .subscribe(result => {
+      //     this.routes.navigate(['']);
+      //   }, error => {
+      //     console.log(error);
+      //   });
     }
   }
 
