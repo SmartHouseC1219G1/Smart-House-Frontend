@@ -1,3 +1,5 @@
+import { UploadService } from './../../service/upload.service';
+import { Res } from './../../model/res';
 import { Host } from './../../model/host';
 import { ApartmentService } from './../../service/apartment.service';
 import { GetListService } from './../../service/get-list.service';
@@ -56,15 +58,14 @@ export class AddApartmentComponent implements OnInit {
   pictureList: Picture[] = [];
   // Hard fix
   hardFixHost: Host = {
-    id: 1
+    id: 1,
   };
 
   constructor(
-    private storage: AngularFireStorage,
-    private db: AngularFirestore,
     private fb: FormBuilder,
     private getListService: GetListService,
-    private apartmentService: ApartmentService
+    private apartmentService: ApartmentService,
+    private uploadService: UploadService
   ) {}
 
   ngOnInit() {
@@ -105,30 +106,45 @@ export class AddApartmentComponent implements OnInit {
   async onSubmit() {
     if (this.apartmentForm.invalid) {
       alert('invalid input');
-      console.log(this.apartmentForm)
+      console.log(this.apartmentForm);
       return;
     }
-    for (let index = 0; index < this.files.length; index++) {
-      const file = this.files[index];
-      const waitPlz = await this.startUpload(file).toPromise();
-      console.log('pass' + index);
-    }
-    this.apartment = this.apartmentForm.value;
-    this.apartment.pictures = this.pictures;
-    // Fix cung host id = 1
-    this.apartment.host = this.hardFixHost;
-    this.apartmentService.addNewApartment(this.apartment).subscribe(
-      (res) => {
-        console.log(res);
-        alert("Add success")
-      },
-      (err) => {
-        alert("Add failed")
-      }
-    );
-    // make apartment object empty
-    this.pictures = [];
-    this.apartment = {};
+    console.log('saving');
+
+    const uploadArray = [];
+    this.files.forEach((file) => {
+      uploadArray.push(this.uploadService.startUpload(file));
+    });
+    console.log('before upload');
+
+    Promise.all(uploadArray)
+      .then(async (result) => {
+        console.log(result);
+        for (let i = 0; i < result.length; i++) {
+          const element = result[i];
+          const imageUrl = await element.ref.getDownloadURL();
+          this.pictures.push({
+            imageUrl: imageUrl,
+          });
+          console.log('pass' + i);
+        }
+        console.log(this.pictures);
+      })
+      .then(() => {
+        this.apartmentService
+          .addNewApartment(this.apartment)
+          .subscribe((res: Res) => {
+            console.log(res);
+            if (res.status == 'SUCCESS') alert('success');
+            else alert('failed to add new apartment');
+          });
+      })
+      .catch((err) => alert(err))
+      .finally(() => {
+        this.pictures = [];
+        this.apartment = {};
+        this.apartmentForm.reset();
+      });
   }
 
   onSelect(event: { addedFiles: any }) {
@@ -143,26 +159,4 @@ export class AddApartmentComponent implements OnInit {
     console.log(this.files);
   }
 
-  startUpload(file: File) {
-    // The storage path
-    const path = `hotel/${Date.now()}_${file.name}`;
-
-    // Reference to storage bucket
-    const ref = this.storage.ref(path);
-
-    // The main task
-    return this.storage
-      .upload(path, file)
-      .snapshotChanges()
-      .pipe(
-        finalize(() => {
-          ref.getDownloadURL().subscribe((url) => {
-            this.pictures.push({
-              imageUrl: url,
-            });
-            console.log(this.pictures);
-          });
-        })
-      );
-  }
 }
