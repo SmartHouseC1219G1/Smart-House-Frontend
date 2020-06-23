@@ -1,13 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import Swal from 'sweetalert2';
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+    toast.addEventListener('mouseleave', Swal.resumeTimer);
+  }
+});
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
-export class SignInComponent implements OnInit {
 
+
+export class SignInComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor() { }
@@ -20,7 +32,11 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-
+  onSubmit(){
+    console.log(this.loginForm);
+    Toast.fire({
+      icon: 'success',
+      title: 'Signed in successfully'
+    });
   }
 }
