@@ -1,81 +1,96 @@
-
-<body>
-<div class="container">
-  <div class="row">
-    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-      <div class="card card-signin my-5">
-        <div class="card-body">
-          <h5 class="card-title text-center">Sign In</h5>
-          <form class="form-signin" [formGroup]="loginForm">
-            <div class="form-group">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+<div id="login-main">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Sign In</h5>
+            <form class="form-signin" [formGroup]="loginForm">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-user"></i>
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    id="user"
+                    class="form-control"
+                    placeholder="User Name"
+                    required
+                    formControlName="username"
+                  />
                 </div>
-<<<<<<< HEAD
-                <input type="text" id="userName" class="form-control" placeholder="username" required formControlName="username">
+              </div>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="
+                  loginForm.get('username').invalid &&
+                  loginForm.get('username').touched
+                "
+              >
+                Invalid UserName !
+              </div>
 
-              </div>
-              <div class="alert alert-danger" role="alert"
-                   *ngIf="loginForm.get('username').invalid
-                       && loginForm.get('username').touched">
-                Invalid Email !
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-lock"></i>
+                    </span>
+                  </div>
+                  <input
+                    type="password"
+                    id="inputPassword"
+                    class="form-control"
+                    placeholder="Password"
+                    required
+                    formControlName="password"
+                  />
                 </div>
-                <input type="password" id="inputPassword" class="form-control" placeholder="******" required formControlName="password">
-
               </div>
-              <div class="alert alert-danger" role="alert"
-                   *ngIf="loginForm.get('password').invalid
-                     && loginForm.get('password').touched">
+
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="
+                  loginForm.get('password').invalid &&
+                  loginForm.get('password').touched
+                "
+              >
                 Invalid Password !
               </div>
-            </div>
-=======
-                <input type="text" id="user" class="form-control" placeholder="User Name" required formControlName="username">
+
+              <div class="custom-control custom-checkbox mb-3">
+                <input
+                  type="checkbox"
+                  class="custom-control-input"
+                  id="customCheck1"
+                />
+                <label class="custom-control-label" for="customCheck1"
+                  >Remember password</label
+                >
               </div>
-            </div>
-            <div class="alert alert-danger" role="alert"
-                 *ngIf="loginForm.get('username').invalid
-       && loginForm.get('username').touched">
-              Invalid UserName !
-            </div>
-
-            <div class="form-group">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
-                </div>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required formControlName="password">
-              </div>
-            </div>
-
-        <div class="alert alert-danger" role="alert"
-             *ngIf="loginForm.get('password').invalid
-       && loginForm.get('password').touched">
-          Invalid Password !
-        </div>
->>>>>>> 59233c982ab7463c3d4d379e26096fe6e6d3f890
-
-
-            <div class="custom-control custom-checkbox mb-3">
-              <input type="checkbox" class="custom-control-input" id="customCheck1">
-              <label class="custom-control-label" for="customCheck1">Remember password</label>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit" [disabled]="loginForm.invalid">Sign in</button>
-            <hr class="my-4">
-            <button type="button" class="btn btn-block btn-outline-info"> <i class="fa fa-google"></i>Login via Google</button>
-            <button type="button" class="btn btn-block btn-outline-info"> <i class="fa fa-facebook"></i>Login via Facebook</button>
-          </form>
+              <button
+                class="btn btn-lg btn-primary btn-block text-uppercase"
+                type="submit"
+                [disabled]="loginForm.invalid"
+              >
+                Sign in
+              </button>
+              <hr class="my-4" />
+              <button type="button" class="btn btn-block btn-outline-info">
+                <i class="fa fa-google"></i>Login via Google
+              </button>
+              <button type="button" class="btn btn-block btn-outline-info">
+                <i class="fa fa-facebook"></i>Login via Facebook
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-</body>
-
