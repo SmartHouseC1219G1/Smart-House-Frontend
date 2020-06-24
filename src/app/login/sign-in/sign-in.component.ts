@@ -1,8 +1,10 @@
-import { FacebookUser } from './../../model/social-user';
+import { FacebookUser } from '../../model/social-user';
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import { FacebookLoginProvider } from "angularx-social-login";
-import { SocialAuthService } from "angularx-social-login";
+// @ts-ignore
+import { FacebookLoginProvider } from 'angularx-social-login';
+// @ts-ignore
+import { SocialAuthService } from 'angularx-social-login';
 // @ts-ignore
 import Swal from 'sweetalert2';
 
@@ -44,16 +46,16 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  // auth 
+  // auth
   signInWithFB(): void {
     this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
     .then((res: FacebookUser) => console.log(res))
     // save auth token to session storage
     // add new user -> backend with username = email + id
-    // if user exist 
+    // if user exist
     .catch(err => console.log(err));
   }
- 
+
   signOut(): void {
     this.authService.signOut();
   }

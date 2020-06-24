@@ -11,10 +11,11 @@ import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// @ts-ignore
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import {
-  FacebookLoginProvider,
-} from 'angularx-social-login';
+// @ts-ignore
+// @ts-ignore
+import {FacebookLoginProvider} from 'angularx-social-login';
 
 
 const firebaseConfig = {
@@ -30,8 +31,7 @@ const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ChangePasswordComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
