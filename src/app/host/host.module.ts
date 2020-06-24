@@ -42,7 +42,10 @@ const routes: Routes = [
       {
         path: 'apartment/:id',
         component: ApartmentDetailComponent
-      }
+      },
+      {
+        path: 'order',
+        loadChildren: () => import('./order/order.module').then(m => m.OrderModule)}
     ]
   }
 ];
