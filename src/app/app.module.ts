@@ -11,7 +11,12 @@ import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import {ChangePasswordComponent} from '/change-password/change-password.component';
+// @ts-ignore
+import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+// @ts-ignore
+// @ts-ignore
+import {FacebookLoginProvider} from 'angularx-social-login';
+
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB3F4HWEz67XdAe7KnSrYq-0cNede-zm4g',
@@ -42,7 +47,18 @@ const firebaseConfig = {
     AngularFireAuthModule, // auth
     AngularFireStorageModule, // storage
   ],
-  providers: [],
+  providers: [ {
+    provide: 'SocialAuthServiceConfig',
+    useValue: {
+      autoLogin: false,
+      providers: [
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider('336216127538880'),
+        },
+      ],
+    } as SocialAuthServiceConfig,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

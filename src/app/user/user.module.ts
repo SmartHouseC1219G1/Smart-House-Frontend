@@ -11,7 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ExploreComponent } from './explore/explore.component';
 import { BookingHistoryComponent } from './booking-history/booking-history.component';
-
+import {ChangePasswordComponent} from '../change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -39,8 +39,12 @@ const routes: Routes = [
         component: ExploreComponent,
       },
       {
-        path: 'booking-story',
+        path: 'booking-history',
         component: BookingHistoryComponent
+      },
+      {
+        path: 'change-pass',
+        component: ChangePasswordComponent
       },
     ],
   },
