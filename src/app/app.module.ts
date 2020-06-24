@@ -46,6 +46,7 @@ const firebaseConfig = {
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
     AngularFireStorageModule, // storage
+    SocialLoginModule
   ],
   providers: [ {
     provide: 'SocialAuthServiceConfig',
