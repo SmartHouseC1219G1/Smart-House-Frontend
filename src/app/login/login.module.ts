@@ -7,6 +7,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import {RouterModule, Routes} from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { ChangePassComponent } from './change-pass/change-pass.component';
 
 // @ts-ignore
 const routes: Routes = [
@@ -33,13 +34,17 @@ const routes: Routes = [
       {
         path: 'create-account',
         component: CreateAccountComponent
+      },
+      {
+        path: 'change-password',
+        component: ChangePassComponent
       }
     ]
   }
   ];
 
 @NgModule({
-  declarations: [CreateAccountComponent, EditAccountComponent, AccountInfoComponent, SignInComponent, LayoutComponent],
+  declarations: [CreateAccountComponent, EditAccountComponent, AccountInfoComponent, SignInComponent, LayoutComponent, ChangePassComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
+import {FormGroup} from '@angular/forms';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -13,11 +14,12 @@ const Toast = Swal.mixin({
 });
 
 @Component({
-  selector: 'app-change-password',
-  templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.css']
+  selector: 'app-change-pass',
+  templateUrl: './change-pass.component.html',
+  styleUrls: ['./change-pass.component.css']
 })
-export class ChangePasswordComponent implements OnInit {
+export class ChangePassComponent implements OnInit {
+  passForm: FormGroup;
 
   constructor() { }
 
@@ -39,5 +41,4 @@ export class ChangePasswordComponent implements OnInit {
       title: 'Change password fail'
     });
   }
-
 }
