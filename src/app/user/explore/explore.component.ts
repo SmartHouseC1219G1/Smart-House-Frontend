@@ -25,8 +25,9 @@ export class ExploreComponent implements OnInit {
   }
 
   check(num: number) {
+    // tslint:disable-next-line:triple-equals
     if (num % 2 == 0) {
-      let nextNum = num / 2;
+      const nextNum = num / 2;
       if (nextNum % 2 == 0) {
         return true;
       } else {

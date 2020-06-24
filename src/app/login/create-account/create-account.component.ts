@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AccountService} from '../../service/account.service';
 import Swal from 'sweetalert2';
-import {Account} from '../../model/account';
+import {User} from '../../model/user';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -29,7 +29,7 @@ function comparePassword(c: AbstractControl) {
 export class CreateAccountComponent implements OnInit {
 
   registerForm: FormGroup;
-  accountList: Account[] = [];
+  accountList: User[] = [];
 
   constructor(private accountService: AccountService) {
   }
@@ -53,7 +53,7 @@ export class CreateAccountComponent implements OnInit {
 
       Toast.fire({
         icon: 'success',
-        title: 'Create Account successfully'
+        title: 'Create User successfully'
       });
       // const {value} = this.registerForm;
       // this.accountService.createAccount(value)
