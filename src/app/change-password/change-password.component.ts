@@ -28,7 +28,7 @@ export class ChangePasswordComponent implements OnInit {
     // console.log(this.loginForm.value);
     Toast.fire({
       icon: 'success',
-      title: 'Change in successfully'
+      title: 'Change password successfully'
     });
   }
 
@@ -36,7 +36,7 @@ export class ChangePasswordComponent implements OnInit {
     // console.log(this.loginForm.value);
     Toast.fire({
       icon: 'error',
-      title: 'Change in fail'
+      title: 'Change password fail'
     });
   }
 
