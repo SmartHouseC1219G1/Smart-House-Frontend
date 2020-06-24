@@ -36,7 +36,7 @@ export class ApartmentDetailComponent implements OnInit {
     this.apartmentService.getDetailApartmentById(id).subscribe(
       (data: Res) => {
         this.apartment = data.data;
-        //get imageurl to files
+        // get imageurl to files
         let fetches = [];
         for (let i = 0; i < this.apartment.pictures.length; i++) {
           const url = this.apartment.pictures[i].imageUrl;

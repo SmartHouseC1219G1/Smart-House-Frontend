@@ -3,7 +3,7 @@ import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/form
 import {ActivatedRoute, Router} from '@angular/router';
 import {AccountService} from '../../service/account.service';
 import Swal from 'sweetalert2';
-import {Account} from '../../model/account';
+import {User} from '../../model/user';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -32,7 +32,7 @@ export class EditAccountComponent implements OnInit {
 
 
   registerForm: FormGroup;
-  account: Account[] = [];
+  account: User[] = [];
 
   constructor(private accountService: AccountService,
               private route: ActivatedRoute,
@@ -56,9 +56,9 @@ export class EditAccountComponent implements OnInit {
       .subscribe(result => {
         this.account = result;
         this.registerForm.patchValue(this.account);
-        confirm('Edit Account successfully !');
+        confirm('Edit User successfully !');
       }, error => {
-        // confirm('Edit Account fail !');
+        // confirm('Edit User fail !');
       });
   }
 
@@ -67,7 +67,7 @@ export class EditAccountComponent implements OnInit {
       console.log(this.registerForm.value);
       Toast.fire({
         icon: 'success',
-        title: 'Edit Account successfully'
+        title: 'Edit User successfully'
       });
       // const {value} = this.registerForm;
       // const data = {
