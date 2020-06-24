@@ -12,6 +12,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 const firebaseConfig = {
   apiKey: 'AIzaSyB3F4HWEz67XdAe7KnSrYq-0cNede-zm4g',
   authDomain: 'smart-house-c1219g1.firebaseapp.com',
@@ -25,7 +26,7 @@ const firebaseConfig = {
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
