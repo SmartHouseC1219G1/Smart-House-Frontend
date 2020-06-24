@@ -19,10 +19,10 @@
           *ngFor="let picture of apartment.pictures; index as index"
         >
           <div class="carousel-item active" *ngIf="index == 0">
-            <img [src]="picture.imageUrl" class="d-block w-100" alt="picture" />
+            <img [src]="picture.imageUrl" class="d-block w-100" style="height: 650px" alt="picture" />
           </div>
           <div class="carousel-item" *ngIf="index != 0">
-            <img [src]="picture.imageUrl" class="d-block w-100" alt="picture" />
+            <img [src]="picture.imageUrl" class="d-block w-100" style="height: 650px" alt="picture" />
           </div>
         </ng-container>
       </div>
