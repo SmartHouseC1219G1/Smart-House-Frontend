@@ -5,7 +5,7 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h5 class="card-title text-center">Sign In</h5>
-            <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="signIn()">
 
               <div class="form-group">
                 <div class="input-group">
@@ -81,8 +81,8 @@
                 Sign in
               </button>
               <hr class="my-4" />
-              <button type="button" class="btn btn-block btn-outline-info">
-                <i class="fa fa-google"></i>Login via Google
+              <button type="button" class="btn btn-block btn-outline-info" (click)="test()">
+                <i class="fa fa-google"></i>Test
               </button>
               <button type="button" class="btn btn-block btn-outline-info" (click)="signInWithFB()">
                 <i class="fa fa-facebook"></i>Login via Facebook
