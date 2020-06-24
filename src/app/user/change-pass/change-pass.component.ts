@@ -19,6 +19,7 @@ const Toast = Swal.mixin({
   styleUrls: ['./change-pass.component.css']
 })
 export class ChangePassComponent implements OnInit {
+
   passForm: FormGroup;
 
   constructor() { }
@@ -41,4 +42,5 @@ export class ChangePassComponent implements OnInit {
       title: 'Change password fail'
     });
   }
+
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl} from '@angular/forms';
+import {User} from '../../model/user';
 import {ActivatedRoute} from '@angular/router';
 import {AccountService} from '../../service/account.service';
-import {User} from '../../model/user';
 
 function comparePassword(c: AbstractControl) {
   const v = c.value;
@@ -34,4 +34,5 @@ export class AccountInfoComponent implements OnInit {
       }
     );
   }
+
 }

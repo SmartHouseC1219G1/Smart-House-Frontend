@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
-import {AccountService} from '../../service/account.service';
 import Swal from 'sweetalert2';
-import {User} from '../../model/user';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {User} from '../../../model/user';
+import {AccountService} from '../../../service/account.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -24,12 +24,11 @@ function comparePassword(c: AbstractControl) {
 }
 
 @Component({
-  selector: 'app-edit-account',
-  templateUrl: './edit-account.component.html',
-  styleUrls: ['./edit-account.component.css']
+  selector: 'app-change-info',
+  templateUrl: './change-info.component.html',
+  styleUrls: ['./change-info.component.css']
 })
-export class EditAccountComponent implements OnInit {
-
+export class ChangeInfoComponent implements OnInit {
 
   registerForm: FormGroup;
   account: User[] = [];
