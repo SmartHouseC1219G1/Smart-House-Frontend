@@ -52,6 +52,7 @@ export class CreateAccountComponent implements OnInit {
       const {value} = this.registerForm;
       this.accountService.createAccount(value)
         .subscribe(result => {
+          // @ts-ignore
           this.accountList.push(result);
           confirm('Add account successfully !');
           this.registerForm.reset({
