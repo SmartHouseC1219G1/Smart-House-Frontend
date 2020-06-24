@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ListRentedComponent } from './list-rented/list-rented.component';
 import { ListNotRentedComponent } from './list-not-rented/list-not-rented.component';
 import { ListRentingComponent } from './list-renting/list-renting.component';
@@ -29,7 +28,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [NavBarComponent, ListRentedComponent, ListNotRentedComponent, ListRentingComponent, LayoutComponent],
+  declarations: [ ListRentedComponent, ListNotRentedComponent, ListRentingComponent, LayoutComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes)

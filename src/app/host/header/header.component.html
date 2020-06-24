@@ -29,12 +29,23 @@
           <li class="nav-item"><a [routerLink]="['add-apartment']" class="nav-link">Add new apartment</a></li>
           <li class="nav-item"><a [routerLink]="['apartment']" class="nav-link">My apartment</a></li>
           <li class="nav-item"><a href="rooms.html" class="nav-link">Apartment Room</a></li>
-          <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-          <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+          <li class="nav-item dropdown mr-1"><a class="nav-link dropdown-toggle" type="button" id="dropdownMenuAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">Order Table</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuAccount">
+              <a class="dropdown-item" routerLink="/host/order">Order confirmation</a>
+              <a class="dropdown-item" routerLink="/host/order/renting"> List Renting</a>
+              <a class="dropdown-item" routerLink="/host/order/rented">List Rented</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown mr-1"><a class="nav-link dropdown-toggle" type="button" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">Account</a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+              <a class="dropdown-item" routerLink="/host/account">Account Info</a>
+              <a class="dropdown-item" routerLink="/host/account/change-pass">Change Password</a>
+              <a class="dropdown-item" routerLink="/host/account/change-info">Change Info</a>
+            </div>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
   <!-- END nav -->
-  
-  
+
