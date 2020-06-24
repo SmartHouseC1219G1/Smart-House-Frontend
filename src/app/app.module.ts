@@ -16,6 +16,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
 // @ts-ignore
 // @ts-ignore
 import {FacebookLoginProvider} from 'angularx-social-login';
+import {JwtModule} from '@auth0/angular-jwt'
 
 
 const firebaseConfig = {
@@ -28,7 +29,7 @@ const firebaseConfig = {
   appId: '1:532758713299:web:2002072a0b063f89485526',
   measurementId: 'G-TSSXVLZ3RJ'
 };
-
+ 
 @NgModule({
   declarations: [
     AppComponent
@@ -36,7 +37,6 @@ const firebaseConfig = {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     NgMultiSelectDropDownModule,
@@ -46,7 +46,18 @@ const firebaseConfig = {
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
     AngularFireStorageModule, // storage
-    SocialLoginModule
+    SocialLoginModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return JSON.parse(window.localStorage.getItem("access_token")).token;
+        },
+        whitelistedDomains: [],
+        blacklistedRoutes: [],
+      },
+    }),
+    
   ],
   providers: [ {
     provide: 'SocialAuthServiceConfig',
