@@ -10,8 +10,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ExploreComponent } from './explore/explore.component';
-import { BookingUserComponent } from './booking-user/booking-user.component';
 import { BookingStoryComponent } from './booking-story/booking-story.component';
+import {ChangePasswordComponent} from '../change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -39,13 +39,13 @@ const routes: Routes = [
         component: ExploreComponent,
       },
       {
-      path : 'booking-user',
-      component: BookingUserComponent,
-      },
-      {
         path: 'booking-story',
         component: BookingStoryComponent
-      }
+      },
+      {
+        path: 'change-pass',
+        component: ChangePasswordComponent
+      },
     ],
   },
 ];
@@ -59,7 +59,6 @@ const routes: Routes = [
     RoomDetailComponent,
     ContactUsComponent,
     ExploreComponent,
-    BookingUserComponent,
     BookingStoryComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(routes), FormsModule],

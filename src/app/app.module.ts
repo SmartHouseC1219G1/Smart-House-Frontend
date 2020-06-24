@@ -11,6 +11,7 @@ import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB3F4HWEz67XdAe7KnSrYq-0cNede-zm4g',
@@ -26,6 +27,7 @@ const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

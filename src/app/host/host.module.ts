@@ -20,6 +20,7 @@ import {MatListModule} from '@angular/material/list';
 // @ts-ignore
 import {MatIconModule} from '@angular/material/icon';
 import { ApartmentDetailComponent } from './apartment-detail/apartment-detail.component';
+import {ChangePasswordComponent} from '../change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
       {
         path: 'apartment',
         component: ListApartmentComponent
+      },
+      {
+        path: 'change-pass',
+        component: ChangePasswordComponent
       },
       {
         path: 'apartment/:id',
