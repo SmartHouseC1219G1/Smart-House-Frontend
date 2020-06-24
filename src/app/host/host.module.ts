@@ -21,6 +21,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import { ApartmentDetailComponent } from './apartment-detail/apartment-detail.component';
 
+
 const routes: Routes = [
   {
     path: '',

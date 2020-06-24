@@ -41,8 +41,6 @@ const firebaseConfig = {
     ReactiveFormsModule,
     NgMultiSelectDropDownModule,
     BrowserAnimationsModule,
-    SocialLoginModule,
-
     // 3. Initialize
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule, // firestore
