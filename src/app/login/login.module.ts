@@ -1,3 +1,6 @@
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { AccountInfoComponent } from './account-info/account-info.component';
+import { EditAccountComponent } from './edit-account/edit-account.component';
 import { AuthGuard } from '../service/auth/auth.guard';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -5,7 +8,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { SignInComponent } from './sign-in/sign-in.component';
 import {RouterModule, Routes} from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {  ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 
 // @ts-ignore
@@ -34,7 +37,7 @@ const routes: Routes = [
       },
       {
         path: 'change-password',
-        component: ChangePassComponent,
+        component: ChangePasswordComponent,
         canActivate: [AuthGuard]
       }
     ]
@@ -45,6 +48,7 @@ const routes: Routes = [
   declarations: [CreateAccountComponent, SignInComponent, LayoutComponent],
   imports: [
     CommonModule,
+    FormsModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
   ],

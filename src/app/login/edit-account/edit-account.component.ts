@@ -1,10 +1,16 @@
+import { User } from './../../model/user';
+import { AccountService } from './../../service/account.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {User} from '../../../model/user';
-import {AccountService} from '../../../service/account.service';
-import {ActivatedRoute, Router} from '@angular/router';
 
+function comparePassword(c: AbstractControl) {
+  const v = c.value;
+  return (v.password === v.confirmPassword) ? null : {
+    passwordNotMatch: true
+  };
+}
 const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
@@ -15,20 +21,12 @@ const Toast = Swal.mixin({
     toast.addEventListener('mouseleave', Swal.resumeTimer);
   }
 });
-
-function comparePassword(c: AbstractControl) {
-  const v = c.value;
-  return (v.password === v.confirmPassword) ? null : {
-    passwordNotMatch: true
-  };
-}
-
 @Component({
-  selector: 'app-change-info',
-  templateUrl: './change-info.component.html',
-  styleUrls: ['./change-info.component.css']
+  selector: 'app-edit-account',
+  templateUrl: './edit-account.component.html',
+  styleUrls: ['./edit-account.component.css']
 })
-export class ChangeInfoComponent implements OnInit {
+export class EditAccountComponent implements OnInit {
 
   registerForm: FormGroup;
   account: User[] = [];
@@ -81,5 +79,7 @@ export class ChangeInfoComponent implements OnInit {
       //   });
     }
   }
+
+  
 
 }

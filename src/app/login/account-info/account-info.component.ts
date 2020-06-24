@@ -1,8 +1,8 @@
+import { AccountService } from './../../service/account.service';
+import { User } from './../../model/user';
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl} from '@angular/forms';
-import {User} from '../../model/user';
 import {ActivatedRoute} from '@angular/router';
-import {AccountService} from '../../service/account.service';
 
 function comparePassword(c: AbstractControl) {
   const v = c.value;
@@ -10,14 +10,12 @@ function comparePassword(c: AbstractControl) {
     passwordNotMatch: true
   };
 }
-
 @Component({
   selector: 'app-account-info',
   templateUrl: './account-info.component.html',
   styleUrls: ['./account-info.component.css']
 })
 export class AccountInfoComponent implements OnInit {
-
   user: User;
   constructor(
     private route: ActivatedRoute,
@@ -34,5 +32,6 @@ export class AccountInfoComponent implements OnInit {
       }
     );
   }
+
 
 }

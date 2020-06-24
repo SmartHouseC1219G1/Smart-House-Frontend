@@ -11,9 +11,6 @@ import { HeaderComponent } from './header/header.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ExploreComponent } from './explore/explore.component';
 import { BookingHistoryComponent } from './booking-history/booking-history.component';
-import { ChangeInfoComponent } from './change-info/change-info.component';
-import { ChangePassComponent } from './change-pass/change-pass.component';
-import { AccountInfoComponent } from './account-info/account-info.component';
 
 const routes: Routes = [
   {
@@ -44,18 +41,6 @@ const routes: Routes = [
         path: 'booking-history',
         component: BookingHistoryComponent
       },
-      {
-        path: 'change-info',
-        component: ChangeInfoComponent
-      },
-      {
-        path: 'change-pass',
-        component: ChangePassComponent
-      },
-      {
-        path: 'account-info',
-        component: AccountInfoComponent
-      }
     ],
   },
 ];
@@ -70,9 +55,6 @@ const routes: Routes = [
     ContactUsComponent,
     ExploreComponent,
     BookingHistoryComponent,
-    ChangeInfoComponent,
-    ChangePassComponent,
-    AccountInfoComponent,
   ],
   imports: [CommonModule, RouterModule.forChild(routes), FormsModule, ReactiveFormsModule],
 })
