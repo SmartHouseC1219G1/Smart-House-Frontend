@@ -48,26 +48,27 @@ export class CreateAccountComponent implements OnInit {
     });
   }
   onSubmit() {
-    console.log(this.registerForm.value);
-
-    Toast.fire({
-        icon: 'success',
-        title: 'Create User successfully'
-      });
-      // const {value} = this.registerForm;
-      // this.accountService.createAccount(value)
-      //   .subscribe(result => {
-      //     this.accountList.push(result);
-      //     confirm('Add account successfully !');
-      //     this.registerForm.reset({
-      //       username: '',
-      //       password: '',
-      //       email: '',
-      //       phone: '',
-      //     });
-      //   }, error => {
-      //     confirm('Add account fail !');
-      //   });
+    if (this.registerForm.valid) {
+      const {value} = this.registerForm;
+      this.accountService.createAccount(value)
+        .subscribe(result => {
+          // @ts-ignore
+          this.accountList.push(result);
+          confirm('Add account successfully !');
+          this.registerForm.reset({
+            username: '',
+            password: '',
+            email: '',
+            phone: '',
+          });
+          Toast.fire({
+            icon: 'success',
+            title: 'Signed in successfully'
+          });
+        }, error => {
+          confirm('Add account fail !');
+        });
     }
+  }
 }
 
