@@ -1,3 +1,4 @@
+import { AuthGuard } from '../service/auth/auth.guard';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CreateAccountComponent } from './create-account/create-account.component';
@@ -16,20 +17,18 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-       path: '',
-       component: CreateAccountComponent
-      },
-      {
-        path: 'sign-in',
+        path: '',
         component: SignInComponent
       },
       {
         path: 'edit-account',
-        component: EditAccountComponent
+        component: EditAccountComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'account-info',
-        component: AccountInfoComponent
+        component: AccountInfoComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'create-account',
@@ -37,7 +36,8 @@ const routes: Routes = [
       },
       {
         path: 'change-password',
-        component: ChangePassComponent
+        component: ChangePassComponent,
+        canActivate: [AuthGuard]
       }
     ]
   }
