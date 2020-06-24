@@ -1,14 +1,14 @@
-import { UploadService } from './../../service/upload.service';
-import { Res } from './../../model/res';
-import { Host } from './../../model/host';
-import { ApartmentService } from './../../service/apartment.service';
-import { GetListService } from './../../service/get-list.service';
-import { Province } from './../../model/province';
-import { RoomType } from './../../model/roomtype';
-import { Apartment } from './../../model/apartment';
+import { UploadService } from '../../service/upload.service';
+import { Res } from '../../model/res';
+import { Host } from '../../model/host';
+import { ApartmentService } from '../../service/apartment.service';
+import { GetListService } from '../../service/get-list.service';
+import { Province } from '../../model/province';
+import { RoomType } from '../../model/roomtype';
+import { Apartment } from '../../model/apartment';
 import { async } from '@angular/core/testing';
-import { Category } from './../../model/category';
-import { Picture } from './../../model/picture';
+import { Category } from '../../model/category';
+import { Picture } from '../../model/picture';
 import { Component, OnInit } from '@angular/core';
 import {
   AngularFireStorage,
@@ -160,5 +160,4 @@ export class AddApartmentComponent implements OnInit {
     this.files.splice(this.files.indexOf(event), 1);
     console.log(this.files);
   }
-
 }
