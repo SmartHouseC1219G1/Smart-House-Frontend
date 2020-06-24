@@ -43,7 +43,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
+  providers: []
 })
 export class LoginModule { }

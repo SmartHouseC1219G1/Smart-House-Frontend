@@ -1,5 +1,8 @@
+import { FacebookUser } from './../../model/social-user';
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { FacebookLoginProvider } from "angularx-social-login";
+import { SocialAuthService } from "angularx-social-login";
 // @ts-ignore
 import Swal from 'sweetalert2';
 
@@ -23,7 +26,7 @@ const Toast = Swal.mixin({
 export class SignInComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor() { }
+  constructor(private authService: SocialAuthService) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -39,5 +42,19 @@ export class SignInComponent implements OnInit {
       icon: 'success',
       title: 'Signed in successfully'
     });
+  }
+
+  // auth 
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID)
+    .then((res: FacebookUser) => console.log(res))
+    // save auth token to session storage
+    // add new user -> backend with username = email + id
+    // if user exist 
+    .catch(err => console.log(err));
+  }
+ 
+  signOut(): void {
+    this.authService.signOut();
   }
 }
