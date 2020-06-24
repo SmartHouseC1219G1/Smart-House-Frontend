@@ -4,5 +4,5 @@ export interface FacebookUser {
     name?: string;
     id?: string;
     photoUrl?: string;
-    provider?: string;  
+    provider?: string;
 }
