@@ -34,18 +34,22 @@ export class AuthService {
     return this.getAccessToken().token;
   }
 
+  public getRole(){
+    return this.getAccessToken().authorities[0].authority;
+  }
+
   public isCustomer(): boolean{
-    const authority = this.getAccessToken().authorities[0].authority;
+    const authority = this.getRole();
     return (authority === "ROLE_CUSTOMER")
   }
 
   public isHost(): boolean{
-    const authority = this.getAccessToken().authorities[0].authority;
+    const authority = this.getRole();
     return (authority === "ROLE_HOST")
   }
 
   public isLogin(): boolean {
-    const authority = this.getAccessToken().authorities[0].authority;
+    const authority = this.getRole();
     return (authority === "ROLE_HOST" || authority === "ROLE_CUSTOMER" )
   }
 

@@ -1,3 +1,4 @@
+import { RoleGuard } from './service/auth/role.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -9,7 +10,11 @@ const routes: Routes = [
   },
   {
     path: 'host',
-    loadChildren: () => import('./host/host.module').then(m => m.HostModule)
+    loadChildren: () => import('./host/host.module').then(m => m.HostModule),
+    canActivate: [RoleGuard],
+    data: {
+      expectedRole : "ROLE_HOST"
+    }
   },
   {
     path : 'login',
