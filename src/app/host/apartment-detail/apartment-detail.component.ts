@@ -37,7 +37,7 @@ export class ApartmentDetailComponent implements OnInit {
       (data: Res) => {
         this.apartment = data.data;
         // get imageurl to files
-        let fetches = [];
+        const fetches = [];
         for (let i = 0; i < this.apartment.pictures.length; i++) {
           const url = this.apartment.pictures[i].imageUrl;
           fetches.push(this.fetchImage(url));
@@ -136,6 +136,7 @@ export class ApartmentDetailComponent implements OnInit {
     this.orderService.blockOrder(order).subscribe(
       (res: Res) => {
         console.log(res);
+        // tslint:disable-next-line:triple-equals
         if (res.status == 'SUCCESS') alert('block success');
         else alert('could not block with this date');
       },
