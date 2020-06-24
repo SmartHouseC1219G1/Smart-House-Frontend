@@ -12,7 +12,7 @@ export class AuthService {
   constructor(private jwtHelper: JwtHelperService, private http: HttpClient) { }
 
   public isAuth(): boolean {
-    const token = localStorage.getItem('token');
+    const token = this.getRawToken();
     // Check whether the token is expired and return
     // true or false
     return !this.jwtHelper.isTokenExpired(token)
@@ -31,7 +31,26 @@ export class AuthService {
   }
 
   public getRawToken(){
-    return JSON.parse(window.localStorage.getItem("access_token")).accessToken;
+    return this.getAccessToken().token;
+  }
+
+  public isCustomer(): boolean{
+    const authority = this.getAccessToken().authorities[0].authority;
+    return (authority === "ROLE_CUSTOMER")
+  }
+
+  public isHost(): boolean{
+    const authority = this.getAccessToken().authorities[0].authority;
+    return (authority === "ROLE_HOST")
+  }
+
+  public isLogin(): boolean {
+    const authority = this.getAccessToken().authorities[0].authority;
+    return (authority === "ROLE_HOST" || authority === "ROLE_CUSTOMER" )
+  }
+
+  public getAccessToken(){
+    return JSON.parse(window.localStorage.getItem("access_token"));
   }
 
   

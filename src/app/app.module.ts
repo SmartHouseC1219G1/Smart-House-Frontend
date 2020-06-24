@@ -51,7 +51,7 @@ const firebaseConfig = {
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
-          return JSON.parse(window.localStorage.getItem("access_token")).accessToken;
+          return JSON.parse(window.localStorage.getItem("access_token")).token;
         },
         whitelistedDomains: [],
         blacklistedRoutes: [],
