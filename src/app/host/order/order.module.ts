@@ -4,7 +4,7 @@ import { ListRentedComponent } from './list-rented/list-rented.component';
 import { ListNotRentedComponent } from './list-not-rented/list-not-rented.component';
 import { ListRentingComponent } from './list-renting/list-renting.component';
 import { LayoutComponent } from './layout/layout.component';
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -12,26 +12,28 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-    path: '',
-    component: ListNotRentedComponent
-    },
+        path: '',
+        component: ListNotRentedComponent,
+      },
       {
         path: 'renting',
-        component: ListRentingComponent
+        component: ListRentingComponent,
       },
       {
         path: 'rented',
-        component: ListRentedComponent
-      }
-    ]
-  }
+        component: ListRentedComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
-  declarations: [ ListRentedComponent, ListNotRentedComponent, ListRentingComponent, LayoutComponent],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes)
-  ]
+  declarations: [
+    ListRentedComponent,
+    ListNotRentedComponent,
+    ListRentingComponent,
+    LayoutComponent,
+  ],
+  imports: [CommonModule, RouterModule.forChild(routes)],
 })
-export class OrderModule { }
+export class OrderModule {}
