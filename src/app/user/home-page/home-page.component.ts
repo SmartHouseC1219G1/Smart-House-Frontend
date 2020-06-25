@@ -20,7 +20,7 @@ import {UserService} from '../../service/user.service';
 })
 export class HomePageComponent implements OnInit {
 
-  listApartment: Apartment[] = [];
+  listApartment: Apartment[];
 
   // param for search
   bedroom: string;
