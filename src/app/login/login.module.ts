@@ -24,7 +24,7 @@ const routes: Routes = [
       {
         path: 'edit-account',
         component: EditAccountComponent,
-        // canActivate: [AuthGuard]
+        canActivate: [AuthGuard]
       },
       {
         path: 'account-info',

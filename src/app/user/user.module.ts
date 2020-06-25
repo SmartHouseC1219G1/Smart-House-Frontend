@@ -40,11 +40,11 @@ const routes: Routes = [
       },
       {
         path: 'booking-history',
-        component: BookingHistoryComponent
-        // canActivate: [RoleGuard],
-        // data: {
-        //   expectedRole: 'ROLE_USER',
-        // },
+        component: BookingHistoryComponent,
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 'ROLE_USER',
+        },
       },
     ],
   },

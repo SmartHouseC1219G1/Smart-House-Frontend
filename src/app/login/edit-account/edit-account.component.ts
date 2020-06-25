@@ -64,13 +64,13 @@ export class EditAccountComponent implements OnInit {
   onSubmit() {
     if (this.registerForm.valid) {
       console.log(this.registerForm.value);
-      // const value = this.registerForm.value;
-      // const data = { ...this.account, ...value};
-      // this.accountService.editAccount(data).subscribe(item => {this.router.navigate(['']); }, error => {alert('error'); });
-      // Toast.fire({
-      //   icon: 'success',
-      //   title: 'Edit User successfully'
-      // });
+      const value = this.registerForm.value;
+      const data = { ...this.account, ...value};
+      this.accountService.editAccount(data).subscribe(item => {this.router.navigate(['']); }, error => {alert('error'); });
+      Toast.fire({
+        icon: 'success',
+        title: 'Edit User successfully'
+      });
     }
   }
 
