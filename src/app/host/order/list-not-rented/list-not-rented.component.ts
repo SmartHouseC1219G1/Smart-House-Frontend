@@ -17,6 +17,12 @@ export class ListNotRentedComponent implements OnInit {
       this.listOrder = data.data;
       console.log(this.listOrder)
     });
-    
+  }
+
+  confirmOrder(idOrder,index) {
+    this.orderService.confirmOrder(idOrder).subscribe((data) => {
+      console.log(data);
+      this.listOrder.splice(index,1);
+    });
   }
 }
