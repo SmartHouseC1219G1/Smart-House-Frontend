@@ -1,3 +1,5 @@
+import { async } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from './../../service/auth/auth.service';
 import { FacebookUser } from '../../model/social-user';
@@ -32,6 +34,7 @@ export class SignInComponent implements OnInit {
   constructor(
     private socialAuthService: SocialAuthService,
     private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -47,29 +50,24 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    console.log(this.loginForm.value);
-    Toast.fire({
-      icon: 'success',
-      title: 'Signed in successfully',
-    });
-  }
-
-  signIn() {
+  async signIn() {
     if (this.loginForm.invalid) {
       return;
     }
     const loginPayload = this.loginForm.value;
     this.authService.signIn(loginPayload).subscribe(
-      data => {
+      (data) => {
         window.localStorage.setItem('access_token', JSON.stringify(data));
         console.log(data);
-      }, err => {
+        this.popUpSuccess();
+        const redirect = this.redirectTimeOut();
+      },
+      (err) => {
         console.log(err);
       }
-    )
+    );
   }
-  test(){
+  test() {
     console.log(this.authService.decodePayload());
   }
   // auth
@@ -85,5 +83,41 @@ export class SignInComponent implements OnInit {
 
   signOut(): void {
     this.socialAuthService.signOut();
+  }
+
+  popUpSuccess() {
+    let timerInterval;
+    Swal.fire({
+      title: 'Sign in!',
+      html: 'Redirecting',
+      timer: 2000,
+      icon: 'success',
+      timerProgressBar: true,
+      onBeforeOpen: () => {
+        timerInterval = setInterval(() => {
+          const content = Swal.getContent();
+        }, 2000);
+      },
+      onClose: () => {
+        clearInterval(timerInterval);
+      },
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer');
+      }
+    });
+  }
+
+  async redirectTimeOut() {
+    if (this.authService.isCustomer()) {
+      return await setTimeout(() => {
+        this.router.navigate(['/']);
+      }, 2000);
+    } else {
+      return await setTimeout(() => {
+        this.router.navigate(['/host']);
+      }, 2000);
+    }
   }
 }
