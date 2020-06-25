@@ -43,7 +43,7 @@ const routes: Routes = [
         component: BookingHistoryComponent,
         canActivate: [RoleGuard],
         data: {
-          expectedRole: 'ROLE_USER',
+          expectedRole: 'ROLE_CUSTOMER',
         },
       },
     ],
