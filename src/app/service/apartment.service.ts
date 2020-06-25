@@ -1,6 +1,5 @@
-import { Picture } from './../model/picture';
-import { Host } from './../model/host';
-import { Apartment } from './../model/apartment';
+import { Picture } from '../model/picture';
+import { Apartment } from '../model/apartment';
 import { Observable} from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
