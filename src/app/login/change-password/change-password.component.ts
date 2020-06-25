@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
-import {FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {User} from '../../model/user';
+import {AccountService} from '../../service/account.service';
+import {Router} from '@angular/router';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -20,23 +23,37 @@ const Toast = Swal.mixin({
 })
 export class ChangePasswordComponent implements OnInit {
 
-  passForm: FormGroup;
+  registerForm: FormGroup;
+  account: User;
 
-  constructor() { }
+  constructor(private accountService: AccountService,
+              private router: Router,
+              private fb: FormBuilder) { }
 
   ngOnInit(): void {
-  }
-
-  onSuccess(){
-    // console.log(this.loginForm.value);
-    Toast.fire({
-      icon: 'success',
-      title: 'Change password successfully'
+    this.registerForm = this.fb.group({
+      oldPassword: new FormControl('',
+        [Validators.required, Validators.minLength(6)]),
+      newPassword: new FormControl('', [Validators.required]),
     });
+  }
+  onSubmit() {
+    if (this.registerForm.valid) {
+      console.log(this.registerForm.value);
+      const value = this.registerForm.value;
+      // const data = {
+      //   ...this.account,
+      //   ...value};
+      // tslint:disable-next-line:max-line-length
+      this.accountService.changePassword(value.oldPassword, value.newPassword).subscribe(item => {this.router.navigate(['']); }, error => {alert('error'); });
+      Toast.fire({
+        icon: 'success',
+        title: 'Edit User successfully'
+      });
+    }
   }
 
   onFail(){
-    // console.log(this.loginForm.value);
     Toast.fire({
       icon: 'error',
       title: 'Change password fail'

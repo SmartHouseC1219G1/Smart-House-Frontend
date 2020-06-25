@@ -27,15 +27,11 @@ const Toast = Swal.mixin({
   templateUrl: './edit-account.component.html',
   styleUrls: ['./edit-account.component.css']
 })
-// interface EditAccount {
-//   fullName: string;
-//   email: string;
-//   phone: string;
-// }
 export class EditAccountComponent implements OnInit {
 
   registerForm: FormGroup;
   account: User;
+  user1: User;
 
   constructor(private accountService: AccountService,
               private router: Router,
@@ -50,23 +46,20 @@ export class EditAccountComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [Validators.required, Validators.pattern(/^0(\d{9}|9\d{8})$/)])
     });
-
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.accountService.getAccountById(id)
-      .subscribe(result => {
-        this.account = result;
-        this.registerForm.patchValue(this.account);
-        confirm('Edit User successfully !');
-      }, error => {
-        confirm('Edit User fail !');
-      });
+    this.accountService.getUserByUsername()
+      .subscribe( result =>
+      {this.user1 = result ;
+       this.registerForm.patchValue(this.user1);
+    }, error => {console.log(' get fail'); });
   }
 
   onSubmit() {
     if (this.registerForm.valid) {
       console.log(this.registerForm.value);
       const value = this.registerForm.value;
-      const data = { ...this.account, ...value};
+      const data = {
+        ...this.account,
+        ...value};
       this.accountService.editAccount(data).subscribe(item => {this.router.navigate(['']); }, error => {alert('error'); });
       Toast.fire({
         icon: 'success',
