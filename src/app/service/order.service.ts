@@ -10,7 +10,7 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
   blockOrder(order: Order){
-    order.statusOrders = StatusOrders.BLOCK;
+    order.statusOrders = "BLOCK";
     return this.http.post('http://localhost:8080/api/block-order', order);
   }
 
