@@ -28,6 +28,10 @@ export class AuthService {
     );
   }
 
+  public signOut() {
+    window.localStorage.removeItem('access_token');
+  }
+
   public getExpiationDate() {
     return helper.getTokenExpirationDate(this.getRawToken());
   }
