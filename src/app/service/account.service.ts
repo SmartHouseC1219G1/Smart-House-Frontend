@@ -1,3 +1,4 @@
+import { User } from './../model/user';
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
@@ -9,18 +10,9 @@ const API_URL_ACCOUNT = 'http://localhost:8080/api/listApartment';
 })
 export class AccountService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getAccountById(id: number): Observable<any> {
-    return this.httpClient.get<any>(`${API_URL_ACCOUNT}/${id}`);
+  createAccount(signUpForm: User){
+    return this.http.post("http://localhost:8080/api/auth/signUp",signUpForm);
   }
-
-  createAccount(acount: Account): Observable<Account> {
-    return this.httpClient.post<Account>(API_URL_ACCOUNT, acount);
-  }
-
-  editAccount(account: Account): Observable<Account> {
-    return this.httpClient.put<Account>(`${API_URL_ACCOUNT}/${account.id}`, account);
-  }
-
 }

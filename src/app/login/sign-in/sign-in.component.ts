@@ -113,7 +113,6 @@ export class SignInComponent implements OnInit {
       'Please re enter username and password',
       'warning'
     )
-    
   }
 
   async redirectTimeOut() {

@@ -37,7 +37,33 @@
               >
                 Invalid UserName !
               </div>
-
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">
+                      <i class="fa fa-user"></i>
+                    </span>
+                  </div>
+                  <input
+                    type="text"
+                    id="user"
+                    class="form-control"
+                    placeholder="Full name"
+                    required
+                    formControlName="name"
+                  />
+                </div>
+              </div>
+              <div
+                class="alert alert-danger"
+                role="alert"
+                *ngIf="
+                  registerForm.get('name').invalid &&
+                  registerForm.get('name').touched
+                "
+              >
+                Invalid Full !
+              </div>
               <div class="form-group" formGroupName="pwGroup">
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -143,30 +169,20 @@
               >
                 Invalid Phone !
               </div>
-
-              <div class="custom-control custom-checkbox mb-3">
-                <input
-                  type="checkbox"
-                  class="custom-control-input"
-                  id="customCheck1"
-                />
-                <label class="custom-control-label" for="customCheck1"
-                  >Remember password</label
-                >
-              </div>
               <button
                 class="btn btn-lg btn-primary btn-block text-uppercase"
                 type="submit"
                 [disabled]="registerForm.invalid"
               >
-                Sign in
+                Sign up as customer
               </button>
-              <hr class="my-4" />
-              <button type="button" class="btn btn-block btn-outline-info">
-                <i class="fa fa-google"></i>Login via Google
-              </button>
-              <button type="button" class="btn btn-block btn-outline-info">
-                <i class="fa fa-facebook"></i>Login via Facebook
+              <button
+                class="btn btn-lg btn-primary btn-block text-uppercase"
+                type="button"
+                [disabled]="registerForm.invalid"
+                (click)="onSubmitHost()"
+              >
+                Sign up as host
               </button>
             </form>
           </div>
