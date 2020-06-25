@@ -112,7 +112,7 @@ export class AddApartmentComponent implements OnInit {
       return;
     }
     console.log('saving');
-
+    this.apartment = this.apartmentForm.value
     const uploadArray = [];
     this.files.forEach((file) => {
       uploadArray.push(this.uploadService.startUpload(file));
@@ -133,6 +133,8 @@ export class AddApartmentComponent implements OnInit {
         console.log(this.pictures);
       })
       .then(() => {
+        this.apartment.pictures = this.pictures;
+        console.log(this.apartment);
         this.apartmentService
           .addNewApartment(this.apartment)
           .subscribe((res: Res) => {
