@@ -5,5 +5,5 @@ export interface Address {
     id?: number;
     name?: string;
     apartment?: Apartment;
-    provinces?: Province;
+    province?: Province;
 }

@@ -9,5 +9,5 @@ export interface Order {
     totalMoney?: number;
     apartment?: Apartment;
     customer?: Customer;
-    statusOrders?: StatusOrders;
+    statusOrders?: string;
 }

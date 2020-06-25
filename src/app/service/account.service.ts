@@ -18,8 +18,8 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
-  createAccount(signUpForm: User){
-    return this.http.post('http://localhost:8080/api/auth/signUp', signUpForm);
+  createAccount(signUpForm){
+    return this.http.post("http://localhost:8080/api/auth/signUp",signUpForm);
   }
 
   getAccountById(id: number){

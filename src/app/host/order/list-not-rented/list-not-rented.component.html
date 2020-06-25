@@ -1,32 +1,34 @@
-<br>
-<br>
-<br>
-<h3 style="text-align: center">List Customer Rented</h3>
-<br>
-<br>
-<br>
+<br />
+<br />
+<br />
+<h3 style="text-align: center;">List Order Pending</h3>
+<br />
+<br />
+<br />
 <div class="container">
-  <table class="table">
+  <table class="table" *ngIf="listOrder">
     <thead class="thead-light">
-    <tr>
-      <th scope="col">##</th>
-      <th scope="col">Check In</th>
-      <th scope="col">Check Out</th>
-      <th scope="col">Status</th>
-      <th scope="col">Bill Total</th>
-      <th scope="col">Button</th>
-    </tr>
+      <tr>
+        <th scope="col">##</th>
+        <th scope="col">Check In</th>
+        <th scope="col">Check Out</th>
+        <th scope="col">Status</th>
+        <th scope="col">Bill Total</th>
+        <th scope="col">Button</th>
+      </tr>
     </thead>
-    <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Check In</td>
-      <td>Check Out</td>
-      <td>Status</td>
-      <td>Bill Total</td>
-      <td><button class="btn btn-primary py-1 px-1">OK</button> </td>
-      <td><button class="btn btn-primary py-1 px-1">Cancel</button> </td>
-    </tr>
+    <tbody >
+      <tr *ngFor="let order of listOrder,index as index">
+        <th scope="row">{{index}}</th>
+        <td>{{order.startTime}}</td>
+        <td>{{order.endTime}}</td>
+        <td>{{order.statusOrders}}</td>
+        <td>{{order.totalMoney}}</td>
+        <td>
+          <button class="btn btn-primary py-1 px-1" (click)="confirmOrder(order.id,index)">Accept</button> ||
+          <button class="btn btn-primary py-1 px-1" (click)="cancelOrder(order.id,index)">Deny</button>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>

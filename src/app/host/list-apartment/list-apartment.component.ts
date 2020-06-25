@@ -19,7 +19,7 @@ export class ListApartmentComponent implements OnInit {
     this.host = {
       id: 1
     }
-    this.apartmentService.getApartmentByHostId(1).subscribe((data: Res) => {
+    this.apartmentService.getApartmentByHost().subscribe((data: Res) => {
       this.apartmentList = data.data;
     })
   }

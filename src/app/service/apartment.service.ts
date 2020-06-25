@@ -22,10 +22,8 @@ export class ApartmentService {
     return this.http.get(`${this.url}/${id}`);
   }
 
-  getApartmentByHostId(hostId: number) {
-    return this.http.get(
-      `http://localhost:8080/api/host/apartment?id=${hostId}`
-    );
+  getApartmentByHost() {
+    return this.http.get(`http://localhost:8080/api/listApartmentByHost`);
   }
 
   getAllApartment() {
