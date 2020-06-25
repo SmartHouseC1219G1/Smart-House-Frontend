@@ -1,9 +1,9 @@
-import { User } from './../../model/user';
-import { AccountService } from './../../service/account.service';
+import { User } from '../../model/user';
+import { AccountService } from '../../service/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 function comparePassword(c: AbstractControl) {
   const v = c.value;
@@ -21,29 +21,31 @@ const Toast = Swal.mixin({
     toast.addEventListener('mouseleave', Swal.resumeTimer);
   }
 });
+
 @Component({
   selector: 'app-edit-account',
   templateUrl: './edit-account.component.html',
   styleUrls: ['./edit-account.component.css']
 })
+// interface EditAccount {
+//   fullName: string;
+//   email: string;
+//   phone: string;
+// }
 export class EditAccountComponent implements OnInit {
 
   registerForm: FormGroup;
   account: User[] = [];
 
   constructor(private accountService: AccountService,
+              private router: Router,
               private route: ActivatedRoute,
-              private routes: Router) { }
+              private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.registerForm = new FormGroup({
-      username: new FormControl('',
+    this.registerForm = this.fb.group({
+      name: new FormControl('',
         [Validators.required, Validators.minLength(6)]),
-      pwGroup: new FormGroup({
-        password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-        confirmPassword: new FormControl('', [Validators.required, Validators.minLength(6)])
-      }, comparePassword)
-      ,
       email: new FormControl('', [Validators.required, Validators.email]),
       phone: new FormControl('', [Validators.required, Validators.pattern(/^0(\d{9}|9\d{8})$/)])
     });
@@ -55,31 +57,23 @@ export class EditAccountComponent implements OnInit {
         this.registerForm.patchValue(this.account);
         confirm('Edit User successfully !');
       }, error => {
-        // confirm('Edit User fail !');
+        confirm('Edit User fail !');
       });
   }
 
   onSubmit() {
     if (this.registerForm.valid) {
       console.log(this.registerForm.value);
-      Toast.fire({
-        icon: 'success',
-        title: 'Edit User successfully'
-      });
-      // const {value} = this.registerForm;
-      // const data = {
-      //   ...this.account,
-      //   ...value
-      // };
-      // this.accountService.editAccount(data)
-      //   .subscribe(result => {
-      //     this.routes.navigate(['']);
-      //   }, error => {
-      //     console.log(error);
-      //   });
+      // const value = this.registerForm.value;
+      // const data = { ...this.account, ...value};
+      // this.accountService.editAccount(data).subscribe(item => {this.router.navigate(['']); }, error => {alert('error'); });
+      // Toast.fire({
+      //   icon: 'success',
+      //   title: 'Edit User successfully'
+      // });
     }
   }
 
-  
+
 
 }

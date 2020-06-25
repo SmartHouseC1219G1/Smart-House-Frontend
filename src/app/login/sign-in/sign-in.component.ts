@@ -1,5 +1,6 @@
+// @ts-ignore
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { AuthService } from './../../service/auth/auth.service';
+import { AuthService } from '../../service/auth/auth.service';
 import { FacebookUser } from '../../model/social-user';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -67,7 +68,7 @@ export class SignInComponent implements OnInit {
       }, err => {
         console.log(err);
       }
-    )
+    );
   }
   test(){
     console.log(this.authService.decodePayload());

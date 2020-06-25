@@ -8,7 +8,7 @@
               <form
                 class="form-signin"
                 (ngSubmit)="onSubmit()"
-              >
+               [formGroup]="registerForm">
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -18,11 +18,11 @@
                     </div>
                     <input
                       type="text"
-                      id="user"
+                      id="fullName"
                       class="form-control"
-                      placeholder="User Name"
+                      placeholder="Full Name"
                       required
-                      formControlName="username"
+                      formControlName="name"
                     />
                   </div>
                 </div>
@@ -30,60 +30,13 @@
                   class="alert alert-danger"
                   role="alert"
                   *ngIf="
-                    registerForm.get('username').invalid &&
-                    registerForm.get('username').touched
+                    registerForm.get('name').invalid &&
+                    registerForm.get('name').touched
                   "
                 >
                   Invalid UserName !
                 </div>
-  
-                <div class="form-group" formGroupName="pwGroup">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="fa fa-lock"></i>
-                      </span>
-                    </div>
-                    <input
-                      type="password"
-                      id="pass"
-                      class="form-control"
-                      placeholder="Password"
-                      required
-                      formControlName="password"
-                    />
-                  </div>
-                </div>
-  
-                <div class="form-group" formGroupName="pwGroup">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="fa fa-lock"></i>
-                      </span>
-                    </div>
-                    <input
-                      type="password"
-                      id="pass1"
-                      class="form-control"
-                      placeholder="ConfirmPassword"
-                      required
-                      formControlName="confirmPassword"
-                    />
-                  </div>
-                </div>
-  
-                <div
-                  class="alert alert-danger"
-                  role="alert"
-                  *ngIf="
-                    registerForm.hasError('passwordNotMatch', ['pwGroup']) &&
-                    registerForm.get('pwGroup').touched
-                  "
-                >
-                  Password does not match !
-                </div>
-  
+
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -93,15 +46,10 @@
                     </div>
                     <input
                       type="text"
-                      id="email"
-                      class="form-control"
-                      placeholder="Email"
-                      required
-                      formControlName="email"
-                    />
+                      id="email" class="form-control" placeholder="Email" required formControlName="email"/>
                   </div>
                 </div>
-  
+
                 <div>
                   <div
                     class="alert alert-danger"
@@ -114,7 +62,7 @@
                     Invalid Email !
                   </div>
                 </div>
-  
+
                 <div class="form-group">
                   <div class="input-group">
                     <div class="input-group-prepend">
@@ -138,26 +86,21 @@
                   *ngIf="
                     registerForm.get('phone').invalid &&
                     registerForm.get('phone').touched
-                  "
-                >
+                  ">
                   Invalid Phone !
                 </div>
-  
+
                 <div class="custom-control custom-checkbox mb-3">
                   <input
                     type="checkbox"
                     class="custom-control-input"
-                    id="customCheck1"
-                  />
+                    id="customCheck1"/>
                   <label class="custom-control-label" for="customCheck1"
-                  >Remember password</label
-                  >
+                  >Remember password</label>
                 </div>
                 <button
                   class="btn btn-lg btn-primary btn-block text-uppercase"
-                  type="submit"
-                  [disabled]="registerForm.invalid"
-                >
+                  type="submit" [disabled]="registerForm.invalid">
                   Edit User
                 </button>
               </form>
@@ -167,5 +110,4 @@
       </div>
     </div>
   </div>
-  
-  
+

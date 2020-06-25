@@ -1,5 +1,5 @@
-import { AccountService } from './../../service/account.service';
-import { User } from './../../model/user';
+import { AccountService } from '../../service/account.service';
+import { User } from '../../model/user';
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
