@@ -80,11 +80,12 @@
               >
                 Sign in
               </button>
-              <button
+              <a
                 class="btn btn-block btn-outline-info"
+                [routerLink]="['/login/create-account']"  
               >
                 Sign up
-              </button>
+              </a>
               <hr class="my-4" />
               <button type="button" class="btn btn-block btn-outline-info" (click)="signInWithFB()">
                 <i class="fa fa-facebook"></i>Login via Facebook
