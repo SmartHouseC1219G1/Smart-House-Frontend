@@ -13,7 +13,7 @@ const routes: Routes = [
     loadChildren: () => import('./host/host.module').then(m => m.HostModule),
     canActivate: [RoleGuard],
     data: {
-      expectedRole : "ROLE_HOST"
+      expectedRole : 'ROLE_HOST'
     }
   },
   {

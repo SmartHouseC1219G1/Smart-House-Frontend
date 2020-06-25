@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {User} from '../../model/user';
 import {AccountService} from '../../service/account.service';
 import {Router} from '@angular/router';
+import {AuthService} from '../../service/auth/auth.service';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -28,7 +29,8 @@ export class ChangePasswordComponent implements OnInit {
 
   constructor(private accountService: AccountService,
               private router: Router,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private auth: AuthService) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -45,15 +47,30 @@ export class ChangePasswordComponent implements OnInit {
       //   ...this.account,
       //   ...value};
       // tslint:disable-next-line:max-line-length
-      this.accountService.changePassword(value.oldPassword, value.newPassword).subscribe(item => {this.router.navigate(['']); }, error => {alert('error'); });
-      Toast.fire({
-        icon: 'success',
-        title: 'Edit User successfully'
-      });
+      this.accountService.changePassword(value.oldPassword, value.newPassword)
+        .subscribe(item => {
+          if (this.auth.isHost()){
+            this.router.navigate(['/host']);
+            Toast.fire({
+              icon: 'success',
+              title: 'Change Password successfully'
+            });
+          }else {
+            this.router.navigate(['']);
+          }
+          }, error => {
+          Toast.fire({
+          icon: 'error',
+          title: 'Change password fail'
+        }); });
+
     }
   }
 
   onFail(){
+    if (this.auth.isHost()){
+      this.router.navigate(['/host']);
+    }else {this.router.navigate(['']); }
     Toast.fire({
       icon: 'error',
       title: 'Change password fail'

@@ -40,7 +40,7 @@
               <a class="dropdown-item" [routerLink]="['/login/account-info']">Account Info</a>
               <a class="dropdown-item" [routerLink]="['/login/change-password']">Change Password</a>
               <a class="dropdown-item" [routerLink]="['/login/edit-account']">Change Info</a>
-              <a class="dropdown-item">Sign Out</a>
+              <a class="dropdown-item" (click)="onSubmit()">Sign Out</a>
             </div>
           </li>
         </ul>

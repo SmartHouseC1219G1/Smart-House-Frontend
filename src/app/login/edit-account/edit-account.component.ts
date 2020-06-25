@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AuthService} from '../../service/auth/auth.service';
 
 function comparePassword(c: AbstractControl) {
   const v = c.value;
@@ -37,7 +38,8 @@ export class EditAccountComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private routes: Router,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              private auth: AuthService) { }
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -60,14 +62,34 @@ export class EditAccountComponent implements OnInit {
       const data = {
         ...this.account,
         ...value};
-      this.accountService.editAccount(data).subscribe(item => {this.router.navigate(['']); }, error => {alert('error'); });
-      Toast.fire({
-        icon: 'success',
-        title: 'Edit User successfully'
-      });
+      this.accountService.editAccount(data)
+        .subscribe(item =>
+        {
+          if (this.auth.isHost()){this.router.navigate(['/host']); }
+          else {this.router.navigate(['']); }
+          Toast.fire({
+            icon: 'success',
+            title: 'Edit User successfully'
+          });
+          }, error => {
+          Swal.fire(
+            'failed',
+            'Edit user cancel',
+            'error'
+          );
+        });
     }
   }
-
+ cancel(){
+    if (this.auth.isHost()){
+      this.router.navigate(['/host']);
+    }else {this.router.navigate(['']); }
+    Swal.fire(
+     'failed',
+     'Edit user cancel',
+     'warning'
+   );
+ }
 
 
 }
