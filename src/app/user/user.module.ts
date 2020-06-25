@@ -1,4 +1,5 @@
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { RoleGuard } from './../service/auth/role.guard';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutComponent } from './layout/layout.component';
@@ -39,7 +40,11 @@ const routes: Routes = [
       },
       {
         path: 'booking-history',
-        component: BookingHistoryComponent
+        component: BookingHistoryComponent,
+        canActivate: [RoleGuard],
+        data: {
+          expectedRole: 'ROLE_USER',
+        },
       },
     ],
   },
@@ -56,6 +61,11 @@ const routes: Routes = [
     ExploreComponent,
     BookingHistoryComponent,
   ],
-  imports: [CommonModule, RouterModule.forChild(routes), FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule,
+  ],
 })
 export class UserModule {}

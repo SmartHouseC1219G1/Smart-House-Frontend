@@ -17,6 +17,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
 // @ts-ignore
 import {FacebookLoginProvider} from 'angularx-social-login';
 import {JwtModule} from '@auth0/angular-jwt'
+import { ca } from 'date-fns/locale';
 
 
 const firebaseConfig = {
@@ -51,7 +52,12 @@ const firebaseConfig = {
     JwtModule.forRoot({
       config: {
         tokenGetter: () => {
-          return JSON.parse(window.localStorage.getItem("access_token")).token;
+          try {
+            let token = JSON.parse(window.localStorage.getItem("access_token")).token;
+            return token;
+          } catch {
+            return "";
+          }
         },
         whitelistedDomains: [],
         blacklistedRoutes: [],
