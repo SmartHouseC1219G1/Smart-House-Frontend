@@ -14,7 +14,16 @@ export class OrderService {
     return this.http.post('http://localhost:8080/api/block-order', order);
   }
 
-  getAllOrderOfHost(orderStatus){
+  getAllOrderOfHost(orderStatus) {
     return this.http.get(`http://localhost:8080/api/findOrderByApartmentAndStatus?statusOrders=${orderStatus}`);
   }
+
+  checkInOrder(idOrder) {
+    return this.http.put(`http://localhost:8080/api/checkinOrderApartment/${idOrder}`, null);
+  }
+
+  confirmOrder(idOrder) {
+    return this.http.put(`http://localhost:8080/api/confirmOrderApartment/${idOrder}`, null);
+  }
+  
 }

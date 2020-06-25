@@ -16,4 +16,11 @@ export class ListRentingComponent implements OnInit {
     });
   }
   ngOnInit(): void {}
+
+  checkInOrder(idOrder,index) {
+    this.orderService.checkInOrder(idOrder).subscribe((data) => {
+      console.log(data);
+      this.listOrder.splice(index,1);
+    });
+  }
 }
