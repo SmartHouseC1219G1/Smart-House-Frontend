@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 const API_URL_ACCOUNT = 'http://localhost:8080/api/listApartment';
-
+const API_URL_EDIT_ACCOUNT = 'http://localhost:8080/api/updateUser';
 @Injectable({
   providedIn: 'root'
 })

@@ -1,4 +1,4 @@
-import { RoleGuard } from './../service/auth/role.guard';
+import { RoleGuard } from '../service/auth/role.guard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
