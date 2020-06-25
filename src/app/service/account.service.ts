@@ -15,4 +15,12 @@ export class AccountService {
   createAccount(signUpForm: User){
     return this.http.post("http://localhost:8080/api/auth/signUp",signUpForm);
   }
+
+  getAccountById(id: number){
+    return this.http.get(`http://localhost:8080/api/user/${id}`)
+  }
+
+  editAccount(body){
+    return this.http.put("http://localhost:8080/api/user",body);
+  }
 }

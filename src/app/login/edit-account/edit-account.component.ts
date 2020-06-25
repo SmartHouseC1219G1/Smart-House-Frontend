@@ -29,7 +29,7 @@ const Toast = Swal.mixin({
 export class EditAccountComponent implements OnInit {
 
   registerForm: FormGroup;
-  account: User[] = [];
+  account: User;
 
   constructor(private accountService: AccountService,
               private route: ActivatedRoute,
@@ -66,17 +66,17 @@ export class EditAccountComponent implements OnInit {
         icon: 'success',
         title: 'Edit User successfully'
       });
-      // const {value} = this.registerForm;
-      // const data = {
-      //   ...this.account,
-      //   ...value
-      // };
-      // this.accountService.editAccount(data)
-      //   .subscribe(result => {
-      //     this.routes.navigate(['']);
-      //   }, error => {
-      //     console.log(error);
-      //   });
+      const {value} = this.registerForm;
+      const data = {
+        ...this.account,
+        ...value
+      };
+      this.accountService.editAccount(data)
+        .subscribe(result => {
+          this.routes.navigate(['']);
+        }, error => {
+          console.log(error);
+        });
     }
   }
 
