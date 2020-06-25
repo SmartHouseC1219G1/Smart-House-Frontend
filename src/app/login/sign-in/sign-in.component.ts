@@ -63,12 +63,10 @@ export class SignInComponent implements OnInit {
         const redirect = this.redirectTimeOut();
       },
       (err) => {
+        this.popUpFailed();
         console.log(err);
       }
     );
-  }
-  test() {
-    console.log(this.authService.decodePayload());
   }
   // auth
   signInWithFB(): void {
@@ -107,6 +105,15 @@ export class SignInComponent implements OnInit {
         console.log('I was closed by the timer');
       }
     });
+  }
+
+  popUpFailed() {
+    Swal.fire(
+      'Sign in failed',
+      'Please re enter username and password',
+      'warning'
+    )
+    
   }
 
   async redirectTimeOut() {
