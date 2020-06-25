@@ -19,28 +19,27 @@
   </div>
   <nav class="navbar navbar-expand-lg ftco-navbar-light ftco_navbar bg-light ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-      <a class="navbar-brand" href="index.html">Smart House<span> Team</span></a>
+      <a class="navbar-brand" [routerLink]="['/']">Smart House<span> Team</span></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="fa fa-bars"></span> Menu
       </button>
       <div class="collapse navbar-collapse" id="ftco-nav">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active"><a [routerLink]="['/host']" class="nav-link">Home</a></li>
+          <li class="nav-item"><a [routerLink]="['/host']" class="nav-link">Home</a></li>
           <li class="nav-item"><a [routerLink]="['add-apartment']" class="nav-link">Add new apartment</a></li>
           <li class="nav-item"><a [routerLink]="['apartment']" class="nav-link">My apartment</a></li>
-          <li class="nav-item"><a href="rooms.html" class="nav-link">Apartment Room</a></li>
-          <li class="nav-item dropdown mr-1"><a class="nav-link dropdown-toggle" type="button" id="dropdownMenuAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">Order Table</a>
+          <li class="nav-item dropdown mr-1"><a class="nav-link dropdown-toggle" type="button" id="dropdownMenuAccount" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">Orders</a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuAccount">
-              <a class="dropdown-item" routerLink="/host/order">Order confirmation</a>
-              <a class="dropdown-item" routerLink="/host/order/renting"> List Renting</a>
+              <a class="dropdown-item" routerLink="/host/order">Pending</a>
+              <a class="dropdown-item" routerLink="/host/order/renting">Waiting checkIn</a>
               <a class="dropdown-item" routerLink="/host/order/rented">List Rented</a>
             </div>
           </li>
           <li class="nav-item dropdown mr-1"><a class="nav-link dropdown-toggle" type="button" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">Account</a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-              <a class="dropdown-item" routerLink="/host/account">Account Info</a>
-              <a class="dropdown-item" routerLink="/host/account/change-pass">Change Password</a>
-              <a class="dropdown-item" routerLink="/host/account/change-info">Change Info</a>
+              <a class="dropdown-item" [routerLink]="['/login/account-info']">Account Info</a>
+              <a class="dropdown-item" [routerLink]="['/login/change-password']">Change Password</a>
+              <a class="dropdown-item" [routerLink]="['/login/change-info']">Change Info</a>
             </div>
           </li>
         </ul>
