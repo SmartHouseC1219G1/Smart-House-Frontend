@@ -19,7 +19,19 @@ import { finalize, tap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { of } from 'rxjs';
+import {AuthService} from '../../service/auth/auth.service';
+import Swal from 'sweetalert2';
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 2000,
+  timerProgressBar: true,
+  onOpen: (toast) => {
+    toast.addEventListener('mouseleave', Swal.resumeTimer);
+  }
+});
 @Component({
   selector: 'app-add-apartment',
   templateUrl: './add-apartment.component.html',
@@ -107,8 +119,11 @@ export class AddApartmentComponent implements OnInit {
 
   async onSubmit() {
     if (this.apartmentForm.invalid) {
-      alert('invalid input');
-      console.log(this.apartmentForm);
+      await Toast.fire({
+        icon: 'warning',
+        title: 'invalid',
+        html: 'Please complete!!!!'
+      });
       return;
     }
     console.log('saving');
@@ -139,8 +154,16 @@ export class AddApartmentComponent implements OnInit {
           .addNewApartment(this.apartment)
           .subscribe((res: Res) => {
             console.log(res);
-            if (res.status === 'SUCCESS') alert('success');
-            else alert('failed to add new apartment');
+            if (res.status === 'SUCCESS')  Toast.fire({
+              icon: 'success',
+              title: 'Success',
+              html: 'Create new Apartment Success!!!!'
+            });
+            else  Toast.fire({
+              icon: 'error',
+              title: 'Fail',
+              html: 'Create new Apartment Fail!!!!'
+            });
           });
       })
       .catch((err) => alert(err))

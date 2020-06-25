@@ -113,7 +113,7 @@ export class SignInComponent implements OnInit {
       'Sign in failed',
       'Please re enter username and password',
       'warning'
-    )
+    );
   }
 
   async redirectTimeOut() {
