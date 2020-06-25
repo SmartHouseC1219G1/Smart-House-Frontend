@@ -15,8 +15,8 @@ export class ListNotRentedComponent implements OnInit {
   ngOnInit(): void {
     this.orderService.getAllOrderOfHost('PENDING').subscribe((data: Res) => {
       this.listOrder = data.data;
+      console.log(this.listOrder)
     });
-    console.log(this.listOrder);
     
   }
 }
