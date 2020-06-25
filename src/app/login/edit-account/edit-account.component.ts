@@ -1,9 +1,9 @@
-import { User } from './../../model/user';
-import { AccountService } from './../../service/account.service';
+import { User } from '../../model/user';
+import { AccountService } from '../../service/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 function comparePassword(c: AbstractControl) {
   const v = c.value;
@@ -21,17 +21,24 @@ const Toast = Swal.mixin({
     toast.addEventListener('mouseleave', Swal.resumeTimer);
   }
 });
+
 @Component({
   selector: 'app-edit-account',
   templateUrl: './edit-account.component.html',
   styleUrls: ['./edit-account.component.css']
 })
+// interface EditAccount {
+//   fullName: string;
+//   email: string;
+//   phone: string;
+// }
 export class EditAccountComponent implements OnInit {
 
   registerForm: FormGroup;
   account: User;
 
   constructor(private accountService: AccountService,
+              private router: Router,
               private route: ActivatedRoute,
               private fb: FormBuilder) { }
 
@@ -57,21 +64,13 @@ export class EditAccountComponent implements OnInit {
   onSubmit() {
     if (this.registerForm.valid) {
       console.log(this.registerForm.value);
+      const value = this.registerForm.value;
+      const data = { ...this.account, ...value};
+      this.accountService.editAccount(data).subscribe(item => {this.router.navigate(['']); }, error => {alert('error'); });
       Toast.fire({
         icon: 'success',
         title: 'Edit User successfully'
       });
-      const {value} = this.registerForm;
-      const data = {
-        ...this.account,
-        ...value
-      };
-      this.accountService.editAccount(data)
-        .subscribe(result => {
-          this.routes.navigate(['']);
-        }, error => {
-          console.log(error);
-        });
     }
   }
 

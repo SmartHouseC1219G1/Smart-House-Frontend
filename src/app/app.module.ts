@@ -59,7 +59,7 @@ const firebaseConfig = {
             return "";
           }
         },
-        whitelistedDomains: [],
+        whitelistedDomains: ["localhost:8080"],
         blacklistedRoutes: [],
       },
     }),

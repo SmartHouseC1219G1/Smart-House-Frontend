@@ -1,7 +1,8 @@
 import { async } from '@angular/core/testing';
 import { Router } from '@angular/router';
+// @ts-ignore
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { AuthService } from './../../service/auth/auth.service';
+import { AuthService } from '../../service/auth/auth.service';
 import { FacebookUser } from '../../model/social-user';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
