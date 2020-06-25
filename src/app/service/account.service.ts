@@ -9,18 +9,17 @@ const API_URL_EDIT_ACCOUNT = 'http://localhost:8080/api/updateUser';
 })
 export class AccountService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getAccountById(id: number): Observable<any> {
-    return this.httpClient.get<any>(`${API_URL_ACCOUNT}/${id}`);
+  createAccount(signUpForm: User){
+    return this.http.post("http://localhost:8080/api/auth/signUp",signUpForm);
   }
 
-  createAccount(account: Account): Observable<Account> {
-    return this.httpClient.post<Account>(API_URL_ACCOUNT, account);
+  getAccountById(id: number){
+    return this.http.get(`http://localhost:8080/api/user/${id}`)
   }
 
-  editAccount(account: Account): Observable<Account> {
-    return this.httpClient.put<Account>(`${API_URL_EDIT_ACCOUNT}/${account.id}`, account);
+  editAccount(body){
+    return this.http.put("http://localhost:8080/api/user",body);
   }
-
 }
