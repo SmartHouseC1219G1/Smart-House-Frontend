@@ -23,4 +23,5 @@ export class ListRentingComponent implements OnInit {
       this.listOrder.splice(index,1);
     });
   }
+  
 }

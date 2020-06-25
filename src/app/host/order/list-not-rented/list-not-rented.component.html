@@ -25,8 +25,8 @@
         <td>{{order.statusOrders}}</td>
         <td>{{order.totalMoney}}</td>
         <td>
-          <button class="btn btn-primary py-1 px-1" (click)="confirmOrder(order.id,index)">OK</button> ||
-          <button class="btn btn-primary py-1 px-1">Cancel</button>
+          <button class="btn btn-primary py-1 px-1" (click)="confirmOrder(order.id,index)">Accept</button> ||
+          <button class="btn btn-primary py-1 px-1" (click)="cancelOrder(order.id,index)">Deny</button>
         </td>
       </tr>
     </tbody>

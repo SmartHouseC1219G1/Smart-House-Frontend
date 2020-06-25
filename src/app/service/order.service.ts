@@ -25,5 +25,9 @@ export class OrderService {
   confirmOrder(idOrder) {
     return this.http.put(`http://localhost:8080/api/confirmOrderApartment/${idOrder}`, null);
   }
+
+  cancelOrder(idOrder) {
+    return this.http.put(`http://localhost:8080/api/cancelOrderApartment/${idOrder}`, null);
+  }
   
 }

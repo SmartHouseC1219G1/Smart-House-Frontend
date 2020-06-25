@@ -25,4 +25,11 @@ export class ListNotRentedComponent implements OnInit {
       this.listOrder.splice(index,1);
     });
   }
+
+  cancelOrder(idOrder,index){
+    this.orderService.cancelOrder(idOrder).subscribe((data) => {
+      console.log(data);
+      this.listOrder.splice(index,1);
+    });
+  }
 }
