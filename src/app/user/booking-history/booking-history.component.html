@@ -18,13 +18,13 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Check In</td>
-      <td>Check Out</td>
-      <td>Status</td>
-      <td>Bill Total</td>
-      <td><button class="btn btn-primary py-1 px-1">button</button> </td>
+    <tr *ngFor="let order of orderList,index as index">
+      <th scope="row">{{index + 1}}</th>
+      <td>{{order.startTime}}</td>
+      <td>{{order.endTime}}</td>
+      <td>{{order.statusOrders}}</td>
+      <td>{{order.totalMoney}}</td>
+      <td><button class="btn btn-primary py-1 px-1" *ngIf="order.statusOrders == 'PENDING' || order.statusOrders == 'NOT_RENTED'" (click)="cancelOrder(order.id,index)">Cancel this order</button> </td>
     </tr>
     </tbody>
   </table>

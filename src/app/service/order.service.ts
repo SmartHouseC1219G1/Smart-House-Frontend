@@ -18,6 +18,10 @@ export class OrderService {
     return this.http.get(`http://localhost:8080/api/findOrderByApartmentAndStatus?statusOrders=${orderStatus}`);
   }
 
+  getAllOrderOfCustomer(){
+    return this.http.get(`http://localhost:8080/api/findAllOrderOfCustomer`);
+  }
+
   checkInOrder(idOrder) {
     return this.http.put(`http://localhost:8080/api/checkinOrderApartment/${idOrder}`, null);
   }
@@ -30,8 +34,11 @@ export class OrderService {
     return this.http.put(`http://localhost:8080/api/cancelOrderApartment/${idOrder}`, null);
   }
 
+  cancelOrderByCustomer(idOrder) {
+    return this.http.put(`http://localhost:8080/api/cancelOrder/${idOrder}`, null);
+  }
+
   createOrder(order: Order){
     return this.http.post('http://localhost:8080/api/createOrders',order);
   }
-  
 }
