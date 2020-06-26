@@ -1,5 +1,7 @@
 import { Order } from './order';
 import { Apartment } from './apartment';
+import { Comment } from './comment';
+
 export interface User {
     id?: number;
     name?: string;
@@ -9,4 +11,5 @@ export interface User {
     phone?: string;
     apartments?: Apartment[];
     orders?: Order[];
+    comments?: Comment[];
 }

@@ -1,3 +1,4 @@
+import { MatListModule } from '@angular/material/list';
 import { RoleGuard } from '../service/auth/role.guard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ExploreComponent } from './explore/explore.component';
 import { BookingHistoryComponent } from './booking-history/booking-history.component';
+import { MatIcon } from '@angular/material/icon';
 
 const routes: Routes = [
   {
@@ -66,6 +68,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FormsModule,
     ReactiveFormsModule,
+    MatListModule
   ],
 })
 export class UserModule {}

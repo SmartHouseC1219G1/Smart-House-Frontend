@@ -1,3 +1,5 @@
+import { CommentDto } from './../../model/dto/commentDto';
+import { CommentService } from './../../service/comment.service';
 import { PopupService } from './../../service/popup.service';
 import Swal from 'sweetalert2';
 import { OrderService } from 'src/app/service/order.service';
@@ -18,12 +20,14 @@ export class RoomDetailComponent implements OnInit {
   start: Date;
   end: Date;
   apartment: Apartment;
+  commentList: CommentDto[]
   constructor(
     private apartmentService: ApartmentService,
     private route: ActivatedRoute,
     private orderService: OrderService,
     private router: Router,
-    private popupService: PopupService
+    private popupService: PopupService,
+    private commentService: CommentService
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +36,9 @@ export class RoomDetailComponent implements OnInit {
       (data: Res) => {
         this.apartment = data.data;
         console.log(this.apartment);
+        this.commentService.getCommentListByApartmentId(this.apartment.id).subscribe((data: Res) => {
+          this.commentList = data.data;
+        })
       },
       (error) => {
         console.log(error);

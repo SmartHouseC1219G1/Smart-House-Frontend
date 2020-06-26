@@ -1,14 +1,15 @@
-<div class="container " style="margin: 50px auto;">
-    <h1>Your apartment</h1>
-    <mat-list>
-        <mat-list-item *ngFor="let apartment of apartmentList">
-          <img matListAvatar [src]="apartment.pictures[0].imageUrl" alt="...">
-          <a routerLink="/host/apartment/{{apartment.id}}" matLine> {{apartment.name}} </a>
-          <p matLine>
-            <span> {{apartment.address.name}} </span>
-            <span class="demo-2"> -- {{apartment.address.province.name}} </span>
-          </p>
-        </mat-list-item>
-      </mat-list>
+<div class="container" style="margin: 50px auto;">
+  <h1>Your apartment</h1>
+  <mat-list>
+    <mat-list-item *ngFor="let apartment of apartmentList">
+      <img matListAvatar [src]="apartment.pictures[0].imageUrl" alt="..." />
+      <a routerLink="/host/apartment/{{ apartment.id }}" matLine>
+        {{ apartment.name }}
+      </a>
+      <p matLine>
+        <span> {{ apartment.address.name }} </span>
+        <span class="demo-2"> -- {{ apartment.address.province.name }} </span>
+      </p>
+    </mat-list-item>
+  </mat-list>
 </div>
-    

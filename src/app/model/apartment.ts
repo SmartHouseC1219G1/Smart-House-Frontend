@@ -1,3 +1,4 @@
+import { Comment } from './comment';
 import { RoomType } from './roomtype';
 import { Address } from './address';
 import { Host } from './host';
@@ -17,4 +18,5 @@ export class Apartment {
     host?: Host;
     address?: Address;
     roomTypes?: RoomType[];
+    comments?: Comment[];
 }
