@@ -1,8 +1,9 @@
 import { AccountService } from '../../service/account.service';
 import { User } from '../../model/user';
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../../service/auth/auth.service';
 
 function comparePassword(c: AbstractControl) {
   const v = c.value;
@@ -18,19 +19,24 @@ function comparePassword(c: AbstractControl) {
 export class AccountInfoComponent implements OnInit {
   user: User;
   constructor(
-    private route: ActivatedRoute,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private router: Router,
+    private auth: AuthService
   ) {}
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.accountService.getAccountById(id).subscribe(
-      next => (this.user = next),
-      error => {
-        console.log(error);
-        this.user = null;
-      }
-    );
+    this.accountService.getUserByUsername().subscribe( result => {
+      this.user = result;
+    });
+  }
+  // @ts-ignore
+  isAuth(): boolean {
+    return this.auth.isAuth();
+}
+  cancel(){
+    if (this.auth.isHost()){
+      this.router.navigate(['/host']);
+    }else {this.router.navigate(['']); }
   }
 
 
