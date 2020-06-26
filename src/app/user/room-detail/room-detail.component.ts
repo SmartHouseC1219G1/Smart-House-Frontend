@@ -20,7 +20,8 @@ export class RoomDetailComponent implements OnInit {
   start: Date;
   end: Date;
   apartment: Apartment;
-  commentList: CommentDto[]
+  commentList: CommentDto[];
+  inputComment: string;
   constructor(
     private apartmentService: ApartmentService,
     private route: ActivatedRoute,
@@ -36,9 +37,11 @@ export class RoomDetailComponent implements OnInit {
       (data: Res) => {
         this.apartment = data.data;
         console.log(this.apartment);
-        this.commentService.getCommentListByApartmentId(this.apartment.id).subscribe((data: Res) => {
-          this.commentList = data.data;
-        })
+        this.commentService
+          .getCommentListByApartmentId(this.apartment.id)
+          .subscribe((data: Res) => {
+            this.commentList = data.data;
+          });
       },
       (error) => {
         console.log(error);
@@ -48,8 +51,6 @@ export class RoomDetailComponent implements OnInit {
   }
 
   async createOrder() {
-    console.log(this.start);
-    console.log(this.end);
     const order: Order = {
       startTime: this.start,
       endTime: this.end,
@@ -63,8 +64,7 @@ export class RoomDetailComponent implements OnInit {
         console.log(res);
         if (res.status == 'SUCCESS') {
           this.popUpSuccess();
-        }
-        else this.popUpFailed();
+        } else this.popUpFailed();
       },
       (err) => {
         console.log(err);
@@ -79,5 +79,24 @@ export class RoomDetailComponent implements OnInit {
 
   popUpFailed() {
     this.popupService.failed('Book failed', 'Opp! Something wrong');
+  }
+
+  onComment() {
+    this.commentService
+      .addComment(this.apartment.id, this.inputComment)
+      .subscribe(
+        (data: Res) => {
+          if (data.status == 'SUCCESS') {
+            console.log(data.data);
+            this.commentList.push(data.data);
+          } else {
+            this.popupService.failed('Comment Failed', 'Opp! Something wrong');
+          }
+        },
+        (err) => {
+          console.log(err);
+          this.popupService.failed('Comment Failed', 'Opp! Something wrong')
+        }
+      );
   }
 }
