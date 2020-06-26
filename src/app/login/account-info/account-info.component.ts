@@ -33,7 +33,7 @@ export class AccountInfoComponent implements OnInit {
   isAuth(): boolean {
     return this.auth.isAuth();
 }
-  cancel(){
+  cancel() {
     if (this.auth.isHost()){
       this.router.navigate(['/host']);
     }else {this.router.navigate(['']); }
