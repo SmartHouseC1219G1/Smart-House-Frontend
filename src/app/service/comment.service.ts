@@ -11,4 +11,8 @@ export class CommentService {
   getCommentListByApartmentId(apartmentId: number){
     return this.http.get(`http://localhost:8080/api/listComment/${apartmentId}`);
   }
+
+  addComment(apartmentId: number,comment: string){
+    return this.http.post(`http://localhost:8080/api/addComment/${apartmentId}?comment=${comment}`,null)
+  }
 }
