@@ -19,8 +19,9 @@ import { finalize, tap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { of } from 'rxjs';
-import {AuthService} from '../../service/auth/auth.service';
+import { AuthService } from '../../service/auth/auth.service';
 import Swal from 'sweetalert2';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 const Toast = Swal.mixin({
   toast: true,
@@ -30,7 +31,7 @@ const Toast = Swal.mixin({
   timerProgressBar: true,
   onOpen: (toast) => {
     toast.addEventListener('mouseleave', Swal.resumeTimer);
-  }
+  },
 });
 @Component({
   selector: 'app-add-apartment',
@@ -79,7 +80,8 @@ export class AddApartmentComponent implements OnInit {
     private fb: FormBuilder,
     private getListService: GetListService,
     private apartmentService: ApartmentService,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit() {
@@ -122,10 +124,11 @@ export class AddApartmentComponent implements OnInit {
       await Toast.fire({
         icon: 'warning',
         title: 'invalid',
-        html: 'Please complete!!!!'
+        html: 'Please complete!!!!',
       });
       return;
     }
+    this.spinner.show();
     console.log('saving');
     this.apartment = this.apartmentForm.value;
     const uploadArray = [];
@@ -154,16 +157,18 @@ export class AddApartmentComponent implements OnInit {
           .addNewApartment(this.apartment)
           .subscribe((res: Res) => {
             console.log(res);
-            if (res.status === 'SUCCESS')  Toast.fire({
-              icon: 'success',
-              title: 'Success',
-              html: 'Create new Apartment Success!!!!'
-            });
-            else  Toast.fire({
-              icon: 'error',
-              title: 'Fail',
-              html: 'Create new Apartment Fail!!!!'
-            });
+            if (res.status === 'SUCCESS') {
+              Toast.fire({
+                icon: 'success',
+                title: 'Success',
+                html: 'Create new Apartment Success!!!!',
+              });
+            } else
+              Toast.fire({
+                icon: 'error',
+                title: 'Fail',
+                html: 'Create new Apartment Fail!!!!',
+              });
           });
       })
       .catch((err) => alert(err))
@@ -171,6 +176,7 @@ export class AddApartmentComponent implements OnInit {
         this.pictures = [];
         this.apartment = {};
         this.apartmentForm.reset();
+        this.spinner.hide();
       });
   }
 

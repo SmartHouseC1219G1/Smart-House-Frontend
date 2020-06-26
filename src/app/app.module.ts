@@ -18,7 +18,7 @@ import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-logi
 import {FacebookLoginProvider} from 'angularx-social-login';
 import {JwtModule} from '@auth0/angular-jwt'
 import { ca } from 'date-fns/locale';
-
+import { NgxSpinnerModule } from "ngx-spinner";
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB3F4HWEz67XdAe7KnSrYq-0cNede-zm4g',
@@ -47,6 +47,7 @@ const firebaseConfig = {
     AngularFirestoreModule, // firestore
     AngularFireAuthModule, // auth
     AngularFireStorageModule, // storage
+    NgxSpinnerModule,
     SocialLoginModule,
     HttpClientModule,
     JwtModule.forRoot({

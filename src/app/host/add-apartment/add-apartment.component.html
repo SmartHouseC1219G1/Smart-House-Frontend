@@ -1,4 +1,6 @@
+
 <div class="container">
+  <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-fall" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
   <h1>Create an apartment</h1>
   <form [formGroup]="apartmentForm" (ngSubmit)="onSubmit()">
     <div class="form-group" >

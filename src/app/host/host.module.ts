@@ -1,3 +1,4 @@
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { UploadService } from './../service/upload.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
@@ -20,6 +21,7 @@ import {MatListModule} from '@angular/material/list';
 // @ts-ignore
 import {MatIconModule} from '@angular/material/icon';
 import { ApartmentDetailComponent } from './apartment-detail/apartment-detail.component';
+import { NgxSpinner } from 'ngx-spinner/lib/ngx-spinner.enum';
 
 
 const routes: Routes = [
@@ -65,6 +67,7 @@ const routes: Routes = [
     NgxDropzoneModule,
     MatListModule,
     MatIconModule,
+    NgxSpinnerModule
   ]
 })
 export class HostModule { }
