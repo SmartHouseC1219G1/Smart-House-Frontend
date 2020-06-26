@@ -40,7 +40,7 @@ export class AuthService {
     try {
       return helper.decodeToken(this.getRawToken());
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
 

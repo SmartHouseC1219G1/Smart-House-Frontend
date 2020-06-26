@@ -26,7 +26,7 @@ export class RoleGuard implements CanActivate {
       const expectedRole = next.data.expectedRole;
       try {
         if (
-          !this.auth.isAuth() || 
+          !this.auth.isAuth() ||
           this.auth.getRole() !== expectedRole
         ) {
           this.router.navigate(['/login']);
@@ -36,6 +36,5 @@ export class RoleGuard implements CanActivate {
       } catch (err) {
         this.router.navigate(['/login']);
       }
-      
   }
 }

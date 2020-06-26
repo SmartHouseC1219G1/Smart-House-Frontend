@@ -1,14 +1,14 @@
-import { UploadService } from './../../service/upload.service';
-import { OrderService } from './../../service/order.service';
-import { Order } from './../../model/order';
+import { UploadService } from '../../service/upload.service';
+import { OrderService } from '../../service/order.service';
+import { Order } from '../../model/order';
 import { async } from '@angular/core/testing';
 import { finalize } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { Picture } from './../../model/picture';
-import { Res } from './../../model/res';
-import { ApartmentService } from './../../service/apartment.service';
+import { Picture } from '../../model/picture';
+import { Res } from '../../model/res';
+import { ApartmentService } from '../../service/apartment.service';
 import { ActivatedRoute, RouterLink, Router } from '@angular/router';
-import { Apartment } from './../../model/apartment';
+import { Apartment } from '../../model/apartment';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -72,7 +72,7 @@ export class ApartmentDetailComponent implements OnInit {
   }
 
   fetchImage(url: string) {
-    var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+    let proxyUrl = 'https://cors-anywhere.herokuapp.com/';
     return fetch(proxyUrl + url)
       .then((res) => res.blob()) // Gets the response and returns it as a blob
       .then((blob) => {
@@ -80,7 +80,7 @@ export class ApartmentDetailComponent implements OnInit {
         const file = new File([blob], `image${Date.now()}.jpg`, {
           type: blob.type,
         });
-        //push file to files
+        // push file to files
         this.files.push(file);
         console.log(this.files);
       });
@@ -137,8 +137,8 @@ export class ApartmentDetailComponent implements OnInit {
       (res: Res) => {
         console.log(res);
         // tslint:disable-next-line:triple-equals
-        if (res.status == 'SUCCESS') alert('block success');
-        else alert('could not block with this date');
+        if (res.status == 'SUCCESS') { alert('block success'); }
+        else { alert('could not block with this date'); }
       },
       (err) => {
         console.log(err);

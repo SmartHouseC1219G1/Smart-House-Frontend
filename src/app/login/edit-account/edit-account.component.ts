@@ -73,7 +73,4 @@ export class EditAccountComponent implements OnInit {
       });
     }
   }
-
-
-
 }

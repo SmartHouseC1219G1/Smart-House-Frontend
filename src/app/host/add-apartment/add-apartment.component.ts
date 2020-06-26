@@ -112,7 +112,7 @@ export class AddApartmentComponent implements OnInit {
       return;
     }
     console.log('saving');
-    this.apartment = this.apartmentForm.value
+    this.apartment = this.apartmentForm.value;
     const uploadArray = [];
     this.files.forEach((file) => {
       uploadArray.push(this.uploadService.startUpload(file));
@@ -139,8 +139,8 @@ export class AddApartmentComponent implements OnInit {
           .addNewApartment(this.apartment)
           .subscribe((res: Res) => {
             console.log(res);
-            if (res.status === 'SUCCESS') alert('success');
-            else alert('failed to add new apartment');
+            if (res.status === 'SUCCESS') { alert('success'); }
+            else { alert('failed to add new apartment'); }
           });
       })
       .catch((err) => alert(err))

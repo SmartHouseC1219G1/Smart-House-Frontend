@@ -45,7 +45,8 @@ const routes: Routes = [
   ];
 
 @NgModule({
-  declarations: [CreateAccountComponent, SignInComponent, LayoutComponent, EditAccountComponent],
+  // tslint:disable-next-line:max-line-length
+  declarations: [CreateAccountComponent, SignInComponent, LayoutComponent, EditAccountComponent, ChangePasswordComponent, AccountInfoComponent],
   imports: [
     CommonModule,
     FormsModule,
