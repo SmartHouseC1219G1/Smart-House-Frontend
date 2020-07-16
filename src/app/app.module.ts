@@ -19,6 +19,7 @@ import {FacebookLoginProvider} from 'angularx-social-login';
 import {JwtModule} from '@auth0/angular-jwt'
 import { ca } from 'date-fns/locale';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { environment } from 'src/environments/environment';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyB3F4HWEz67XdAe7KnSrYq-0cNede-zm4g',
@@ -60,7 +61,7 @@ const firebaseConfig = {
             return "";
           }
         },
-        whitelistedDomains: ["localhost:8080"],
+        whitelistedDomains: ["apartment-yyy.herokuapp.com","localhost:8080",environment.API_URL],
         blacklistedRoutes: [],
       },
     }),

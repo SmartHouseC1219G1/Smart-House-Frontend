@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -6,9 +7,10 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class GetListService {
-  categoryUrl = 'http://localhost:8080/api/category';
-  roomTypeUrl = 'http://localhost:8080/api/room-type';
-  provinceUrl = 'http://localhost:8080/api/province';
+  apiUrl = environment.API_URL;
+  categoryUrl = this.apiUrl + 'category';
+  roomTypeUrl = this.apiUrl + 'room-type';
+  provinceUrl = this.apiUrl + 'province';
 
   constructor(private http: HttpClient) { }
 

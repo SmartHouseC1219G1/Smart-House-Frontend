@@ -1,8 +1,10 @@
+import { environment } from './../../../environments/environment';
 import { ca } from 'date-fns/locale';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
+const API_URL = environment.API_URL;
 const helper = new JwtHelperService();
 @Injectable({
   providedIn: 'root',
@@ -23,7 +25,7 @@ export class AuthService {
 
   public signIn(loginPayload) {
     return this.http.post(
-      'http://localhost:8080/api/auth/signIn',
+      API_URL + 'auth/signIn',
       loginPayload
     );
   }

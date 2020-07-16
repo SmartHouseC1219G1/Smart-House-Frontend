@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Picture } from '../model/picture';
 import { Apartment } from '../model/apartment';
 import { Observable} from 'rxjs';
@@ -8,35 +9,35 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ApartmentService {
-  url = 'http://localhost:8080/api/apartment';
+  apiUrl = environment.API_URL;
   constructor(private http: HttpClient) {}
 
   addNewApartment(apartment: Apartment) {
     return this.http.post(
-      'http://localhost:8080/api/createApartment',
+      this.apiUrl + 'createApartment',
       apartment
     );
   }
 
   getApartmentById(id: number) {
-    return this.http.get(`${this.url}/${id}`);
+    return this.http.get(`${this.apiUrl}apartment/${id}`);
   }
 
   getApartmentByHost() {
-    return this.http.get(`http://localhost:8080/api/listApartmentByHost`);
+    return this.http.get(this.apiUrl + `listApartmentByHost`);
   }
 
   getAllApartment() {
-    return this.http.get('http://localhost:8080/api/listApartment');
+    return this.http.get(this.apiUrl + 'listApartment');
   }
 
   getDetailApartmentById(id: number) {
-    return this.http.get(`http://localhost:8080/api/listApartment/${id}`);
+    return this.http.get(this.apiUrl + `listApartment/${id}`);
   }
 
   updateApartmentPictures(id: number, pictures: Picture[]) {
     return this.http.put(
-      `http://localhost:8080/api/update-apartment-pictures/${id}`,
+      this.apiUrl + `update-apartment-pictures/${id}`,
       pictures
     );
   }
@@ -52,7 +53,7 @@ export class ApartmentService {
     endTime: string
   ) {
     return this.http.get(
-      `http://localhost:8080/api/search-apartment?bedroom=${bedroom}&bathroom=${bathroom}&province_id=${province_id}&startPrice=${startPrice}&endPrice=${endPrice}&startTime=${startTime}&endTime=${endTime}`
+      this.apiUrl + `search-apartment?bedroom=${bedroom}&bathroom=${bathroom}&province_id=${province_id}&startPrice=${startPrice}&endPrice=${endPrice}&startTime=${startTime}&endTime=${endTime}`
     );
   }
 }
