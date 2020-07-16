@@ -103,7 +103,7 @@ export class AddApartmentComponent implements OnInit {
       categories: this.fb.control([]),
       address: this.fb.group({
         name: ['', Validators.required],
-        provinces: this.fb.group({
+        province: this.fb.group({
           id: ['', Validators.required],
         }),
       }),
