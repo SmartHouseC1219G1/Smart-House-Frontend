@@ -25,8 +25,8 @@ export class BookingHistoryComponent implements OnInit {
         this.orderList[index].statusOrders = "CANCEL";
         console.log(this.orderList);
       } else {
-        this.popup.failed("Failed","Opp! Wrong")
+        this.popup.failed("Failed","Only cancel order before 1 day")
       }
-    },err => this.popup.failed("Failed","Opp! Wrong"))
+    },err => this.popup.failed("Failed","Send request failed"))
   }
 }
